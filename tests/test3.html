@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Sisifo - La bataille de la cité universitaire de Madrid</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="stylesheet.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="main">
+        <p id="text"></p>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        var textbase = "Premier texte qui raconte un truc, on peut avancer jusqu'a ce que ça bloque, ";
+        var text = textbase + "un caractère informe jusqu'ou il faut retourner en arrière.";
+        var text2 = textbase + "Et en fait c'est quelque chose d'autre qui s'écrit après.";
+
+        //motParMot("text", text, text2, 0, 250);
+
+        var index = 0;
+        var indexAtteint = false;
+        var checkPoint = false;
+        var targeted = document.getElementById("main");
+        if (targeted.addEventListener) {
+            // IE9, Chrome, Safari, Opera
+            targeted.addEventListener("mousewheel", function(e){MouseWheelHandler(e, text)}, false);
+            // Firefox
+            targeted.addEventListener("DOMMouseScroll", function(e){MouseWheelHandler(e, text)}, false);
+        }
+        // IE 6/7/8
+        else targeted.attachEvent("onmousewheel", function(e){MouseWheelHandler(e, text)});
+
+
+    </script>
+</body>
+</html>
