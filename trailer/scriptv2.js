@@ -1,84 +1,196 @@
 var letter = document.getElementById('text');
-var page = document.getElementById('main');
 var bataille = document.getElementById('bataille');
 
 var letterHeight = letter.offsetHeight;
 var letterWidth = letter.offsetWidth;
+var nbLines = 0;
 
-txts = ["La Cité Universitaire de Madrid est un campus pharaonique, séparé de la cité, rêvé par le roi Alfonso XIII dans les années 1920. Sur un gigantesque terrain de Moncloa, d’une superficie de plus de 300 hectares, commencent à s’édifier, dès 1930, les facultés de médecine, de pharmacie et d’odontologie. Suivies, en 1932, de l’hôpital clinique.",
-"La Cité Universitaire de Madrid fut un des fronts les plus tenaces de la guerre civile espagnole. Dès 1936, les nationalistes, menés par Varela, ambitionnent de prendre Madrid, place forte républicaine, par un assaut frontal. Ils occupent rapidement la rive ouest du Manzanares, mais butent sur les positions défensives des brigadistes, situées au sommet de la berge opposée, montant à pic vers Moncloa.",
-"Après avoir subi de lourdes pertes, les phalangistes changent de tactique. Madrid ne tombera que s’ils délogent les républicains postés sur le promontoire de la Cité Universitaire, friche en construction, où s’alternent monumentaux instituts, terrains vagues et zones de travaux. Un véritable bocage urbain. Dès le 15 novembre 1936, de violents combats opposent attaquants et défenseurs, s’affrontant parfois à bout portant, au sein du même édifice, d’étage en étage."];
+txts = [
+    "La Cité Universitaire de Madrid est un campus pharaonique, séparé de la cité, rêvé par le roi Alfonso XIII dans les années 1920. Sur un gigantesque terrain de Moncloa, d’une superficie de plus de 300 hectares, commencent à s’édifier, dès 1930, les facultés de médecine, de pharmacie et d’odontologie. Suivies, en 1932, de l’hôpital clinique.",
+    "La Cité Universitaire de Madrid fut un des fronts les plus tenaces de la guerre civile espagnole. Dès 1936, les nationalistes, menés par Varela, ambitionnent de prendre Madrid, place forte républicaine, par un assaut frontal. Ils occupent rapidement la rive ouest du Manzanares, mais butent sur les positions défensives des brigadistes, situées au sommet de la berge opposée, montant à pic vers Moncloa.",
+    "Après avoir subi de lourdes pertes, les phalangistes changent de tactique. Madrid ne tombera que s’ils délogent les républicains postés sur le promontoire de la Cité Universitaire, friche en construction, où s’alternent monumentaux instituts, terrains vagues et zones de travaux. Un véritable bocage urbain. Dès le 15 novembre 1936, de violents combats opposent attaquants et défenseurs, s’affrontant parfois à bout portant, au sein du même édifice, d’étage en étage. C'est..."
+];
 
 title = [
-         "╷  ╭─┐   ┌─╮╭─┐╶┬╴╭─┐╶┬╴╷  ╷  ┌─╴",
-         "│  ├─┤   │─┤├─┤ │ ├─┤ │ │  │  ├─╴",
-         "╰─╴╵ ╵   └─╯╵ ╵ ╵ ╵ ╵╶┴╴╰─╴╰─╴╰─╴",
-         "┌─╮┌─╴   ╷  ╭─┐   ╭─╴╶┬╴╶┬╴┌─╴",
-         "│ │├─╴   │  ├─┤   │   │  │ ├─╴",
-         "└─╯╰─╴   ╰─╴╵ ╵   ╰─╴╶┴╴ ╵ ╰─╴",
-         "╷ ╷╭╮╷╶┬╴╷ ╷┌─╴┌─╮╭─╴╶┬╴╶┬╴╭─┐╶┬╴┌─╮┌─╴",
-         "│ ││││ │ │╭╯├─╴├┬╯╰─╮ │  │ ├─┤ │ ├┬╯├─╴",
-         "╰─╯╵╰╯╶┴╴╰╯ ╰─╴╵ ╰╶─╯╶┴╴ ╵ ╵ ╵╶┴╴╵ ╰╰─╴",
-         "┌─╮┌─╴   ╭╮╮╭─┐┌─╮┌─╮╶┬╴┌─╮",
-         "│ │├─╴   │││├─┤│ │├┬╯ │ │ │",
-         "└─╯╰─╴   ╵╵╵╵ ╵└─╯╵ ╰╶┴╴└─╯"
+        " ",
+        " ",
+        " ",
+        " ",
+        "╷  ╭─┐   ┌─╮╭─┐╶┬╴╭─┐╶┬╴╷  ╷  ┌─╴",
+        "│  ├─┤   │─┤├─┤ │ ├─┤ │ │  │  ├─╴",
+        "╰─╴╵ ╵   └─╯╵ ╵ ╵ ╵ ╵╶┴╴╰─╴╰─╴╰─╴",
+        "┌─╮┌─╴   ╷  ╭─┐   ╭─╴╶┬╴╶┬╴┌─╴",
+        "│ │├─╴   │  ├─┤   │   │  │ ├─╴",
+        "└─╯╰─╴   ╰─╴╵ ╵   ╰─╴╶┴╴ ╵ ╰─╴",
+        "╷ ╷╭╮╷╶┬╴╷ ╷┌─╴┌─╮╭─╴╶┬╴╶┬╴╭─┐╶┬╴┌─╮┌─╴",
+        "│ ││││ │ │╭╯├─╴├┬╯╰─╮ │  │ ├─┤ │ ├┬╯├─╴",
+        "╰─╯╵╰╯╶┴╴╰╯ ╰─╴╵ ╰╶─╯╶┴╴ ╵ ╵ ╵╶┴╴╵ ╰╰─╴",
+        "┌─╮┌─╴   ╭╮╮╭─┐┌─╮┌─╮╶┬╴┌─╮",
+        "│ │├─╴   │││├─┤│ │├┬╯ │ │ │",
+        "└─╯╰─╴   ╵╵╵╵ ╵└─╯╵ ╰╶┴╴└─╯",
+        "────────",
+        "╶╮ ┌─╴   ╭╮╷╭─╮╷ ╷   ╶╮ ╭─╮╶─╮╭─╴",
+        " │ └─╮   ││││ ││╭╯    │ ╰─┤╶─┤├─╮",
+        "╶┴╴╶─╯   ╵╰╯╰─╯╰╯    ╶┴╴╶─╯╶─╯╰─╯"
         ]
 
+final = [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "//#/#///////////",
+        "//#╭─╴╶┬╴╭─╴╶┬╴┌─╴╭─╮###",
+        "/##╰─╮#│#╰─╮#│#├─╴│#│##/",
+        "###╶─╯╶┴╴╶─╯╶┴╴╵##╰─╯#//",
+        "",
+        "##avril#2017##",
+        "",
+        "##une#œuvre#de#littérature#numérique#de##",
+        "##L.#Henry,#luvan,##",
+        "##L.#Afchain,#N.#Chesnais##",
+        "",
+        "##>#sisifo.site##"
+]
+
+console.log("pls do not look at this code, it's ugly, very very ugly.");
+console.log("you can loose your eyes and someone in your family will probably die in extreme convulsions");
 
 
-
-
-
-
-
-
-longestWord = countCharacters(txts);
+longestWord = countCharactersInWords(txts);
 
 window.onload = resize;
-window.onresize = resize;
+window.onresize = marging;
 
 function resize()
 {
-    // determine how many characters you can fit by lines (nW) and the number of lines (nH)
     pageHeight = window.innerHeight;
     pageWidth = window.innerWidth;
     nW = parseInt(pageWidth / letterWidth);
     nH = pageHeight / letterHeight;
 
-    if(nW < longestWord+6) {
-        nW = longestWord+6;
+    if(nW < 43) {
+        nW = 43;
     }
     if(nW > 60) {
         nW = 60;
     }
 
 
-    // draw unicode box and position the text div
-    //createLines();
-    bataille.style.marginTop = (50 + letterHeight*2) + "px" ;
     bataille.style.marginLeft = (pageWidth - nW * letterWidth) / 2 + "px" ;
-    bataille.style.marginRight = (pageWidth - nW * letterWidth) / 2 + "px" ;
+    bataille.style.marginTop = letterHeight*4 + "px" ;
+
 
     // decompose txts
-    var str = ""
-    str += createLine(nW,"┌","─","┐");
-    str += createLine(nW,"│"," ","│");
+    var str = "";
+    str += createLine(nW,"┌","─","┐") + createLine(nW,"│"," ","│");
     txts.forEach(function(value, index, array){
         str += prepareLines(value);
     });
-    str += createLine(nW,"│"," ","│");
-    str += createLine(nW,"└","─","┘");
+    str += createLine(nW,"│"," ","│") + createLine(nW,"└","─","┙");
 
-    text2 = asciiTitle(nW, title);
-    str += text2;
-    var index = 0;
-    var interval = 0;
-    var txtOut = "";
-    byLetter(index, str, txtOut, interval);
+    byLetter(0, str, "", 25);
 
-    //var decal = 20;
-    //byLetterDoubleTexte(index, str, text2, txtOut, interval, decal);
-    //bataille.innerHTML = str;
+}
+
+function marging() {
+    pageWidth = window.innerWidth;
+    bataille.style.marginLeft = (pageWidth - nW * letterWidth) / 2 + "px" ;
+}
+
+
+// TEXT ANIMATION /////////////////////////////////////////
+var byLetter = function(index, text1, txtOut, interval) {
+    if(index < text1.length) {
+        if(text1[index] == "<"){
+            txtOut += "</br>";
+            index += 5;
+        }
+        else {
+            txtOut += text1[index++];
+
+        }
+        bataille.innerHTML = txtOut;
+        if(text1[index] == " " || text1[index] == "─"){
+            interval = 0;
+        }
+        else{
+            interval = 70;
+        }
+        setTimeout(function () { byLetter(index, text1, txtOut, interval); }, interval);
+    }
+    else {
+        txtOut = text1;
+        text2 = asciiTitle(nW, title, " ");
+        add_typo((nW+5)*3, text1, text2, txtOut, 10);
+    }
+}
+
+var add_typo = function(idx, text1, text2, txtOut, interval) {
+    if(idx < text2.length) {
+        if(text2[idx] != " " && text2[idx] != undefined){
+            txtOut = setCharAt(txtOut, idx, text2[idx]);
+        }
+        if(text2[idx] == " "){
+            interval = 0;
+        }
+        else {
+            interval = 20;
+        }
+        idx++;
+        bataille.innerHTML = txtOut;
+        setTimeout(function () { add_typo(idx, text1, text2, txtOut, interval); }, interval);
+    }
+    else {
+        text1 = txtOut;
+        bataille.innerHTML = text1;
+        text2 = asciiTitle(nW, final, "/");
+        rest = nbLines - final.length +2;
+        for(a = 0; a < rest; a++){
+            for(b = 0; b < nW; b++){
+                text2 += "/";
+            }
+            text2 += "     ";
+        }
+
+        setTimeout(function(){add_final((nW+5)*2, text1, text2, txtOut, 0);}, 2000)
+
+    }
+}
+
+var add_final = function(idx, text1, text2, txtOut, interval) {
+
+    if(idx < text2.length) {
+        if(text2[idx] != " ") {
+            if(text2[idx] == "#"){
+                txtOut = setCharAt(txtOut, idx, " ");
+            }
+            else {
+                txtOut = setCharAt(txtOut, idx, text2[idx]);
+            }
+
+        }
+        if(text2[idx] == " "){
+            interval = 0;
+        }
+        else{
+            interval = 10;
+        }
+        bataille.innerHTML = txtOut;
+        idx++;
+        setTimeout(function () { add_final(idx, text1, text2, txtOut, interval); }, interval);
+    }
+}
+
+
+function setCharAt(str, index, chr) {
+
+    //if(index > str.length-1) return str;
+    return str.substr(0,index) + chr + str.substr(index+1);
 }
 
 
@@ -107,18 +219,18 @@ function prepareLines(txt) {
 }
 
 
-function buildingLines(splitStr, index, lignes) {
+function buildingLines(splitStr, idx_word, lignes) {
     var strTable = [];
     var str = "";
 
-    while(str.length < nW - 6 && index < splitStr.length) {
-        strTable.push(splitStr[index++]);
+    while(str.length < nW - 6 && idx_word < splitStr.length) {
+        strTable.push(splitStr[idx_word++]);
         str = strTable.join(" ");
     }
 
     if(str.length > nW - 6) {
         strTable.pop();
-        index--;
+        idx_word--;
     }
     str = strTable.join(" ");
     while(str.length < nW -6){
@@ -126,11 +238,13 @@ function buildingLines(splitStr, index, lignes) {
     }
 
     lignes.push(str);
-    return index;
+    nbLines++;
+    return idx_word;
+
 }
 // PREPARE ASCII TITLE ///////////////////////////////////
 
-function asciiTitle(nW, title) {
+function asciiTitle(nW, title, chara) {
     var strOut = "";
 
     title.forEach(function (value, index, array){
@@ -138,13 +252,13 @@ function asciiTitle(nW, title) {
         spacesToAdd = (nW - length) / 2;
 
         for (var i = 0; i < parseInt(spacesToAdd); i++) {
-            strOut += " ";
+            strOut += chara;
         }
         strOut += value;
         for (var i = 0; i < Math.round(spacesToAdd); i++) {
-            strOut += " ";
+            strOut += chara;
         }
-        strOut += "</br>"
+        strOut += "     "
     });
     return strOut
 }
@@ -179,7 +293,7 @@ function createLine(nW,cara1, cara2, cara3) {
 
 ///////////////////////////////////////////////////////////
 
-function countCharacters(txts){
+function countCharactersInWords(txts){
     var n = 0;
     txts.forEach(function(value, index, array){
         var splittedStr = value.split(' ');
@@ -190,57 +304,4 @@ function countCharacters(txts){
         });
     });
     return n;
-}
-
-// TEXT ANIMATION /////////////////////////////////////////
-var byLetter = function(index, text1, txtOut, interval) {
-    if (index < text1.length) {
-        if(text1[index] == "<"){
-            txtOut += "</br>";
-            index += 5;
-        }
-        else {
-            txtOut += text1[index++];
-
-        }
-        bataille.innerHTML = txtOut;
-        if(text1[index] == " " || text1[index] == "─"){
-            interval = 2;
-        }
-        else{
-            interval = 10;
-        }
-        setTimeout(function () { byLetter(index, text1, txtOut, interval); }, interval);
-    }
-}
-
-var byLetterDoubleTexte = function(index, text1, text2, txtOut, interval, decal) {
-    if (index < text1.length) {
-        if(index > decal) {
-            if(text2[index - decal] != " "){
-
-                add = text2[index - decal];
-                console.log(add);
-                txtOut = setCharAt(txtOut, index, add);
-            }
-        }
-        txtOut += text1[index++];
-        bataille.innerHTML = txtOut;
-
-        if(text1[index] == " " || text1[index] == "─"){
-            interval = 2;
-        }
-        else{
-            interval = 80;
-        }
-        setTimeout(function () { byLetterDoubleTexte(index, text1, text2, txtOut, interval, decal); }, interval);
-    }
-}
-
-function setCharAt(str, index, chr) {
-    console.log('char is : '+ chr);
-
-    //if(index > str.length-1) return str;
-
-    return str.substr(0,index) + chr + str.substr(index+1);
 }

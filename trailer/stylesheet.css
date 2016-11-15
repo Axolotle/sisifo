@@ -1,28 +1,14 @@
 html, body {
-    font-family: Hack;
-    max-width: 100%;
-    height: 100%;
+    font-family: hack;
     background-color: black;
     color: white;
 
     margin: 0;
     padding: 0;
 
-    font-size: 15px;
-    white-space: pre;
+    font-size: 1em;
 
-}
 
-#main {
-    position: absolute;
-    width: 100%;
-    margin-left: 200px;
-    margin-top: 50px;
-}
-
-p {
-    margin: 0;
-    padding: 0;
 }
 
 #text {
@@ -31,8 +17,17 @@ p {
 }
 
 #bataille {
-    width: 100%;
-    margin-top: 50px;
-    margin-left: 200px;
-    margin-right: 200px;
+    white-space: pre;
+    margin-top: 0;
+}
+
+/* FONTS */
+/*///////*/
+
+@font-face {
+    font-family: 'hack';
+    src: url('font/hack-regular-webfont.woff') format('woff'),
+         url('font/hack-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
