@@ -1,46 +1,41 @@
 readJSONFile("ep1.json", function(json) {
     var jsonObj = JSON.parse(json);
-    console.log(jsonObj);
-    var box = new Box(jsonObj, jsonObj[0], 14, "text");
+
+    var box = new Box(jsonObj.shift());
+    var x = box.x - box.marginX*2;
 
     var txtAnim = [];
-
-
     for (let n = 0; n < jsonObj.length; n++) {
-        jsonObj[n] = new AdaptJSON(jsonObj[n], jsonObj, box);
-        txtAnim.push(new Anim(jsonObj[n], box));
+        jsonObj[n] = new ModifyJSON(jsonObj[n], jsonObj, x);
+        txtAnim.push(new Animation(jsonObj[n], box));
     }
 
-
-
-    txtAnim[0].writeText(0, 0, function(){
-    let t = setTimeout(function () {
-        txtAnim[1].cleanPage(txtAnim[1].cleanAt[0][0],txtAnim[1].cleanAt[0][1], " ");
-        txtAnim[1].writeText(0, 0,
-        function(){
-        let t = setTimeout(function () {
-            txtAnim[2].cleanPage(txtAnim[1].cleanAt[0][0],txtAnim[1].cleanAt[0][1], " ");
-            txtAnim[2].writeText(0, 0,
-            function(){
-            let t = setTimeout(function () {
-                txtAnim[3].cleanPage(txtAnim[1].cleanAt[0][0],txtAnim[1].cleanAt[0][1], " ");
-                txtAnim[3].writeText(0, 0,
-                function(){
-                let t = setTimeout(function () {
-                    txtAnim[4].cleanPage(txtAnim[1].cleanAt[0][0],txtAnim[1].cleanAt[0][1], " ");
-                    txtAnim[4].writeText(0, 0);
-                }, txtAnim[4].delay);
-                });
-            }, txtAnim[3].delay);
-            });
-        }, txtAnim[2].delay);
-        });
-    }, txtAnim[1].delay);
-    });
-
-
-
-
-
+    Step(
+        function init() {
+            box.drawBox(this);
+        },
+        function flow0() {
+            txtAnim[0].writeText(this);
+        },
+        function flow1() {
+            txtAnim[1].clean(0);
+            txtAnim[1].writeText(this);
+        },
+        function flow2() {
+            txtAnim[2].clean(0);
+            txtAnim[2].writeText(this);
+        },
+        function flow3() {
+            txtAnim[3].clean(0);
+            txtAnim[3].writeText(this);
+        },
+        function flow4() {
+            txtAnim[4].clean(0);
+            txtAnim[4].writeText(this);
+        },
+        function flow5() {
+            txtAnim[5].reversedClean(0);
+        }
+    );
 
 });

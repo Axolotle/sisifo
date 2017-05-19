@@ -2,9 +2,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Hack;
+    font-size: 1em;
+    font-family: hack, monospace;
 }
 body, html {
+
+    color: black;
     background-color: yellow;
 
     width: 100%;
@@ -17,10 +20,21 @@ body, html {
 #text {
     height: 100%;
 
-
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
 
+}
+
+
+/* FONTS */
+/*///////*/
+
+@font-face {
+    font-family: 'hack';
+    src: url('../font/hack-regular-webfont.woff') format('woff'),
+         url('../font/hack-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }

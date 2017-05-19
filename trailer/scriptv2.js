@@ -40,9 +40,6 @@ final = [
         "",
         "",
         "",
-        "",
-        "",
-        "",
         "//#/#///////////",
         "//#╭─╴╶┬╴╭─╴╶┬╴┌─╴╭─╮###",
         "/##╰─╮#│#╰─╮#│#├─╴│#│##/",
@@ -54,7 +51,11 @@ final = [
         "##L.#Henry,#luvan,##",
         "##L.#Afchain,#N.#Chesnais##",
         "",
-        "##>#sisifo.site##"
+        "##accompagné·e·s#par##",
+        "##Judith#De#la#Asunción#(guitare)##",
+        "##&#Marie-Noële#Vidal#(chant)##",
+        "",
+        "##>#https://sisifo.site##"
 ]
 
 console.log("pls do not look at this code, it's ugly, very very ugly.");
@@ -63,8 +64,21 @@ console.log("you can loose your eyes and someone in your family will probably di
 
 longestWord = countCharactersInWords(txts);
 
-window.onload = resize;
+//window.onload = resize;
 window.onresize = marging;
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+    if (e.keyCode == "13") resize();
+    if (e.keyCode == "32") fullscreen();
+}
+function fullscreen() {
+    if(document.body.webkitRequestFullScreen)
+        document.body.webkitRequestFullScreen();
+    else
+        document.body.mozRequestFullScreen();
+}
 
 function resize()
 {
@@ -139,7 +153,7 @@ var add_typo = function(idx, text1, text2, txtOut, interval) {
             interval = 0;
         }
         else {
-            interval = 20;
+            interval = 5;
         }
         idx++;
         bataille.innerHTML = txtOut;
@@ -163,7 +177,7 @@ var add_typo = function(idx, text1, text2, txtOut, interval) {
 }
 
 var add_final = function(idx, text1, text2, txtOut, interval) {
-
+    console.log(text2);
     if(idx < text2.length) {
         if(text2[idx] != " ") {
             if(text2[idx] == "#"){
@@ -178,7 +192,7 @@ var add_final = function(idx, text1, text2, txtOut, interval) {
             interval = 0;
         }
         else{
-            interval = 10;
+            interval = 0;
         }
         bataille.innerHTML = txtOut;
         idx++;
