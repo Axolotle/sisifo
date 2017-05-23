@@ -6,7 +6,7 @@ readJSONFile("ep1B.json", function(json) {
 
     var txtAnim = [];
     for (let n = 0; n < jsonObj.length; n++) {
-        jsonObj[n] = new ModifyJSON(jsonObj[n], jsonObj, x);
+        jsonObj[n] = new ModifyJSON(jsonObj[n], jsonObj, box);
         txtAnim.push(new Animation(jsonObj[n], box));
     }
 
