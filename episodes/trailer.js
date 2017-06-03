@@ -1,20 +1,19 @@
-readJSONFile("trailer.json", function(json) {
-
+readJSONFile("episodes/trailer.json", function(json) {
     var jsonObj = JSON.parse(json);
 
-    var box = new Box(jsonObj.shift());
-    var x = box.x - box.marginX*2;
+    box.init(jsonObj.shift());
 
     var txtAnim = [];
     for (let n = 0; n < jsonObj.length; n++) {
         jsonObj[n] = new ModifyJSON(jsonObj[n], jsonObj, box);
         txtAnim.push(new Animation(jsonObj[n], box));
     }
-
+    document.body.style.background = "black";
+    document.body.style.color = "white";
 
     Step(
         function init() {
-            box.drawBox(this);
+            box.reDraw(this);
         },
         function flow0() {
             txtAnim[0].writeText(this);
@@ -26,6 +25,7 @@ readJSONFile("trailer.json", function(json) {
             txtAnim[2].writeText(this);
         },
         function flow3() {
+            txtAnim[2].appendText()
         }
     );
 });

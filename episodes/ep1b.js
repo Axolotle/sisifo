@@ -1,8 +1,7 @@
-readJSONFile("ep1B.json", function(json) {
+readJSONFile("episodes/ep1b.json", function(json) {
     var jsonObj = JSON.parse(json);
 
-    var box = new Box(jsonObj.shift());
-    var x = box.x - box.marginX*2;
+    box.init(jsonObj.shift());
 
     var txtAnim = [];
     for (let n = 0; n < jsonObj.length; n++) {
@@ -10,34 +9,46 @@ readJSONFile("ep1B.json", function(json) {
         txtAnim.push(new Animation(jsonObj[n], box));
     }
 
-
+    var n = 0;
     Step(
         function init() {
-            box.drawBox(this);
+            box.reDraw(this);
+        },
+        function menu() {
+            txtAnim[n++].appendText();
+            startEp(this);
         },
         function flow0() {
-            txtAnim[0].writeText(this);
+            txtAnim[n++].writeText(this);
         },
         function flow1() {
-            txtAnim[1].clean(0);
-            txtAnim[1].writeText(this);
-            txtAnim[1].clean(1);
+            txtAnim[n].clean(0);
+            txtAnim[n].writeText(this);
+            txtAnim[n++].clean(1);
         },
         function flow2() {
-            txtAnim[2].writeText(this);
+            txtAnim[n++].writeText(this);
         },
         function flow3() {
-            txtAnim[3].clean(0,function() {
-                txtAnim[3].clean(1);
+            txtAnim[n].clean(0,function() {
+                txtAnim[n].clean(1);
             });
-            txtAnim[3].writeText(this);
+            txtAnim[n++].writeText(this);
         },
         function flow4() {
-            txtAnim[4].clean(0);
-            txtAnim[4].clean(1);
-            txtAnim[4].clean(2);
-            txtAnim[4].clean(3);
-            txtAnim[4].clean(4);
+            txtAnim[n].clean(0, this.parallel());
+            txtAnim[n].clean(1, this.parallel());
+            txtAnim[n].clean(2, this.parallel());
+            txtAnim[n].clean(3, this.parallel());
+            txtAnim[n++].clean(4, this.parallel());
+        },
+        function menu() {
+            let tempo = setTimeout(function() {
+                txtAnim[n].appendText();
+                events();
+            }, 3500);
+
+
         }
     );
 

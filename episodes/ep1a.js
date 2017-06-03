@@ -1,8 +1,7 @@
-readJSONFile("ep1.json", function(json) {
+readJSONFile("episodes/ep1a.json", function(json) {
     var jsonObj = JSON.parse(json);
 
-    var box = new Box(jsonObj.shift());
-    var x = box.x - box.marginX*2;
+    box.init(jsonObj.shift());
 
     var txtAnim = [];
     for (let n = 0; n < jsonObj.length; n++) {
@@ -12,8 +11,9 @@ readJSONFile("ep1.json", function(json) {
 
     Step(
         function init() {
-            box.drawBox(this);
+            box.reDraw(this);
         },
+
         function flow0() {
             txtAnim[0].writeText(this);
         },
@@ -34,7 +34,13 @@ readJSONFile("ep1.json", function(json) {
             txtAnim[4].writeText(this);
         },
         function flow5() {
-            txtAnim[5].reversedClean(0);
+            txtAnim[5].reversedClean(0,this);
+        },
+        function menu() {
+            let tempo = setTimeout(function() {
+                txtAnim[6].appendText();
+                events();
+            }, 1500);
         }
     );
 
