@@ -3,42 +3,49 @@ readJSONFile("episodes/ep1a.json", function(json) {
 
     box.init(jsonObj.shift());
 
+    var infoEp = new ModifyJSON(jsonObj.shift(), jsonObj, box);
+    infoEp = new Animation(infoEp, box);
+
     var txtAnim = [];
     for (let n = 0; n < jsonObj.length; n++) {
         jsonObj[n] = new ModifyJSON(jsonObj[n], jsonObj, box);
         txtAnim.push(new Animation(jsonObj[n], box));
     }
 
+    var n = 0;
     Step(
         function init() {
             box.reDraw(this);
         },
-
+        function menu() {
+            infoEp.appendText();
+            startEp(this);
+        },
         function flow0() {
-            txtAnim[0].writeText(this);
+            txtAnim[n++].writeText(this);
         },
         function flow1() {
-            txtAnim[1].clean(0);
-            txtAnim[1].writeText(this);
+            txtAnim[n].clean(0);
+            txtAnim[n++].writeText(this);
         },
         function flow2() {
-            txtAnim[2].clean(0);
-            txtAnim[2].writeText(this);
+            txtAnim[n].clean(0);
+            txtAnim[n++].writeText(this);
         },
         function flow3() {
-            txtAnim[3].clean(0);
-            txtAnim[3].writeText(this);
+            txtAnim[n].clean(0);
+            txtAnim[n++].writeText(this);
         },
         function flow4() {
-            txtAnim[4].clean(0);
-            txtAnim[4].writeText(this);
+            txtAnim[n].clean(0);
+            txtAnim[n++].writeText(this);
         },
         function flow5() {
-            txtAnim[5].reversedClean(0,this);
+            txtAnim[n++].reversedClean(0,this);
         },
         function menu() {
             let tempo = setTimeout(function() {
-                txtAnim[6].appendText();
+                txtAnim[n].appendText();
                 events();
             }, 1500);
         }

@@ -9,6 +9,21 @@
     },
 
     {
+        "txt": [
+            " /                            ",
+            "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴   ╶╮ ╭─┐",
+            "├─╴├─╯ │ ╰─╮│ ││ │├─╴    │ ├─┤",
+            "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴   ╶┴╴╵ ╵",
+            "~ 8 min 30 sec",
+            "pas d'intéraction",
+            "",
+            "",
+            "<a id='start' class='ep'>Lancer l'épisode</a>"
+        ],
+        "charToAdd": " "
+    },
+
+    {
         "txt": "<p2><c1-a'\\'>L’armée avance entre les arbres. Les pins sont forts et tordus. Jamais droits.<p1> Les fusils longs, les manteaux lourds, sombres, pendent aux épaules. Les hommes ont le dos arrondi, d’un vertical forcé. Une colonne nombreuse s’essaime et tu en es.<p1><m-2> Tu ne peux pas regarder en arrière. Tu ne peux pas faire demi-tour.<m/> On te tire et on te pousse. Les herbes sont vert profond mais l’herbe est jaune. L’automne madrilène est sec. C’est une guerre sèche.<p1> Des gestes à l’avant et l’armée oblique et s’étale. S’écrase de colonne en ligne.<p1> Tu avances.<p1> Entre les arbres.<p1><m-1> Tu en vois 7 devant, 5 derrière. En tout dernier plan, tu ne sais pas s’il s’agit de corps ou de troncs. Ton ombre est ton premier plan.<m/> Tu sais que d’autres, à l’arrière, te voient loin,<p1> distinguent de toi deux traits jamais droits pour les jambes, un béret camouflant ton occiput, le clair furtif d’une chemise sous ton manteau, tantôt la crosse tantôt le canon, horizontaux, de ton Remington.<p1><m-2> Vous avancez, le terrain est plat, le ciel brillant, les arbres ronds.<m/> Tu t’entraînes à ne pas penser aux autres comme à des hommes. Tu t’efforces de regarder devant sans te laisser aller à l’hypnose de ce cortège distendu, décidé, lent. Tu anticipes la course.<m-1> Tu as mal aux jambes à l’idée de t’élancer sur un ordre.<m/> Sans te retourner, tu penses être au milieu. Tu n’es pas le dernier. Tous les hommes pensent être au milieu.<p1> Jamais le premier.<p1> Jamais le dernier.<p1> Tu ne sais pas.<p1> Où.<p1> Est<p1> l’ennemi.<p1> <m-4>Entre les arbres.<c1-a/><p3>"
     },
 

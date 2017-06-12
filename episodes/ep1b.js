@@ -3,6 +3,9 @@ readJSONFile("episodes/ep1b.json", function(json) {
 
     box.init(jsonObj.shift());
 
+    var infoEp = new ModifyJSON(jsonObj.shift(), jsonObj, box);
+    infoEp = new Animation(infoEp, box);
+
     var txtAnim = [];
     for (let n = 0; n < jsonObj.length; n++) {
         jsonObj[n] = new ModifyJSON(jsonObj[n], jsonObj, box);
@@ -15,7 +18,7 @@ readJSONFile("episodes/ep1b.json", function(json) {
             box.reDraw(this);
         },
         function menu() {
-            txtAnim[n++].appendText();
+            infoEp.appendText();
             startEp(this);
         },
         function flow0() {
