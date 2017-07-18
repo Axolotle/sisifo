@@ -1,35 +1,26 @@
 [
     {
-        "idealX": 46,
-        "idealY": 21,
-        "minY": 19,
-        "minX": 35,
+        "idealX": 41,
+        "idealY": 20,
+        "minY": 12,
+        "minX": 30,
         "divName": "text",
         "marginX": 1,
-        "marginY": 1
+        "marginY": 1,
+        "episodes": 2
     },
 
     {
         "txt": [
             "",
-            "    /             ",
-            "╭─╮╶┬╴╭─╮╶┬╴┌─╴╭─╮",
-            "╰─╮ │ ╰─╮ │ ├─╴│ │",
-            "╰─╯╶┴╴╰─╯╶┴╴╵  ╰─╯",
+            " /                      ",
+            "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴╭─╴",
+            "├─╴├─╯ │ ╰─╮│ ││ │├─╴╰─╮",
+            "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴╶─╯",
             "",
             "",
-            "<a id='trailer' class='ep'>PROLOGUE</a>",
-            "<a id='ep1a' class='ep'>ÉPISODE 1a</a>",
-            "<a id='ep1b' class='ep'>ÉPISODE 1b</a>",
-            "",
-            "<a href='https://sisifo.site'>BLOG</a>",
-            "",
-            "",
-            "<r>─",
-            "",
-            "une expérience narrative de",
-            "Léo Henry, luvan,",
-            "Laure Afchain et Nicolas Chesnais"
+            "<a class='ep'>lire le dernier épisode</a>",
+            ""
         ],
         "charToAdd": " "
     }
