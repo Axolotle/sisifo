@@ -19,7 +19,7 @@
             "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴╶─╯",
             "",
             "",
-            "<a class='ep'>lire le dernier épisode</a>",
+            "<a class='ep' id='last'>lire le dernier épisode</a>",
             ""
         ],
         "charToAdd": " "

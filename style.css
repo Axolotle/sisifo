@@ -4,9 +4,6 @@
     font-size: 1em;
     font-family: hack, monospace;
 }
-* {
-
-}
 html {
 
     color: black;
@@ -19,45 +16,46 @@ html {
     justify-content: center;
 }
 
-body {
 
-}
-p {
-    white-space: pre;
-}
 #center {
     text-align: center;
 }
 #journal, #text {
     display: inline-block;
-
 }
 header, footer {
     margin: 0 auto;
 }
-/*#text {
-    height: 100%;
 
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
 
-}*/
+p {
+    white-space: pre;
+}
 .ep {
+
+}
+.pad:hover {
+    padding: 0em 10px;
+}
+a {
     text-decoration: underline;
 }
-.ep:hover {
-    cursor: pointer;
-}
-
 a:link, a:visited {
     color: black;
 }
 a:hover, a:active {
-    padding: 0em 10px;
+    cursor: pointer;
 }
 
+
+::-moz-selection {
+  color: yellow;
+  background: black;
+}
+::selection {
+  color: yellow;
+  background: black;
+}
 
 /* FONTS */
 /*///////*/

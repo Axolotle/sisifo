@@ -105,7 +105,67 @@ function drawJournal(x, y, ep) {
 
 }
 
+function hideMenu() {
+    var header = document.getElementById("header").children;
+    var footer = document.getElementById("footer").children;
+    var journal = document.getElementById("journal").children;
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function hide() {
+        for (var i = header.length-1, o = 0;
+            (i >= 0) || (o < footer.length);
+            i--, o++) {
+
+            if (header[i]) header[i].style.display = "none";
+            if (footer[o]) footer[o].style.display = "none";
+
+            await sleep(25);
+        }
+
+    }
+
+    async function deleteJournal() {
+
+        // first, get rid of possible inline tags
+        for (let i = 0; i < journal.length; i++) {
+            if (journal[i].children.length > 0) {
+                for (var a = 0; a < journal[i].children.length; i++) {
+                    var index = journal[i].innerHTML.indexOf("<");
+                    var txt = journal[i].children[a].innerHTML;
+
+                    journal[i].removeChild(journal[i].children[a]);
+                    journal[i].innerHTML = journal[i].innerHTML.substr(0, index) + txt + journal[i].innerHTML.substr(index);
+                }
+            }
+        }
+        // then delete the box
+        var j = document.getElementById("journal");
+        for (let i = journal.length; i > box.y ; i--) {
+            j.removeChild(j.lastChild);
+            await sleep(10);
+        }
+        var lineLength = journal[0].innerHTML.length;
+        for (let char = 0; char < lineLength; char++) {
+            var newLength = journal[0].innerHTML.length-1;
+            for (var line = 0; line < journal.length; line++) {
+                journal[line].innerHTML = journal[line].innerHTML.substr(0, newLength);
+            }
+            await sleep(10);
+        }
+        box.cleanBox();
+    }
+
+    if (header || footer) {
+        hide();
+    }
+    if (journal) {
+        deleteJournal();
+    }
+    box.resetBox();
+}
 
 function loadEp(a) {
     box.reDraw();
