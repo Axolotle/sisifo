@@ -1,4 +1,5 @@
 var box = new Box();
+var episodes;
 start(false);
 
 function start(again) {
@@ -9,8 +10,6 @@ function start(again) {
         jsonObj = new ModifyJSON(jsonObj.shift(), jsonObj, box);
         var txtAnim = new Animation(jsonObj, box);
 
-
-
         Step(
             function init() {
                 if (again) {
@@ -20,11 +19,10 @@ function start(again) {
                     box.displayBox(this);
                 }
             },
-            function flow0() {
-
+            function displayLandpage() {
                 txtAnim.appendText();
                 box.menu();
-                drawJournal(box.x, box.y, box.episodes);
+                showMenu(box.x, box.y, box.episodes);
                 events();
             }
         );
@@ -32,7 +30,7 @@ function start(again) {
     });
 }
 
-function drawJournal(x, y, ep) {
+function showMenu(x, y, ep) {
     var content = [
         "  ╷╭─╮╷ ╷┌─╮╭╮╷╭─┐╷  ",
         "  ││ ││ │├┬╯│││├─┤│  ",
@@ -68,7 +66,7 @@ function drawJournal(x, y, ep) {
         var after = generateCharLine(Math.ceil(xToAdd/2 - 1), " ") + "│  ";
 
         if (i == content.length-1) {
-            let link = "<a href='https://sisifo.site/sisifo/journal/' class='ep'>" + content[i] + "</a>";
+            let link = "<a href='https://sisifo.site/sisifo/journal/'>" + content[i] + "</a>";
             sentences.push(before + link + after);
         }
         else {
@@ -103,9 +101,16 @@ function drawJournal(x, y, ep) {
     header.style.width = width + "px";
     footer.style.width = width + "px";
 
+    for (var i = o = 0;
+        (i < header.children.length) || (o < footer.children.length);
+        i++, o++) {
+
+        if (header.children[i]) header.children[i].style.display = "block";
+        if (footer.children[o]) footer.children[o].style.display = "block";
+    }
 }
 
-function hideMenu() {
+function hideMenu(callback) {
     var header = document.getElementById("header").children;
     var footer = document.getElementById("footer").children;
     var journal = document.getElementById("journal").children;
@@ -144,6 +149,7 @@ function hideMenu() {
         // then delete the box
         var j = document.getElementById("journal");
         for (let i = journal.length; i > box.y ; i--) {
+            console.log(box.y, journal.length);
             j.removeChild(j.lastChild);
             await sleep(10);
         }
@@ -155,7 +161,17 @@ function hideMenu() {
             }
             await sleep(10);
         }
+        console.log(j.children.length);
+        while (j.hasChildNodes()) {
+            j.removeChild(j.lastChild);
+        }
+        // for (let i = 0; i < journal.children.length; i++) {
+        //     j.removeChild(j.lastChild);
+        // }
         box.cleanBox();
+        if (callback) {
+            callback();
+        }
     }
 
     if (header || footer) {
@@ -168,12 +184,21 @@ function hideMenu() {
 }
 
 function loadEp(a) {
-    box.reDraw();
-
-    if (a.target.id == "menu") start(true);
-    else {
-        loadScript("episodes/"+a.target.id+".js");
+    if (a.target.id == "menu") {
+        box.cleanBox();
+        start(true);
     }
+    else {
+        hideMenu(function() {
+            if (a.target.id == 0) {
+                loadScript("episodes/trailer.js");
+            }
+            else {
+            loadScript("episodes/ep"+a.target.id+".js");
+            }
+        });
+    }
+
 }
 
 function loadScript(src) {

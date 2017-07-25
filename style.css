@@ -16,7 +16,14 @@ html {
     justify-content: center;
 }
 
-
+#m {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+}
+#m p {
+    line-height: 0.5em;
+}
 #center {
     text-align: center;
 }
@@ -26,7 +33,9 @@ html {
 header, footer {
     margin: 0 auto;
 }
-
+.toHide p {
+    display: none;
+}
 
 p {
     white-space: pre;

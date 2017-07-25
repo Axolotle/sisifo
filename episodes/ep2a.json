@@ -1,0 +1,56 @@
+[
+    {
+        "longestText" : "La trajectoire est irréversible. Les avions décollent et se posent à l'inverse du vent, dans la même direction. Vue du ciel, Madrid grouille de lumières : des phares, des enseignes, des lampes électriques. Madrid la nuit est belle comme Nuremberg et comme Dresde, belle comme Berlin. Tu ne distingues plus, d'ici, les miliciens bolcheviques affolés par l'assaut des clandestins fidèles à Franco attendant la libération de leur ville par l'armée du Maroc. Tu ne vois pas les civils pris au piège, ceux qui se terrent, ceux qui attendent et ceux qui fuient. Sur ta droite vole Herrmann. Devant vous vole Sperrle. Vos radios son presque silencieuses. La nuit madrilène est emplie de lumières abstraites et du bruit très grave du moteur de ton Junkers. On dirait le grondement de la cascade sur les roches, à Allerheiligen l'été dernier, avec Rudi. Ton mécano remue à l'arrière. Il ne voit, n'entend rien. Attend ton ordre pour passer dans la soute bombe ou à la mitrailleuse. Tu sais que les Polikarpovs ne viendront pas, que les Russes n'osent pas sortir de nuit. Staline a peur de perdre ses hommes, et plus peur encore de confier ses coucous à des pilotes étrangers. Tu n'as rien dit au petit, il tremble un peu comme s'il avait froid. Dans ton casque, Sperrle vient de confirmer l'objectif. Votre formation vire sur l'aile droite. Revoilà le Parc. La Cité Universitaire. Revoilà les taudis du quartier d'Argüelles. Attendre l'instant précis, pour que les bombes, avec l'inertie, tombent à l'endroit voulu. Tu ne pouvais être ailleurs que maintenant. Tu ne pouvais être ailleurs qu'ici.",
+        "longestWord": 14,
+        "divName": "text",
+        "idealX": 55,
+        "marginX": 3,
+        "marginY": 2
+    },
+
+    {
+        "txt": [
+            " /                            ",
+            "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴   ╶─╮╭─┐",
+            "├─╴├─╯ │ ╰─╮│ ││ │├─╴   ╭─╯├─┤",
+            "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴   ╰─╴╵ ╵",
+            "~ 0 min 0 sec",
+            "molette avant/arrière",
+            "",
+            "",
+            "<a id='start' class='ep'>Lancer l'épisode</a>"
+        ],
+        "charToAdd": " "
+    },
+
+    {
+        "txt": [
+            "Pont des Français, <t04><t17><t18>personne ne <t01><t02>te traverse.",
+            "bouge.",
+            "se regarde <t03>dans la rivière. On ne sait pas si on est bien rasé, si ses dents sont jaunes ou mal droites.",
+            "d’un bord à l’autre. L’ennemi n’est pas une image. Ni reflet ni ombre.",
+            "il n’y a <t05>qu’une berge. Celle où tu es.",
+            "qu'un camp. A certaines époques, on construit des ponts, à d’autres, on les tourne, on les change de camp, on les colorie. Toi on te dit « Traverse ». Dans Madrid, à la radio, on brâme que non. Que <t06>tu ne passeras pas.",
+            "tu ne passeras pas. <t09>Parce que les miliciens <t07>tu ne les vois pas, tu les entends.",
+            "comme ils te gardent <t08>bien.",
+            "bien de te jeter à travers l’eau.",
+            "On ne les attendait pas. Tu entends gueuler « Pourquoi ? Pourquoi sont-ils là ? Comment savaient-ils, les Rouges, qu’on déboulerait par ici ? ». Cette nuit, <t11><t14>les Italiens ont bombardé pour <t10>vous.",
+            "toi. Nettoyé les Rouges avant ton assaut.",
+            "tu entendais <t12><t13>les bombes. Le sol tremblait. À dormir par terre, on sent trembler les bombes dans sa machoire.",
+            "les chansons des Allemands. Ils s’appellent Condor. On te dit « c’est un oiseau qui n’existe pas ». Cette rivière n’existe pas. Si le pont tournait, tu serais du bon côté, tu n’aurais pas besoin de passer.",
+            "gémir ta mauvaise fièvre. Peut-être n’était-ce pas la nuit. Quelqu’un dit peut-être, en italien, en allemand ou en arabe « Ils se moquent des bombes, les Mardilènes. »",
+            "qui peut-être n’en était pas, un officier t’a raconté que le Condor existe, qu’il passe au Pérou. Une histoire de mineurs. Une pièce de théâtre ou peut-être un concert. Tu avais mal au dos. Tu lui as dit je ne suis jamais allé au théâtre. Tu t’es dit pourquoi cet homme me parle la <t15><t16>nuit.",
+            "nuit s’appelle layla.",
+            "nuit, les bombes te rappellent les lila du Habt, le feu inépuisable des coups de goumbri.",
+            "aujourd’hui, tu t’élances. En face, des fusils à dix coups, peureux mais foisonnants.",
+            "on te traverse toi, tu tombes, ne passeras pas."
+        ],
+        "format" : "combine",
+        "pause" : 4
+    },
+
+    {
+        "txt": ["<a id='menu' class='ep'>retourner au menu</a>"],
+        "charToAdd": " "
+    }
+]
