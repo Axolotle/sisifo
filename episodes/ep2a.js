@@ -1,4 +1,3 @@
-console.log("ep2a loaded");
 function ep2a() {
     readJSONFile("episodes/ep2a.json", function(json) {
         var jsonObj = JSON.parse(json);
@@ -32,7 +31,6 @@ function ep2a() {
                     // cross-browser wheel delta
                     var e = window.event || e; // old IE support
                     var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-                    e.preventDefault();
                     if (delta == 1) {
                         window.dispatchEvent(adder);
                     }
@@ -45,17 +43,20 @@ function ep2a() {
                 /////////////////////////////////////////////////////////
                 if (window.addEventListener) {
                     // IE9, Chrome, Safari, Opera
-                    window.addEventListener("mousewheel", function(e){MouseWheelHandler(e)}, false);
+                    window.addEventListener("mousewheel", MouseWheelHandler);
                     // Firefox
-                    window.addEventListener("DOMMouseScroll", function(e){MouseWheelHandler(e)}, false);
+                    window.addEventListener("DOMMouseScroll", MouseWheelHandler);
                 }
                 // IE 6/7/8
-                else window.attachEvent("onmousewheel", function(e){MouseWheelHandler(e)});
+                else window.attachEvent("onmousewheel", MouseWheelHandler);
                 /////////////////////////////////////////////////////////
 
                 txtAnim[n++].addWord(function(){
-                    console.log(window);
-                    window.removeEventListener("DOMMouseScroll", MouseWheelHandler);
+                    if (window.addEventListener) {
+                        window.removeEventListener("mousewheel", MouseWheelHandler);
+                        window.removeEventListener("DOMMouseScroll", MouseWheelHandler);
+                    }
+                    else window.detachEvent("onmousewheel", MouseWheelHandler);
                 }, this);
             },
             function menu() {

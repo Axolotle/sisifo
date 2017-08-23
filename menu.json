@@ -1,6 +1,6 @@
 [
     {
-        "idealX": 41,
+        "idealX": 35,
         "idealY": 20,
         "minY": 12,
         "minX": 30,
@@ -12,15 +12,13 @@
 
     {
         "txt": [
-            "",
             " /                      ",
             "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴╭─╴",
             "├─╴├─╯ │ ╰─╮│ ││ │├─╴╰─╮",
             "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴╶─╯",
             "",
             "",
-            "<a class='ep' id='2a'>lire le dernier épisode</a>",
-            ""
+            "<a class='ep' id='2a'>lire le dernier épisode</a>"
         ],
         "charToAdd": " "
     }

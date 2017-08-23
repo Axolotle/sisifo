@@ -1,10 +1,10 @@
 * {
     margin: 0;
     padding: 0;
-    font-size: 1em;
-    font-family: hack, monospace;
 }
 html {
+    font-size: 1em;
+    font-family: hack, monospace;
 
     color: black;
     background-color: yellow;
@@ -18,12 +18,28 @@ html {
 
 #m {
     position: absolute;
-    top: 2em;
-    right: 2em;
+    top: 2.5em;
+    right: 2.5em;
+    cursor: pointer;
+    display: none;
 }
 #m p {
     line-height: 0.5em;
 }
+#m-options {
+    position: absolute;
+    top: 1.5em;
+    right: 1.55em;
+    display: none;
+    background-color: yellow;
+}
+#m-options p a {
+    text-decoration: none;
+}
+/*.line-height {
+    line-height: 0px;
+}*/
+
 #center {
     text-align: center;
 }
@@ -40,9 +56,6 @@ header, footer {
 p {
     white-space: pre;
 }
-.ep {
-
-}
 .pad:hover {
     padding: 0em 10px;
 }
@@ -54,8 +67,21 @@ a:link, a:visited {
 }
 a:hover, a:active {
     cursor: pointer;
-}
 
+}
+#m p::-moz-selection {
+  color: black;
+  background: none;
+}
+#m p::selection {
+  color: black;
+  background: none;
+}
+s {
+    text-decoration: none;
+    background-color: black;
+    color: yellow;
+}
 
 ::-moz-selection {
   color: yellow;

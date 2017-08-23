@@ -53,8 +53,11 @@ function ep2b() {
                 /////////////////////////////////////////////////////////
 
                 txtAnim[n++].addWord(function(){
-                    console.log(window);
-                    window.removeEventListener("DOMMouseScroll", MouseWheelHandler);
+                    if (window.addEventListener) {
+                        window.removeEventListener("mousewheel", MouseWheelHandler);
+                        window.removeEventListener("DOMMouseScroll", MouseWheelHandler);
+                    }
+                    else window.detachEvent("onmousewheel", MouseWheelHandler);
                 }, this);
             },
             function menu() {
