@@ -12,7 +12,7 @@ function ep1b() {
             jsonObj[n] = new ModifyJSON(jsonObj[n], jsonObj, box);
             txtAnim.push(new Animation(jsonObj[n], box));
         }
-        
+
         var n = 0;
         Step(
             function init() {
@@ -48,8 +48,7 @@ function ep1b() {
             },
             function menu() {
                 let tempo = setTimeout(function() {
-                    txtAnim[n].appendText();
-                    events();
+                    showMenu();
                 }, 3500);
 
 

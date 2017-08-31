@@ -47,9 +47,8 @@ function ep1a() {
             },
             function menu() {
                 let tempo = setTimeout(function() {
-                    txtAnim[n].appendText();
-                    events();
-                }, 1500);
+                    showMenu();
+                }, 3500);
             }
         );
 

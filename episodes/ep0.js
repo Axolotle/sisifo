@@ -31,8 +31,10 @@ function ep0() {
             function flow2() {
                 txtAnim[2].writeText(this);
             },
-            function flow3() {
-                txtAnim[2].appendText()
+            function menu() {
+                let tempo = setTimeout(function() {
+                    showMenu();
+                }, 3500);
             }
         );
     });

@@ -1,34 +1,133 @@
+Box.prototype.menu = function() {
+    var self = this;
+    var div = document.getElementById(this.div);
+
+    var pos = 1;
+    for (var i = 0; i <= this.episodes; i++) {
+        this.ps.forEach(function(line, index) {
+            if (index < pos) line.innerHTML += " ".repeat(2);
+            else if (index-pos == 0) line.innerHTML += "─┐";
+
+            else if (i == 0) {
+                    if (index-pos == 1) {
+                        line.innerHTML += "<a class='ep' id='"+i+"'>"+i+"</a>│";
+                    }
+                    else line.innerHTML += " │";
+            }
+            else {
+                    if (index-pos == 1) line.innerHTML += i+"│";
+                    else if (index-pos == 4) {
+                        line.innerHTML += "<a class='ep' id='"+i+"a'>a</a>│";
+                    }
+                    else if (index-pos == 6) {
+                        line.innerHTML += "<a class='ep' id='"+i+"b'>b</a>│";
+                    }
+                    else line.innerHTML += " │";
+            }
+
+        });
+        var elem = document.createElement("p");
+        elem.innerHTML = " ".repeat(pos*2) + "└" + "─".repeat(this.x-2) + "┘";
+
+        div.appendChild(elem);
+
+        this.ps.push(elem);
+        pos++;
+    }
+
+
+};
+Box.prototype.smallMenu = function() {
+    var self = this;
+    var div = document.getElementById(this.div);
+
+    var pos = 1;
+
+    for (var i = 0; i <= this.episodes; i++) {
+        var elem = document.createElement("p");
+
+        if (i == 0) {
+            var option = "<a class='ep' id='"+i+"'>0</a>";
+            elem.innerHTML = "└" + "─".repeat(Math.floor((this.x-3)/2)) + option + "─".repeat(Math.ceil((this.x-3)/2)) + "┘";
+
+        }
+        else {
+            var option = "<a class='ep' id='"+i+"a'>a</a>──" + i + "──<a class='ep' id='"+i+"b'>b</a>";
+            elem.innerHTML = "└" + "─".repeat(Math.floor((this.x-9)/2)) + option + "─".repeat(Math.ceil((this.x-9)/2)) + "┘";
+
+        }
+
+        div.appendChild(elem);
+
+        this.ps.push(elem);
+        pos++;
+    }
+};
+
+
 var box = new Box();
 var episode, epMax;
+var mini = window.innerWidth < 900 ? true : false;
 
 start(false);
 
 function start(again) {
-    readJSONFile("menu.json", function(json) {
-        var jsonObj = JSON.parse(json);
-        box.init(jsonObj.shift());
-        epMax = box.episodes;
+    var options = {
+        "idealX": 35,
+        "idealY": 20,
+        "minY": 12,
+        "minX": 30,
+        "divName": "text",
+        "marginX": 1,
+        "marginY": 1,
+        "episodes": 2
+    };
+    var content = {
+        "txt": [
+            " /                      ",
+            "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴╭─╴",
+            "├─╴├─╯ │ ╰─╮│ ││ │├─╴╰─╮",
+            "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴╶─╯",
+            "",
+            "",
+            "<a class='ep' id='2a'>lire le dernier épisode</a>"
+        ],
+        "charToAdd": " "
+    }
 
-        jsonObj = new ModifyJSON(jsonObj.shift(), jsonObj, box);
-        var txtAnim = new Animation(jsonObj, box);
+    if (mini) {
+        options.idealX = 40;
+        options.idealY = 12;
+    }
 
-        Step(
-            function init() {
-                if (again) {
-                    box.reDraw(this);
-                }
-                else {
-                    box.displayBox(this);
-                }
-            },
-            function displayLandpage() {
-                txtAnim.appendText();
-                box.menu();
-                showLandpage(box.x, box.y, box.episodes);
-                events();
+    box.init(options);
+    epMax = box.episodes;
+
+    content = new ModifyJSON(content, content, box);
+    var txtAnim = new Animation(content, box);
+
+    Step(
+        function init() {
+            if (again && !box.error) {
+                box.reDraw(this);
             }
-        );
-    });
+            else {
+                box.displayBox(this);
+            }
+        },
+        function displayLandpage() {
+            txtAnim.appendText();
+
+            if (!mini) {
+                box.menu();
+            }
+            else {
+                box.smallMenu();
+            }
+            showLandpage(box.x, box.y, box.episodes);
+            events();
+        }
+    );
 }
 
 var menu = document.getElementById("m");
@@ -122,33 +221,51 @@ function showLandpage(x, y, ep) {
     var sentences = [];
     var yToAdd = y - content.length - 2;
 
-    sentences.push("┌" + generateCharLine(x-2, "─") + "┐  ");
 
-    for (let i = 0; i < Math.floor(yToAdd/2); i++) {
-        sentences.push("│" + generateCharLine(x-2, " ") + "│  ");
-    }
 
-    for (let i = 0; i < content.length; i++) {
-        var xToAdd = x - content[i].length;
-
+    if (mini) {
+        sentences.push("┌" + generateCharLine(x-2, "─") + "┐");
+        sentences.push("│" + generateCharLine(x-2, " ") + "│");
+        var xToAdd = x - "journal d'écriture".length;
         var before = "│" + generateCharLine(Math.floor(xToAdd/2 - 1), " ");
-        var after = generateCharLine(Math.ceil(xToAdd/2 - 1), " ") + "│  ";
+        var after = generateCharLine(Math.ceil(xToAdd/2 - 1), " ") + "│";
 
-        if (i == content.length-1) {
-            let link = "<a href='https://sisifo.site/sisifo/journal/'>" + content[i] + "</a>";
-            sentences.push(before + link + after);
-        }
-        else {
-            sentences.push(before + content[i] + after);
-        }
+        let link = "<a href='https://sisifo.site/sisifo/journal/'>" + "journal d'écriture" + "</a>";
+        sentences.push(before + link + after);
+        sentences.push("│" + generateCharLine(x-2, " ") + "│");
+        sentences.push("└" + generateCharLine(x-2, "─") + "┘");
     }
+    else {
+        sentences.push("┌" + generateCharLine(x-2, "─") + "┐  ");
 
-    for (let i = 0; i < Math.ceil(yToAdd/2); i++) {
-        sentences.push("│" + generateCharLine(x-2, " ") + "│  ");
-    }
+        for (let i = 0; i < Math.floor(yToAdd/2); i++) {
+            sentences.push("│" + generateCharLine(x-2, " ") + "│  ");
+        }
 
-    for (let i = 0; i <= ep+1; i++) {
-        sentences.push("└" + generateCharLine(x-2, "─") + "┘  ");
+        for (let i = 0; i < content.length; i++) {
+            var xToAdd = x - content[i].length;
+
+            var before = "│" + generateCharLine(Math.floor(xToAdd/2 - 1), " ");
+            var after = generateCharLine(Math.ceil(xToAdd/2 - 1), " ") + "│  ";
+
+            if (i == content.length-1) {
+                let link = "<a href='https://sisifo.site/sisifo/journal/'>" + content[i] + "</a>";
+                sentences.push(before + link + after);
+            }
+            else {
+                sentences.push(before + content[i] + after);
+            }
+        }
+
+        for (let i = 0; i < Math.ceil(yToAdd/2); i++) {
+            sentences.push("│" + generateCharLine(x-2, " ") + "│  ");
+        }
+
+        for (let i = 0; i <= ep+1; i++) {
+            sentences.push("└" + generateCharLine(x-2, "─") + "┘  ");
+        }
+
+
     }
 
     var div = document.getElementById("journal");
@@ -162,7 +279,13 @@ function showLandpage(x, y, ep) {
 
     // center header and footer
     var div2 = document.getElementById("text");
-    var width = div.offsetWidth + div2.offsetWidth;
+    var width;
+    if (mini) {
+        width = div2.offsetWidth;
+    }
+    else {
+        width = div.offsetWidth + div2.offsetWidth;
+    }
 
     var header = document.getElementById("header");
     var footer = document.getElementById("footer");
@@ -172,6 +295,8 @@ function showLandpage(x, y, ep) {
 
     document.getElementById("m").style.display = "none";
 
+    header.style.display = "block";
+    footer.style.display = "block";
     for (var i = o = 0;
         (i < header.children.length) || (o < footer.children.length);
         i++, o++) {
@@ -202,7 +327,8 @@ function hideLandpage(callback) {
 
             await sleep(25);
         }
-
+        document.getElementById("header").style.display = "none";
+        document.getElementById("footer").style.display = "none";
     }
 
     async function deleteJournal() {

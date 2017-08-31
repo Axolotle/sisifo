@@ -3,7 +3,7 @@
         "longestText" : "Pont des Français, il n’y a qu'un camp. A certaines époques, on construit des ponts, à d’autres, on le tourne, on les change de camp, on les colorie. Toi on te dit « Traverse ». Dans Madrid, à la radio, on brâme que  non. Que tu ne passeras pas. On ne les attendait pas. Tu entends gueuler « Pourquoi ? Pourquoi sont-ils là ? Comment savaient-ils, les Rouges, qu’on déboulerait par ici ? ». Cette nuit, qui peut-être n’en était pas, un officier t’a raconté que le Condor existe, qu’il passe au Pérou. Une histoire de mineurs. Une pièce de théâtre ou peut-être un concert. Tu avais mal au dos. Tu lui as dit je ne suis jamais allé au théâtre. Tu t’es dit pourquoi cet homme me parle la nuit, les bombes te rappellent les lila du Habt, le feu inépuisable des coups de goumbri.",
         "longestWord": 14,
         "divName": "text",
-        "idealX": 45,
+        "idealX": 40,
         "marginX": 3,
         "marginY": 2
     },
@@ -14,8 +14,10 @@
             "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴   ╶─╮╭─┐",
             "├─╴├─╯ │ ╰─╮│ ││ │├─╴   ╭─╯├─┤",
             "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴   ╰─╴╵ ╵",
-            "~ 0 min 0 sec",
-            "molette avant/arrière",
+            "~ 2 min 30 sec",
+            "",
+            "molette avant : afficher",
+            "molette arrière : effacer",
             "",
             "",
             "<a id='start' class='ep'>Lancer l'épisode</a>"

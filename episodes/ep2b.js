@@ -1,4 +1,3 @@
-console.log("ep2b loaded");
 function ep2b() {
     readJSONFile("episodes/ep2b.json", function(json) {
         var jsonObj = JSON.parse(json);
@@ -62,8 +61,7 @@ function ep2b() {
             },
             function menu() {
                 let tempo = setTimeout(function() {
-                    txtAnim[n].appendText();
-                    events();
+                    showMenu();
                 }, 3500);
             }
         );
