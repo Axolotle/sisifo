@@ -1,0 +1,40 @@
+[
+    {
+        "longestWord": 14,
+        "divName": "text",
+        "idealX": 99,
+        "idealY": 33,
+        "marginX": 1,
+        "marginY": 1
+    },
+
+    {
+        "txt": [
+            " /                            ",
+            "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴   ╶─╮╭─┐",
+            "├─╴├─╯ │ ╰─╮│ ││ │├─╴    ─┤├─┤",
+            "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴   ╶─╯╵ ╵",
+            "~ 0 min 0 sec",
+            "",
+            "pas d'interaction",
+            "",
+            "",
+            "<a id='start' class='ep'>Lancer l'épisode</a>"
+        ],
+        "charToAdd": " "
+    },
+
+    {
+        "txt": [
+            [["00:00:01.210","00:00:03.110"], ["Quoi, comment ?"]],
+            [["00:00:04.847", "00:00:07.975"],["Quand tu dis ils,", "tu veux dire eux ? D'accord."]],
+            [["00:00:08.050", "00:00:12.749"],["...coute, j'ai quelque chose à te dire", "C'est extrêmement important"]],
+            [["00:00:12.821", "00:00:15.289"],["Et ma maison, alors ?"]],
+            [["00:00:19.795", "00:00:22.093"],["Ouvrier de la Terre, oyez !"]],
+            [["00:00:22.164", "00:00:25.292"],["J'apporte de nouvelles", "cacahuètes fraîches et de la bière !"]],
+            [["00:00:30.844", "00:00:32.709"],["Excellent !", "Allez viens, allons au pub."]],
+            [["00:00:32.779", "00:00:35.768"],["Ils disent qu'il ne démoliront rien", "avant d'avoir fini leur bière."]]
+        ],
+        "format": "subtitle"
+    }
+]

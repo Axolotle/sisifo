@@ -69,7 +69,8 @@ var box = new Box();
 var episode, epMax;
 var mini = window.innerWidth < 900 ? true : false;
 
-start(false);
+loadEp("3a");
+//start(false);
 
 function start(again) {
     var options = {
@@ -80,7 +81,7 @@ function start(again) {
         "divName": "text",
         "marginX": 1,
         "marginY": 1,
-        "episodes": 2
+        "episodes": 3
     };
     var content = {
         "txt": [
@@ -413,6 +414,7 @@ function loadEp(a) {
         else if (ep == "1b") ep1b();
         else if (ep == "2a") ep2a();
         else if (ep == "2b") ep2b();
+        else if (ep == "3a") ep3a();
     }
 
     function launch() {
