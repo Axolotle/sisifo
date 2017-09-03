@@ -91,6 +91,28 @@ s {
 }
 
 
+/* Subtitled episode color code */
+.sub {
+    background-color: black;
+}
+.horschamps {
+    color: yellow;
+}
+.face {
+    color: white
+}
+.bruit {
+    color: red;
+}
+.musique {
+    color: magenta;
+}
+.comm {
+    color: cyan;
+}
+.lang {
+    color: green;
+}
 
 
 @media screen and (max-width: 900px) {
