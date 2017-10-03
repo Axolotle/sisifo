@@ -1,11 +1,10 @@
+// FIXME don't had this to the prototype, only to the created object
 Box.prototype.menu = function() {
-    var self = this;
-    var div = document.getElementById(this.div);
 
     var pos = 1;
     for (var i = 0; i <= this.episodes; i++) {
-        this.ps.forEach(function(line, index) {
-            if (index < pos) line.innerHTML += " ".repeat(2);
+        this.lines.forEach(function(line, index) {
+            if (index < pos) line.innerHTML += "  ";
             else if (index-pos == 0) line.innerHTML += "─┐";
 
             else if (i == 0) {
@@ -29,12 +28,12 @@ Box.prototype.menu = function() {
         var elem = document.createElement("p");
         elem.innerHTML = " ".repeat(pos*2) + "└" + "─".repeat(this.x-2) + "┘";
 
+        var div = document.getElementById(this.div);
         div.appendChild(elem);
 
-        this.ps.push(elem);
+        this.lines.push(elem);
         pos++;
     }
-
 
 };
 Box.prototype.smallMenu = function() {
@@ -59,9 +58,37 @@ Box.prototype.smallMenu = function() {
 
         div.appendChild(elem);
 
-        this.ps.push(elem);
+        this.lines.push(elem);
         pos++;
     }
+};
+Box.prototype.resetBox = function(callback) {
+    var self = this;
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function removeRow() {
+        var div = document.getElementById(self.div);
+
+        while (self.lines.length > self.y) {
+            div.removeChild(div.lastChild);
+            self.lines.pop();
+
+            self.lines.forEach(function(line, i, array) {
+                if (line.innerHTML.length > self.x) {
+                    line.innerHTML = line.innerHTML.substr(0, line.innerHTML.length-2);
+                }
+
+            });
+            await sleep(10);
+        }
+    }
+
+    self.removeTags();
+    removeRow();
+
 };
 
 
@@ -69,19 +96,21 @@ var box = new Box();
 var episode, epMax;
 var mini = window.innerWidth < 900 ? true : false;
 
-loadEp("3a");
-//start(false);
+
+
+
+//loadEp("1a");
+start(false);
 
 function start(again) {
     var options = {
-        "idealX": 35,
-        "idealY": 20,
+        "maxX": 37,
+        "maxY": 22,
         "minY": 12,
         "minX": 30,
         "divName": "text",
         "marginX": 1,
-        "marginY": 1,
-        "episodes": 3
+        "marginY": 1
     };
     var content = {
         "txt": [
@@ -97,12 +126,12 @@ function start(again) {
     }
 
     if (mini) {
-        options.idealX = 40;
-        options.idealY = 12;
+        options.idealX = 42;
+        options.idealY = 14;
     }
-
     box.init(options);
-    epMax = box.episodes;
+    box.episodes = 3;
+    console.log(box);
 
     content = new ModifyJSON(content, content, box);
     var txtAnim = new Animation(content, box);
@@ -110,10 +139,13 @@ function start(again) {
     Step(
         function init() {
             if (again && !box.error) {
-                box.reDraw(this);
+
+                box.draw(this);
+
             }
             else {
-                box.displayBox(this);
+
+                box.display(this);
             }
         },
         function displayLandpage() {
@@ -141,7 +173,7 @@ function initMenu() {
         e.preventDefault();
         var ev = new Event("stop");
         window.dispatchEvent(ev);
-        box.cleanBox(function() {
+        box.reboot(function() {
             if (e.target.id == "return") {
                 start(true);
             }
@@ -363,7 +395,7 @@ function hideLandpage(callback) {
         while (j.hasChildNodes()) {
             j.removeChild(j.lastChild);
         }
-        box.cleanBox();
+        box.reboot();
         if (callback) {
             callback();
         }
@@ -415,6 +447,7 @@ function loadEp(a) {
         else if (ep == "2a") ep2a();
         else if (ep == "2b") ep2b();
         else if (ep == "3a") ep3a();
+        else if (ep == "3b") ep3b();
     }
 
     function launch() {
@@ -456,7 +489,7 @@ function events() {
 function startEp(callback) {
     var link = document.getElementById("start");
     link.addEventListener("click", function() {
-        box.cleanBox();
+        box.reboot();
         callback();
     })
 }
