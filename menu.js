@@ -96,33 +96,30 @@ var box = new Box();
 var episode, epMax;
 var mini = window.innerWidth < 900 ? true : false;
 
-
-
-
-loadEp("2b");
-//start(false);
+start(false);
 
 function start(again) {
     var options = {
-        "maxX": 37,
-        "maxY": 22,
-        "minY": 12,
-        "minX": 30,
-        "divName": "text",
-        "marginX": 1,
-        "marginY": 1
+        maxX: 37,
+        maxY: 22,
+        minY: 12,
+        minX: 30,
+        divName: "text",
+        marginX: 1,
+        marginY: 1
     };
     var content = {
-        "txt": [
+        txt: [
             " /                      ",
             "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴╭─╴",
             "├─╴├─╯ │ ╰─╮│ ││ │├─╴╰─╮",
             "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴╶─╯",
             "",
             "",
-            "<a class='ep' id='2a'>lire le dernier épisode</a>"
+            "{{tag::a|id=3a|class=ep}}lire le dernier épisode{{tag::/a}}"
         ],
-        "charToAdd": " "
+        format: "align",
+        charToAdd: " "
     }
 
     if (mini) {
@@ -131,9 +128,12 @@ function start(again) {
     }
     box.init(options);
     box.episodes = 3;
+    var boxDim = [box.x, box.y, box.marginX, box.marginY];
+    var formatter = new FormatJSON(...boxDim);
 
-    content = new ModifyJSON(content, content, box);
+    content = formatter.getNewJSON(content);
     var txtAnim = new Animation(content, box);
+
 
     Step(
         function init() {

@@ -30,6 +30,7 @@ function ep2b() {
                 function MouseWheelHandler(e) {
                 	// cross-browser wheel delta
                 	var e = window.event || e; // old IE support
+                    e.preventDefault();
                 	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
                     e.preventDefault();
                     if (delta == 1) {

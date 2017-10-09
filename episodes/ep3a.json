@@ -1,48 +1,60 @@
 [
     {
-        "longestWord": 14,
         "divName": "text",
-        "idealX": 99,
-        "idealY": 32,
+        "maxY": 37,
+        "minY": 27,
         "marginX": 2,
-        "marginY": 2
+        "marginY": 2,
+        "ratio" : [16,9]
     },
 
     {
         "txt": [
-            " /                            ",
-            "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴   ╶─╮╭─┐",
-            "├─╴├─╯ │ ╰─╮│ ││ │├─╴    ─┤├─┤",
-            "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴   ╶─╯╵ ╵",
+            "╭─╮╭─╮╶╮ ┌─╴╭─╮╶─╮   ╭─┐",
+            "╰─╮│ │ │ ├─╴│ │╶─┤╶─╴├─┤",
+            "╰─╯╰─╯╶┴╴╰─╴╰─╯╶─╯   ╵ ╵",
             "~ 0 min 0 sec",
             "",
             "pas d'interaction",
             "",
             "",
-            "<a id='start' class='ep'>Lancer l'épisode</a>"
+            "{{tag::a|id=start|class=ep}}Lancer l'épisode{{tag::/a}}"
         ],
+        "format": "align",
         "charToAdd": " "
     },
 
     {
         "txt": [
-            [["00:00:01.200","00:00:01.850"], ["*TA*"], "bruit", [60,50]],
-            [["00:00:01.300","00:00:01.900"], ["*TA*"], "bruit", [70,53]],
-            [["00:00:01.400","00:00:01.950"], ["*TA*"], "bruit", [55,56]],
-            [["00:00:01.500","00:00:02.000"], ["*TA*"], "bruit", [90,59]],
-            [["00:00:01.600","00:00:02.050"], ["*TA*"], "bruit", [70,62]],
-            [["00:00:01.700","00:00:02.100"], ["*TA*"], "bruit", [65,65]],
-            [["00:00:02.300", "00:00:04.400"],["- Eh !,", "- Par ici !"], "horschamps",[0,50]],
-            [["00:00:07.050", "00:00:9.200"],["Suis-nous."], "lang"],
-            [["00:00:08.050", "00:00:8.500"],["Les voilà !"], "horschamps", [90, 50]],
-            [["00:00:9.300", "00:00:11.500"],["Arrêtez... Il va nous ralentir"], "face", [25,50]],
-            [["00:00:12.000", "00:00:12.165"],["TA"], "bruit", [100,75]],
-            [["00:00:12.170", "00:00:12.335"],["TA"], "bruit", [100,85]],
-            [["00:00:12.340", "00:00:12.505"],["TA"], "bruit", [100,60]],
-            [["00:00:12.850", "00:00:15.502"],["Grouilles-toi !", "Ils sont pas loin"], "horschamps", [0,50]],
-            [["00:00:17.544", "00:00:20.509"],["Il faut à tout prix se retrancher", "dans le batiment Est."], "face"]
+            [[1200,2200], ["TA"], "bruit", [60,49]],
+            [[1300,2200], ["TA"], "bruit", [70,53]],
+            [[1400,2200], ["TA"], "bruit", [55,57]],
+            [[1500,2200], ["TA"], "bruit", [90,61]],
+            [[1600,2200], ["TA"], "bruit", [70,65]],
+            [[1700,2200], ["TA"], "bruit", [65,70]],
+            [[2445,4595], ["- Eh !", "- Par ici !"], "horschamps", [0,50]],
+            [[7245,9395], ["Suis-nous."], "face", [50,100]],
+            [[9495,11695], ["Arrêtez... Il va nous ralentir"], "face", [25,50]],
+            [[11195,12195], ["- Les voilà !"], "horschamps", [100,20]],
+            [[11395,12395], ["TA"], "bruit", [100,75]],
+            [[11495,12395], ["TA"], "bruit", [85,85]],
+            [[11595,12395], ["TA"], "bruit", [95,65]],
+            [[11695,12395], ["TA"], "bruit", [100,70]],
+            [[11795,12395], ["TA"], "bruit", [70,80]],
+            [[12745,15395], ["Grouilles-toi !", "Ils sont pas loin"], "horschamps", [0,50]],
+            [[17439,20404], ["Il faut à tout prix se retrancher", "dans le batiment Est."], "face", [50,100]],
+            [[21404,23404], ["*few years later*"], "lang", [50,100]],
+            [[23504,30504], ["*brouhaha incessant*"], "bruit", [50,100]],
+            [[24504,27504], ["Nan, mais franchement, t'y crois à ça ?"], "face", [30,60]],
+            [[25504,28504], ["Ça va mais journée de merde en vrai."], "face", [70,30]],
+            [[26504,29504], ["Ouais j'ai vu tout à l'heure,", "trop drôle !"], "face", [50,20]],
+            [[27504,29504], ["*absolument incessant*"], "bruit", [65,85]],
+            [[27504,30504], ["Et là, le type commence à m'insulter", "en anglais"], "face", [30,60]],
+            [[28504,31504], ["- Ah ouais ? M'en parles pas...", "Si tu voyais l'ambiance au taff"], "face", [70,40]],
+            [[29504,32504], ["- Celle avec le chien là ?"], "face", [50,20]],
+            [[30504,33504], ["Grosse ambiance ce soir,", "j'sens que je vais pas rester longtemps"], "comm", [50,100]]
         ],
         "format": "subtitle"
     }
-    
+
 ]

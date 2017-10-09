@@ -42,10 +42,5 @@
 
     {
         "txt": "{{pause::0.1}}{{clean::a|&nbsp;}}Tu es tout près de l’homme devant, le nez sur sa chaussure. {{speed::-3}}Odeur de cuir humide. {{speed::0}}Tu lèves les yeux. Sa lèvre pend. Son regard à la fois décidé et terrifié. Il te met au défi. {{pause::1}}Viens. {{pause::2}}Viens. {{pause::1}}Il s’est retourné. Pourquoi ? L’ennemi est devant. L’homme est petit. Le Remington, dans sa main frêle, droit et grand comme un tronc. {{speed::-2}}Devant, la forêt cesse. Seules des broussailles, dont les tiges giclent comme des pétards de Noël. {{speed::0}}Tu suivras ce petit homme qui ne te demande rien. Il se lève. Tu le suis. Il tombe devant toi, de côté. Tu ne le piétines pas. {{speed::-5}}Devant, enfin, les barbares. {{speed::0}}Tu tombes et te retournes enfin. {{pause::1}}Tu n’es pas le dernier. {{pause::2}}La bataille a commencé.{{pause::3}} Pour toi,{{pause::1}} elle se termine. {{clean::/a}}{{pause::3}}"
-    },
-
-    {
-        "txt": ["{{tag::a|id=menu|class=ep}}Retourner au menu{{tag::/a}}"],
-        "charToAdd": " "
     }
 ]
