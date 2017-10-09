@@ -1,49 +1,50 @@
 function ep1a() {
-
     readJSONFile("episodes/ep1a.json", function(json) {
         var jsonObj = JSON.parse(json);
 
         box.init(jsonObj.shift());
 
-        var infoEp = new ModifyJSON(jsonObj.shift(), jsonObj, box);
-        infoEp = new Animation(infoEp, box);
+        var boxDim = [box.x, box.y, box.marginX, box.marginY];
+        var formatter = new FormatJSON(...boxDim);
 
+        var infoEp = formatter.getNewJSON(jsonObj.shift());
+        infoEp = new Animation(infoEp, box);
         var txtAnim = [];
-        for (let n = 0; n < jsonObj.length; n++) {
-            jsonObj[n] = new ModifyJSON(jsonObj[n], jsonObj, box);
-            txtAnim.push(new Animation(jsonObj[n], box));
-        }
+        jsonObj = formatter.getNewJSON(jsonObj);
+        jsonObj.forEach(function(json) {
+            txtAnim.push(new Animation(json, box));
+        });
 
         var n = 0;
         Step(
             function init() {
-                box.reDraw(this);
+                box.draw(this);
             },
             function menu() {
                 infoEp.appendText();
                 startEp(this);
             },
             function flow0() {
-                txtAnim[n++].writeText(this);
+                txtAnim[0].writeText(this);
             },
             function flow1() {
-                txtAnim[n].clean(0);
-                txtAnim[n++].writeText(this);
+                txtAnim[0].clean(0);
+                txtAnim[1].writeText(this);
             },
             function flow2() {
-                txtAnim[n].clean(0);
-                txtAnim[n++].writeText(this);
+                txtAnim[1].clean(0);
+                txtAnim[2].writeText(this);
             },
             function flow3() {
-                txtAnim[n].clean(0);
-                txtAnim[n++].writeText(this);
+                txtAnim[2].clean(0);
+                txtAnim[3].writeText(this);
             },
             function flow4() {
-                txtAnim[n].clean(0);
-                txtAnim[n++].writeText(this);
+                txtAnim[3].clean(0);
+                txtAnim[4].writeText(this);
             },
             function flow5() {
-                txtAnim[n++].reversedClean(0,this);
+                txtAnim[4].reversedClean(0,this);
             },
             function menu() {
                 let tempo = setTimeout(function() {
