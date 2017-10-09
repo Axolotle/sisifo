@@ -3,7 +3,7 @@
         "longestText" : "Pont des Français, il n’y a qu'un camp. A certaines époques, on construit des ponts, à d’autres, on le tourne, on les change de camp, on les colorie. Toi on te dit « Traverse ». Dans Madrid, à la radio, on brâme que  non. Que tu ne passeras pas. On ne les attendait pas. Tu entends gueuler « Pourquoi ? Pourquoi sont-ils là ? Comment savaient-ils, les Rouges, qu’on déboulerait par ici ? ». Cette nuit, qui peut-être n’en était pas, un officier t’a raconté que le Condor existe, qu’il passe au Pérou. Une histoire de mineurs. Une pièce de théâtre ou peut-être un concert. Tu avais mal au dos. Tu lui as dit je ne suis jamais allé au théâtre. Tu t’es dit pourquoi cet homme me parle la nuit, les bombes te rappellent les lila du Habt, le feu inépuisable des coups de goumbri.",
         "longestWord": 14,
         "divName": "text",
-        "idealX": 40,
+        "idealX": 46,
         "marginX": 3,
         "marginY": 2
     },
@@ -20,39 +20,35 @@
             "molette arrière : effacer",
             "",
             "",
-            "<a id='start' class='ep'>Lancer l'épisode</a>"
+            "{{tag::a|id=start|class=ep}}Lancer l'épisode{{tag::/a}}"
         ],
+        "format": "align",
         "charToAdd": " "
     },
 
     {
         "txt": [
-            "Pont des Français,<t04><t17><t18> personne ne<t01><t02> te traverse.",
+            "Pont des Français,{{index::4}}{{index::17}}{{index::18}} personne ne{{index::1}}{{index::2}} te traverse.",
             "bouge.",
-            "se regarde<t03> dans la rivière. On ne sait pas si on est bien rasé, si ses dents sont jaunes ou mal droites.",
+            "se regarde{{index::3}} dans la rivière. On ne sait pas si on est bien rasé, si ses dents sont jaunes ou mal droites.",
             "d’un bord à l’autre. L’ennemi n’est pas une image. Ni reflet ni ombre.",
-            "il n’y a<t05> qu’une berge. Celle où tu es.",
-            "qu'un camp. A certaines époques, on construit des ponts, à d’autres, on les tourne, on les change de camp, on les colorie. Toi on te dit « Traverse ». Dans Madrid, à la radio, on brâme que non. Que<t06> tu ne passeras pas.",
-            "tu ne passeras pas.<t09> Parce que les miliciens<t07> tu ne les vois pas, tu les entends.",
-            "comme ils te gardent<t08> bien.",
+            "il n’y a{{index::5}} qu’une berge. Celle où tu es.",
+            "qu'un camp. A certaines époques, on construit des ponts, à d’autres, on les tourne, on les change de camp, on les colorie. Toi on te dit « Traverse ». Dans Madrid, à la radio, on brâme que non. Que{{index::6}} tu ne passeras pas.",
+            "tu ne passeras pas.{{index::9}} Parce que les miliciens{{index::7}} tu ne les vois pas, tu les entends.",
+            "comme ils te gardent{{index::8}} bien.",
             "bien de te jeter à travers l’eau.",
-            "On ne les attendait pas. Tu entends gueuler « Pourquoi ? Pourquoi sont-ils là ? Comment savaient-ils, les Rouges, qu’on déboulerait par ici ? ». Cette nuit,<t11><t14> les Italiens ont bombardé pour<t10> vous.",
+            "On ne les attendait pas. Tu entends gueuler « Pourquoi ? Pourquoi sont-ils là ? Comment savaient-ils, les Rouges, qu’on déboulerait par ici ? ». Cette nuit,{{index::11}}{{index::14}} les Italiens ont bombardé pour{{index::10}} vous.",
             "toi. Nettoyé les Rouges avant ton assaut.",
-            "tu entendais<t12><t13> les bombes. Le sol tremblait. À dormir par terre, on sent trembler les bombes dans sa machoire.",
+            "tu entendais{{index::12}}{{index::13}} les bombes. Le sol tremblait. À dormir par terre, on sent trembler les bombes dans sa machoire.",
             "les chansons des Allemands. Ils s’appellent Condor. On te dit « c’est un oiseau qui n’existe pas ». Cette rivière n’existe pas. Si le pont tournait, tu serais du bon côté, tu n’aurais pas besoin de passer.",
             "gémir ta mauvaise fièvre. Peut-être n’était-ce pas la nuit. Quelqu’un dit peut-être, en italien, en allemand ou en arabe « Ils se moquent des bombes, les Mardilènes. »",
-            "qui peut-être n’en était pas, un officier t’a raconté que le Condor existe, qu’il passe au Pérou. Une histoire de mineurs. Une pièce de théâtre ou peut-être un concert. Tu avais mal au dos. Tu lui as dit je ne suis jamais allé au théâtre. Tu t’es dit pourquoi cet homme me parle la<t15><t16> nuit.",
+            "qui peut-être n’en était pas, un officier t’a raconté que le Condor existe, qu’il passe au Pérou. Une histoire de mineurs. Une pièce de théâtre ou peut-être un concert. Tu avais mal au dos. Tu lui as dit je ne suis jamais allé au théâtre. Tu t’es dit pourquoi cet homme me parle la{{index::15}}{{index::16}} nuit.",
             "nuit s’appelle layla.",
             "nuit, les bombes te rappellent les lila du Habt, le feu inépuisable des coups de goumbri.",
             "aujourd’hui, tu t’élances. En face, des fusils à dix coups, peureux mais foisonnants.",
             "on te traverse toi, tu tombes, ne passeras pas."
         ],
         "format" : "combine",
-        "pause" : 4
-    },
-
-    {
-        "txt": ["<a id='menu' class='ep'>retourner au menu</a>"],
-        "charToAdd": " "
+        "pointOfNoReturn" : 4
     }
 ]

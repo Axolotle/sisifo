@@ -3,18 +3,19 @@ function ep2b() {
         var jsonObj = JSON.parse(json);
 
         box.init(jsonObj.shift());
-        var infoEp = new ModifyJSON(jsonObj.shift(), jsonObj, box);
+
+        var boxDim = [box.x, box.y, box.marginX, box.marginY];
+        var formatter = new FormatJSON(...boxDim);
+
+        var infoEp = formatter.getNewJSON(jsonObj.shift());
         infoEp = new Animation(infoEp, box);
 
-        var txtAnim = [];
-        for (let n = 0; n < jsonObj.length; n++) {
-            jsonObj[n] = new ModifyJSON(jsonObj[n], jsonObj, box);
-            txtAnim.push(new Animation(jsonObj[n], box));
-        }
-        var n = 0;
+        jsonObj = formatter.getNewJSON(jsonObj[0]);
+        var txtAnim = new Animation(jsonObj, box);
+
         Step(
             function init() {
-                box.reDraw(this);
+                box.draw(this);
             },
             function menu() {
                 infoEp.appendText();
@@ -51,7 +52,7 @@ function ep2b() {
                 else window.attachEvent("onmousewheel", function(e){MouseWheelHandler(e)});
                 /////////////////////////////////////////////////////////
 
-                txtAnim[n++].addWord(function(){
+                txtAnim.addWord(function(){
                     if (window.addEventListener) {
                         window.removeEventListener("mousewheel", MouseWheelHandler);
                         window.removeEventListener("DOMMouseScroll", MouseWheelHandler);
