@@ -15,7 +15,6 @@ function ep1b() {
             txtAnim.push(new Animation(json, box));
         });
 
-        var n = 0;
         Step(
             function init() {
                 box.draw(this);

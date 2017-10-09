@@ -3,20 +3,22 @@ function ep0() {
         var jsonObj = JSON.parse(json);
 
         box.init(jsonObj.shift());
-        var infoEp = new ModifyJSON(jsonObj.shift(), jsonObj, box);
-        infoEp = new Animation(infoEp, box);
+        var boxDim = [box.x, box.y, box.marginX, box.marginY];
+        var formatter = new FormatJSON(...boxDim);
 
+        var infoEp = formatter.getNewJSON(jsonObj.shift());
+        infoEp = new Animation(infoEp, box);
         var txtAnim = [];
-        for (let n = 0; n < jsonObj.length; n++) {
-            jsonObj[n] = new ModifyJSON(jsonObj[n], jsonObj, box);
-            txtAnim.push(new Animation(jsonObj[n], box));
-        }
+        jsonObj = formatter.getNewJSON(jsonObj);
+        jsonObj.forEach(function(json) {
+            txtAnim.push(new Animation(json, box));
+        });
         // document.documentElement.style.background = "black";
         // document.documentElement.style.color = "white";
 
         Step(
             function init() {
-                box.reDraw(this);
+                box.draw(this);
             },
             function menu() {
                 infoEp.appendText();

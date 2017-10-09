@@ -99,8 +99,8 @@ var mini = window.innerWidth < 900 ? true : false;
 
 
 
-//loadEp("1a");
-start(false);
+loadEp("2b");
+//start(false);
 
 function start(again) {
     var options = {
@@ -131,7 +131,6 @@ function start(again) {
     }
     box.init(options);
     box.episodes = 3;
-    console.log(box);
 
     content = new ModifyJSON(content, content, box);
     var txtAnim = new Animation(content, box);
