@@ -97,6 +97,7 @@ var episode, epMax;
 var mini = window.innerWidth < 900 ? true : false;
 
 start(false);
+//loadEp("3a");
 
 function start(again) {
     var options = {
@@ -206,6 +207,10 @@ function initMenu() {
                     else previous = n+"a";
                 }
                 loadEp(previous);
+            }
+            else if (e.target.id == "fullscreen") {
+                fullscreen();
+                loadEp(episode);
             }
         });
         options.style.display = "none";
@@ -491,4 +496,12 @@ function startEp(callback) {
         box.reboot();
         callback();
     })
+}
+
+function fullscreen() {
+    var html = document.getElementsByTagName("html")[0];
+    if(document.body.webkitRequestFullScreen)
+        html.webkitRequestFullScreen();
+    else
+        html.mozRequestFullScreen();
 }
