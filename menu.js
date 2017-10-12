@@ -1,5 +1,5 @@
-// FIXME don't had this to the prototype, only to the created object
-Box.prototype.menu = function() {
+var box = new Box();
+box.menu = function() {
 
     var pos = 1;
     for (var i = 0; i <= this.episodes; i++) {
@@ -36,7 +36,7 @@ Box.prototype.menu = function() {
     }
 
 };
-Box.prototype.smallMenu = function() {
+box.smallMenu = function() {
     var self = this;
     var div = document.getElementById(this.div);
 
@@ -62,12 +62,8 @@ Box.prototype.smallMenu = function() {
         pos++;
     }
 };
-Box.prototype.resetBox = function(callback) {
+box.resetBox = function(callback) {
     var self = this;
-
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
 
     async function removeRow() {
         var div = document.getElementById(self.div);
@@ -92,12 +88,12 @@ Box.prototype.resetBox = function(callback) {
 };
 
 
-var box = new Box();
+
 var episode, epMax;
 var mini = window.innerWidth < 900 ? true : false;
 
-start(false);
-//loadEp("3a");
+//start(false);
+loadEp("0");
 
 function start(again) {
     var options = {
@@ -224,7 +220,7 @@ function initMenu() {
     }
 }
 
-function showMenu() {
+async function showMenu() {
     var options = document.getElementById("m-options");
 
     if (options.style.display == "" || options.style.display == "none") {
@@ -233,6 +229,8 @@ function showMenu() {
     else {
         options.style.display = "none";
     }
+
+    return Promise.resolve();
 }
 
 function showLandpage(x, y, ep) {
@@ -490,12 +488,18 @@ function events() {
     }
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function startEp(callback) {
-    var link = document.getElementById("start");
-    link.addEventListener("click", function() {
-        box.reboot();
-        callback();
-    })
+    return new Promise ((resolve, reject) => {
+        var link = document.getElementById("start");
+        link.addEventListener("click", function() {
+            box.reboot();
+            resolve();
+        });
+    });
 }
 
 function fullscreen() {

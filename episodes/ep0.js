@@ -1,43 +1,25 @@
-function ep0() {
-    readJSONFile("episodes/ep0.json", function(json) {
-        var jsonObj = JSON.parse(json);
+async function ep0() {
+    let json = await readJSONFile("episodes/ep0.json");
 
-        box.init(jsonObj.shift());
-        var boxDim = [box.x, box.y, box.marginX, box.marginY];
-        var formatter = new FormatJSON(...boxDim);
+    box.init(json.shift());
+    var boxDim = [box.x, box.y, box.marginX, box.marginY];
+    var formatter = new FormatJSON(...boxDim);
 
-        var infoEp = formatter.getNewJSON(jsonObj.shift());
-        infoEp = new Animation(infoEp, box);
-        var txtAnim = [];
-        jsonObj = formatter.getNewJSON(jsonObj);
-        jsonObj.forEach(function(json) {
-            txtAnim.push(new Animation(json, box));
-        });
-        // document.documentElement.style.background = "black";
-        // document.documentElement.style.color = "white";
+    var infoEp = formatter.getNewJSON(json.shift());
+    infoEp = new Animation(infoEp, box);
 
-        Step(
-            function init() {
-                box.draw(this);
-            },
-            function menu() {
-                infoEp.appendText();
-                startEp(this);
-            },
-            function flow0() {
-                txtAnim[0].writeText(this);
-            },
-            function flow1() {
-                txtAnim[1].writeText(this);
-            },
-            function flow2() {
-                txtAnim[2].writeText(this);
-            },
-            function menu() {
-                let tempo = setTimeout(function() {
-                    showMenu();
-                }, 3500);
-            }
-        );
+
+    var txtAnim = [];
+    json = formatter.getNewJSON(json);
+    json.forEach(function(obj) {
+        txtAnim.push(new Animation(obj, box));
     });
+
+    await box.draw();
+    infoEp.appendText()
+    await startEp();
+    await txtAnim[0].writeText();
+    await txtAnim[1].writeText();
+    await txtAnim[2].writeText();
+    setTimeout(showMenu, 3500);
 }
