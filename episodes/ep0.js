@@ -1,25 +1,17 @@
 async function ep0() {
-    let json = await readJSONFile("episodes/ep0.json");
-
-    box.init(json.shift());
-    var boxDim = [box.x, box.y, box.marginX, box.marginY];
-    var formatter = new FormatJSON(...boxDim);
-
-    var infoEp = formatter.getNewJSON(json.shift());
-    infoEp = new Animation(infoEp, box);
-
-
-    var txtAnim = [];
-    json = formatter.getNewJSON(json);
-    json.forEach(function(obj) {
-        txtAnim.push(new Animation(obj, box));
+    const JSONs = await getFormatedObjs("episodes/ep0.json");
+    const waves = [];
+    JSONs.forEach(function(json) {
+        waves.push(new Animation(json));
     });
 
     await box.draw();
-    infoEp.appendText()
+    waves[0].displayText(box);
+
     await startEp();
-    await txtAnim[0].writeText();
-    await txtAnim[1].writeText();
-    await txtAnim[2].writeText();
+    await waves[1].writeText(box);
+    await waves[2].writeText(box);
+    await waves[3].writeText(box);
+
     setTimeout(showMenu, 3500);
 }
