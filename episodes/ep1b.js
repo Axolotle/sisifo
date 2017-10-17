@@ -1,64 +1,28 @@
-function ep1b() {
-    readJSONFile("episodes/ep1b.json", function(json) {
-        var jsonObj = JSON.parse(json);
+async function ep1b() {
+    const waves = await getAnimationObjects("episodes/ep1b.json");
+    const infos = waves.shift();
 
-        box.init(jsonObj.shift());
+    await box.draw();
+    infos.displayText(box);
 
-        var boxDim = [box.x, box.y, box.marginX, box.marginY];
-        var formatter = new FormatJSON(...boxDim);
+    await startEp();
+    await waves[0].writeText(box);
+    await Promise.all([
+        waves[0].clean(box, 0),
+        waves[0].clean(box, 1),
+        waves[1].writeText(box)
+    ]);
+    await waves[2].writeText(box);
+    waves[2].clean(box, 0)
+    .then(() => waves[2].clean(box, 1));
+    await waves[3].writeText(box);
+    await Promise.all([
+        waves[3].clean(box, 0),
+        waves[3].clean(box, 1),
+        waves[3].clean(box, 2),
+        waves[3].clean(box, 3),
+        waves[3].clean(box, 4)
+    ]);
 
-        var infoEp = formatter.getNewJSON(jsonObj.shift());
-        infoEp = new Animation(infoEp, box);
-        var txtAnim = [];
-        jsonObj = formatter.getNewJSON(jsonObj);
-        jsonObj.forEach(function(json) {
-            txtAnim.push(new Animation(json, box));
-        });
-
-        Step(
-            function init() {
-                box.draw(this);
-            },
-            function menu() {
-                infoEp.appendText();
-                startEp(this);
-            },
-            function flow0() {
-                txtAnim[0].writeText(this);
-            },
-            function flow1() {
-                txtAnim[0].clean(0);
-                txtAnim[1].writeText(this);
-                txtAnim[0].clean(1);
-            },
-            function flow2() {
-                txtAnim[2].writeText(this);
-            },
-            function flow3() {
-                txtAnim[2].clean(0,function() {
-                    txtAnim[2].clean(1);
-                });
-                txtAnim[3].writeText(this);
-            },
-            function flow4() {
-                txtAnim[3].clean(0, this.parallel());
-                txtAnim[3].clean(1, this.parallel());
-                txtAnim[3].clean(2, this.parallel());
-                txtAnim[3].clean(3, this.parallel());
-                txtAnim[3].clean(4, this.parallel());
-            },
-            function menu() {
-                let tempo = setTimeout(function() {
-                    showMenu();
-                }, 3500);
-
-
-            }
-        );
-
-
-
-
-    });
-
+    setTimeout(showMenu, 3500);
 }
