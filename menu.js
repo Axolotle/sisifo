@@ -492,7 +492,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function startEp(callback) {
+function startEp() {
     return new Promise ((resolve, reject) => {
         var link = document.getElementById("start");
         link.addEventListener("click", function() {
