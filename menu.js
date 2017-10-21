@@ -1,6 +1,9 @@
 var box = new Box();
 var maxEp = 3;
+var episode;
 start(false);
+initMenu();
+
 //loadEp("3a");
 
 box.addMenu = function(maxEp) {
@@ -123,9 +126,6 @@ async function start(again) {
     events();
 }
 
-initMenu();
-
-
 function initMenu() {
     // init the little menu click listener
     var menu = document.getElementById("m");
@@ -133,56 +133,51 @@ function initMenu() {
 
     function action(e) {
         e.preventDefault();
-        var ev = new Event("stop");
-        window.dispatchEvent(ev);
-        box.cleanLines();
+        const id = e.target.id;
+        options.style.display = "none";
 
-        if (e.target.id == "return") {
-            start(true);
+        if (id != fullscreen) {
+            window.dispatchEvent(new Event("stop"));
+            box.cleanLines();
+        } else {
+            return fullscreen();
         }
-        else if (e.target.id == "reload") {
-            loadEp(episode);
-        }
-        else if (e.target.id == "next"){
-            var next;
+
+        if (id == "return") start(true);
+        else if (id == "reload") loadEp(episode);
+        else if (id == "next"){
+            let next;
 
             if (episode == "0") next = "1a";
-            else if (episode == maxEp+"b") next = "0";
+            else if (episode == maxEp + "b") next = "0";
             else {
                 let n = parseInt(episode[0]);
                 let vs = episode[1];
-
-                if (vs == "a") next = n+"b";
-                else next = (n+1)+"a";
+                if (vs == "a") next = n + "b";
+                else next = (n + 1) + "a";
             }
             loadEp(next);
         }
-        else if (e.target.id == "previous"){
-            var previous;
+        else if (id == "previous"){
+            let previous;
 
-            if (episode == "0") previous = maxEp+"b";
+            if (episode == "0") previous = maxEp + "b";
             else if (episode == "1a") previous = "0";
             else {
                 let n = parseInt(episode[0]);
                 let vs = episode[1];
-
-                if (vs == "a") previous = (n-1)+"b";
-                else previous = n+"a";
+                if (vs == "a") previous = (n - 1) + "b";
+                else previous = n + "a";
             }
             loadEp(previous);
         }
-        else if (e.target.id == "fullscreen") {
-            fullscreen();
-            loadEp(episode);
-        }
-
-        options.style.display = "none";
     }
 
     var options = document.getElementById("m-options");
     var item = document.getElementsByClassName("menu-item");
 
-    for (var i = 0; i < item.length; i++) {
+    var itemLength = item.length;
+    for (let i = 0; i < itemLength; i++) {
         item[i].addEventListener("click", action);
     }
 }
