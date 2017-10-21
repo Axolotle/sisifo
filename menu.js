@@ -1,9 +1,8 @@
 var box = new Box();
-box.menu = function() {
-
+box.addMenu = function() {
     var pos = 1;
     for (var i = 0; i <= this.episodes; i++) {
-        this.lines.forEach(function(line, index) {
+        this.lines.forEach((line, index) => {
             if (index < pos) line.innerHTML += "  ";
             else if (index-pos == 0) line.innerHTML += "─┐";
 
@@ -36,7 +35,7 @@ box.menu = function() {
     }
 
 };
-box.smallMenu = function() {
+box.addTinyMenu = function() {
     var self = this;
     var div = document.getElementById(this.div);
 
@@ -92,11 +91,11 @@ box.resetBox = function(callback) {
 var episode, epMax;
 var mini = window.innerWidth < 900 ? true : false;
 
-//start(false);
-loadEp("0");
+start(false);
+//loadEp("3a");
 
-function start(again) {
-    var options = {
+async function start(again) {
+    var boxOptions = {
         maxX: 37,
         maxY: 22,
         minY: 12,
@@ -117,46 +116,28 @@ function start(again) {
         ],
         format: "align",
         charToAdd: " "
-    }
+    };
 
     if (mini) {
-        options.idealX = 42;
-        options.idealY = 14;
+        menu.idealX = 42;
+        menu.idealY = 14;
     }
-    box.init(options);
+
+    box.init(boxOptions);
+    const formatter = new FormatJSON(box.x, box.y, box.marginX, box.marginY);
+    const infos = new Animation(formatter.getNewJSON(content));
+
+    if (again && !box.error) await box.draw();
+    else await box.display();
+    
+    infos.displayText(box);
+
     box.episodes = 3;
-    var boxDim = [box.x, box.y, box.marginX, box.marginY];
-    var formatter = new FormatJSON(...boxDim);
+    if (!mini) box.addMenu();
+    else box.addTinyMenu();
 
-    content = formatter.getNewJSON(content);
-    var txtAnim = new Animation(content, box);
-
-
-    Step(
-        function init() {
-            if (again && !box.error) {
-
-                box.draw(this);
-
-            }
-            else {
-
-                box.display(this);
-            }
-        },
-        function displayLandpage() {
-            txtAnim.appendText();
-
-            if (!mini) {
-                box.menu();
-            }
-            else {
-                box.smallMenu();
-            }
-            showLandpage(box.x, box.y, box.episodes);
-            events();
-        }
-    );
+    showLandpage(box.x, box.y, box.episodes);
+    events();
 }
 
 var menu = document.getElementById("m");
