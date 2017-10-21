@@ -128,20 +128,27 @@ async function start(again) {
 
 function initMenu() {
     // init the little menu click listener
+    function showOptions() {
+        var options = document.getElementById("m-options");
+
+        if (options.style.display == "" || options.style.display == "none") {
+            options.style.display = "block";
+        }
+        else options.style.display = "none";
+    }
+    
     var menu = document.getElementById("m");
-    menu.addEventListener("click", showMenu);
+    menu.addEventListener("click", showOptions);
 
     function action(e) {
         e.preventDefault();
         const id = e.target.id;
-        options.style.display = "none";
+        document.getElementById("m-options").style.display = "none";
 
-        if (id != fullscreen) {
+        if (id != "fullscreen") {
             window.dispatchEvent(new Event("stop"));
             box.cleanLines();
-        } else {
-            return fullscreen();
-        }
+        } else return fullscreen();
 
         if (id == "return") start(true);
         else if (id == "reload") loadEp(episode);
@@ -173,26 +180,11 @@ function initMenu() {
         }
     }
 
-    var options = document.getElementById("m-options");
     var item = document.getElementsByClassName("menu-item");
-
     var itemLength = item.length;
     for (let i = 0; i < itemLength; i++) {
         item[i].addEventListener("click", action);
     }
-}
-
-async function showMenu() {
-    var options = document.getElementById("m-options");
-
-    if (options.style.display == "" || options.style.display == "none") {
-        options.style.display = "block";
-    }
-    else {
-        options.style.display = "none";
-    }
-
-    return Promise.resolve();
 }
 
 function showLandpage(x, y, ep, mini) {
