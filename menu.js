@@ -1,5 +1,9 @@
 var box = new Box();
-box.addMenu = function() {
+var maxEp = 3;
+start(false);
+//loadEp("3a");
+
+box.addMenu = function(maxEp) {
     const _this = this;
 
     var lines = [];
@@ -7,7 +11,7 @@ box.addMenu = function() {
 
     var pos = 1;
     var length = lines.length;
-    for (let n = 0; n <= _this.episodes; n++) {
+    for (let n = 0; n <= maxEp; n++) {
         for (let i = 0; i < length; i++) {
             if (i < pos) lines[i] += "  ";
             else if (i - pos == 0) lines[i] += "─┐";
@@ -48,12 +52,12 @@ box.addMenu = function() {
     div.appendChild(docFragment);
 
 };
-box.addTinyMenu = function() {
+box.addTinyMenu = function(maxEp) {
     const _this = this;
     var pos = 1;
 
     var docFragment = document.createDocumentFragment();
-    for (let n = 0; n <= _this.episodes; n++) {
+    for (let n = 0; n <= maxEp; n++) {
         let elem = document.createElement("p");
         let content, length;
 
@@ -78,18 +82,12 @@ box.addTinyMenu = function() {
 
 };
 
-
-
-var episode, epMax;
-var mini = window.innerWidth < 900 ? true : false;
-
-start(false);
-//loadEp("3a");
-
 async function start(again) {
+    var mini = window.innerWidth < 900 ? true : false;
+
     var boxOptions = {
-        maxX: 37,
-        maxY: 22,
+        maxX: mini ? 42 : 37,
+        maxY: mini ? 12 : 22,
         minY: 12,
         minX: 30,
         divName: "text",
@@ -104,16 +102,11 @@ async function start(again) {
             "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴╶─╯",
             "",
             "",
-            "{{tag::a|id=3a|class=ep}}lire le dernier épisode{{tag::/a}}"
+            "{{tag::a|id=" + maxEp + "a|class=ep}}lire le dernier épisode{{tag::/a}}"
         ],
         format: "align",
         charToAdd: " "
     };
-
-    if (mini) {
-        boxOptions.idealX = 42;
-        boxOptions.idealY = 14;
-    }
 
     box.init(boxOptions);
     const formatter = new FormatJSON(box.x, box.y, box.marginX, box.marginY);
@@ -123,64 +116,66 @@ async function start(again) {
     else await box.display();
     infos.displayText(box);
 
-    box.episodes = 3;
-    if (!mini) box.addMenu();
-    else box.addTinyMenu();
+    if (mini) box.addTinyMenu(maxEp);
+    else box.addMenu(maxEp);
 
-    showLandpage(box.x, box.y, box.episodes);
+    showLandpage(box.x, box.y, maxEp, mini);
     events();
 }
 
-var menu = document.getElementById("m");
 initMenu();
-menu.addEventListener("click", showMenu);
+
 
 function initMenu() {
     // init the little menu click listener
+    var menu = document.getElementById("m");
+    menu.addEventListener("click", showMenu);
+
     function action(e) {
         e.preventDefault();
         var ev = new Event("stop");
         window.dispatchEvent(ev);
-        box.reboot(function() {
-            if (e.target.id == "return") {
-                start(true);
-            }
-            else if (e.target.id == "reload") {
-                loadEp(episode);
-            }
-            else if (e.target.id == "next"){
-                var next;
+        box.cleanLines();
 
-                if (episode == "0") next = "1a";
-                else if (episode == epMax+"b") next = "0";
-                else {
-                    let n = parseInt(episode[0]);
-                    let vs = episode[1];
+        if (e.target.id == "return") {
+            start(true);
+        }
+        else if (e.target.id == "reload") {
+            loadEp(episode);
+        }
+        else if (e.target.id == "next"){
+            var next;
 
-                    if (vs == "a") next = n+"b";
-                    else next = (n+1)+"a";
-                }
-                loadEp(next);
-            }
-            else if (e.target.id == "previous"){
-                var previous;
+            if (episode == "0") next = "1a";
+            else if (episode == maxEp+"b") next = "0";
+            else {
+                let n = parseInt(episode[0]);
+                let vs = episode[1];
 
-                if (episode == "0") previous = epMax+"b";
-                else if (episode == "1a") previous = "0";
-                else {
-                    let n = parseInt(episode[0]);
-                    let vs = episode[1];
+                if (vs == "a") next = n+"b";
+                else next = (n+1)+"a";
+            }
+            loadEp(next);
+        }
+        else if (e.target.id == "previous"){
+            var previous;
 
-                    if (vs == "a") previous = (n-1)+"b";
-                    else previous = n+"a";
-                }
-                loadEp(previous);
+            if (episode == "0") previous = maxEp+"b";
+            else if (episode == "1a") previous = "0";
+            else {
+                let n = parseInt(episode[0]);
+                let vs = episode[1];
+
+                if (vs == "a") previous = (n-1)+"b";
+                else previous = n+"a";
             }
-            else if (e.target.id == "fullscreen") {
-                fullscreen();
-                loadEp(episode);
-            }
-        });
+            loadEp(previous);
+        }
+        else if (e.target.id == "fullscreen") {
+            fullscreen();
+            loadEp(episode);
+        }
+
         options.style.display = "none";
     }
 
@@ -205,7 +200,7 @@ async function showMenu() {
     return Promise.resolve();
 }
 
-function showLandpage(x, y, ep) {
+function showLandpage(x, y, ep, mini) {
     var content = [
         "      ╷╭─╮╷ ╷┌─╮╭╮╷╭─┐╷      ",
         "      ││ ││ │├┬╯│││├─┤│      ",
@@ -369,7 +364,7 @@ function hideLandpage(callback) {
         while (j.hasChildNodes()) {
             j.removeChild(j.lastChild);
         }
-        box.reboot();
+        //box.cleanLines();
         if (callback) {
             callback();
         }
@@ -381,7 +376,7 @@ function hideLandpage(callback) {
     if (journal) {
         deleteJournal();
     }
-    box.resetBox();
+    box.reset();
 }
 
 function loadEp(a) {
@@ -468,7 +463,7 @@ function startEp() {
     return new Promise ((resolve, reject) => {
         var link = document.getElementById("start");
         link.addEventListener("click", function() {
-            box.reboot();
+            box.cleanLines();
             resolve();
         });
     });
