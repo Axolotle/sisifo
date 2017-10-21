@@ -1,34 +1,12 @@
-function ep3a() {
-    readJSONFile("episodes/ep3a.json", function(json) {
-        var jsonObj = JSON.parse(json);
+async function ep3a() {
+    const sub = await getAnimationObjects("episodes/ep3a.json");
+    const infos = sub.shift();
 
-        box.init(jsonObj.shift());
+    await box.draw();
+    infos.displayText(box);
 
-        var boxDim = [box.x, box.y, box.marginX, box.marginY];
-        var formatter = new FormatJSON(...boxDim);
+    await startEp();
+    await sub[0].startSubtitles(box);
 
-        var infoEp = formatter.getNewJSON(jsonObj.shift());
-        infoEp = new Animation(infoEp, box);
-
-        jsonObj = formatter.getNewJSON(jsonObj[0]);
-        var txtAnim = new Animation(jsonObj, box);
-
-        Step(
-            function init() {
-                box.draw(this);
-            },
-            function menu() {
-                infoEp.appendText();
-                startEp(this);
-            },
-            function flow0() {
-                txtAnim.startSubtitles(this);
-            },
-            function menu() {
-                let tempo = setTimeout(function() {
-                    showMenu();
-                }, 3500);
-            }
-        );
-    });
+    setTimeout(showMenu, 3500);
 }
