@@ -37,43 +37,42 @@ box.addMenu = function() {
             _this.lines[i].innerHTML = txt;
         }
         else {
-            console.log(length, i);
             let elem = document.createElement("p");
             elem.innerHTML = txt;
-            this.lines.push(elem);
+            _this.lines.push(elem);
             docFragment.appendChild(elem);
         }
     });
 
-    var div = document.getElementById(this.div);
+    var div = document.getElementById(_this.div);
     div.appendChild(docFragment);
 
 };
 box.addTinyMenu = function() {
-    var self = this;
-    var div = document.getElementById(this.div);
-
+    const _this = this;
     var pos = 1;
 
-    for (var i = 0; i <= this.episodes; i++) {
-        var elem = document.createElement("p");
-
-        if (i == 0) {
-            var option = "<a class='ep' id='"+i+"'>0</a>";
-            elem.innerHTML = "└" + "─".repeat(Math.floor((this.x-3)/2)) + option + "─".repeat(Math.ceil((this.x-3)/2)) + "┘";
-
+    var docFragment = document.createDocumentFragment();
+    for (let n = 0; n <= _this.episodes; n++) {
+        let elem = document.createElement("p");
+        let content, length;
+        if (n === 0) {
+            length = 3;
+            content = "<a class='ep' id='" + n + "'>" + n + "</a>";
+        } else {
+            length = 9;
+            content = "<a class='ep' id='" + n + "a'>a</a>──" + n + "──<a class='ep' id='" + n + "b'>b</a>";
         }
-        else {
-            var option = "<a class='ep' id='"+i+"a'>a</a>──" + i + "──<a class='ep' id='"+i+"b'>b</a>";
-            elem.innerHTML = "└" + "─".repeat(Math.floor((this.x-9)/2)) + option + "─".repeat(Math.ceil((this.x-9)/2)) + "┘";
+        let before = "└" + "─".repeat(Math.floor((_this.x - length) / 2));
+        let after = "─".repeat(Math.ceil((_this.x - length) / 2)) + "┘";
 
-        }
-
-        div.appendChild(elem);
-
-        this.lines.push(elem);
-        pos++;
+        elem.innerHTML = before + content + after;
+        docFragment.appendChild(elem);
     }
+
+    var div = document.getElementById(_this.div);
+    div.appendChild(docFragment);
+
 };
 box.resetBox = function(callback) {
     var self = this;
@@ -133,8 +132,8 @@ async function start(again) {
     };
 
     if (mini) {
-        menu.idealX = 42;
-        menu.idealY = 14;
+        boxOptions.idealX = 42;
+        boxOptions.idealY = 14;
     }
 
     box.init(boxOptions);
