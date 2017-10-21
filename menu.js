@@ -56,6 +56,7 @@ box.addTinyMenu = function() {
     for (let n = 0; n <= _this.episodes; n++) {
         let elem = document.createElement("p");
         let content, length;
+
         if (n === 0) {
             length = 3;
             content = "<a class='ep' id='" + n + "'>" + n + "</a>";
@@ -63,39 +64,17 @@ box.addTinyMenu = function() {
             length = 9;
             content = "<a class='ep' id='" + n + "a'>a</a>──" + n + "──<a class='ep' id='" + n + "b'>b</a>";
         }
+
         let before = "└" + "─".repeat(Math.floor((_this.x - length) / 2));
         let after = "─".repeat(Math.ceil((_this.x - length) / 2)) + "┘";
 
         elem.innerHTML = before + content + after;
+        _this.lines.push(elem);
         docFragment.appendChild(elem);
     }
 
     var div = document.getElementById(_this.div);
     div.appendChild(docFragment);
-
-};
-box.resetBox = function(callback) {
-    var self = this;
-
-    async function removeRow() {
-        var div = document.getElementById(self.div);
-
-        while (self.lines.length > self.y) {
-            div.removeChild(div.lastChild);
-            self.lines.pop();
-
-            self.lines.forEach(function(line, i, array) {
-                if (line.innerHTML.length > self.x) {
-                    line.innerHTML = line.innerHTML.substr(0, line.innerHTML.length-2);
-                }
-
-            });
-            await sleep(10);
-        }
-    }
-
-    self.removeTags();
-    removeRow();
 
 };
 
