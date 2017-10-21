@@ -136,7 +136,7 @@ function initMenu() {
         }
         else options.style.display = "none";
     }
-    
+
     var menu = document.getElementById("m");
     menu.addEventListener("click", showOptions);
 
@@ -187,109 +187,90 @@ function initMenu() {
     }
 }
 
-function showLandpage(x, y, ep, mini) {
-    var content = [
-        "      ╷╭─╮╷ ╷┌─╮╭╮╷╭─┐╷      ",
-        "      ││ ││ │├┬╯│││├─┤│      ",
-        "    ╰─/╰─╯╰─╯╵ ╰╵╰╯╵ ╵╰─╴    ",
-        "┌─╮╷ ┌─╴╭─╴┌─╮╶┬╴╶┬╴╷ ╷┌─╮┌─╴",
-        "│ │  ├─╴│  ├┬╯ │  │ │ │├┬╯├─╴",
-        "└─╯  ╰─╴╰─╴╵ ╰╶┴╴ ╵ ╰─╯╵ ╰╰─╴",
-        "",
-        "accéder au journal",
-    ];
-
-    function generateCharLine(n, elem) {
-        var charLine = "";
-        for (var i = 0; i < n; i++) {
-            charLine += elem;
-        }
-        return charLine;
-    }
-
-    var sentences = [];
-    var yToAdd = y - content.length - 2;
-
-
+function showLandpage(x, y, maxEp, mini) {
+    var txt = [];
 
     if (mini) {
-        sentences.push("┌" + generateCharLine(x-2, "─") + "┐");
-        sentences.push("│" + generateCharLine(x-2, " ") + "│");
-        var xToAdd = x - "journal d'écriture".length;
-        var before = "│" + generateCharLine(Math.floor(xToAdd/2 - 1), " ");
-        var after = generateCharLine(Math.ceil(xToAdd/2 - 1), " ") + "│";
+        let content = "journal d'écriture";
+        let xToAdd = x - content.length;
 
-        let link = "<a href='https://sisifo.site/sisifo/journal/'>" + "journal d'écriture" + "</a>";
-        sentences.push(before + link + after);
-        sentences.push("│" + generateCharLine(x-2, " ") + "│");
-        sentences.push("└" + generateCharLine(x-2, "─") + "┘");
+        txt.push("┌" + "─".repeat(x - 2) + "┐");
+        txt.push("│" + " ".repeat(x - 2) + "│");
+        let before = "│" + " ".repeat(Math.floor(xToAdd / 2 - 1));
+        let after = " ".repeat(Math.ceil(xToAdd / 2 - 1)) + "│";
+        let link = "<a href='https://sisifo.site/sisifo/journal/'>" + content + "</a>";
+        txt.push(before + link + after);
+        txt.push("│" + generateCharLine(x - 2, " ") + "│");
+        txt.push("└" + generateCharLine(x - 2, "─") + "┘");
     }
     else {
-        sentences.push("┌" + generateCharLine(x-2, "─") + "┐  ");
+        let content = [
+            "      ╷╭─╮╷ ╷┌─╮╭╮╷╭─┐╷      ",
+            "      ││ ││ │├┬╯│││├─┤│      ",
+            "    ╰─/╰─╯╰─╯╵ ╰╵╰╯╵ ╵╰─╴    ",
+            "┌─╮╷ ┌─╴╭─╴┌─╮╶┬╴╶┬╴╷ ╷┌─╮┌─╴",
+            "│ │  ├─╴│  ├┬╯ │  │ │ │├┬╯├─╴",
+            "└─╯  ╰─╴╰─╴╵ ╰╶┴╴ ╵ ╰─╯╵ ╰╰─╴",
+            "",
+            "accéder au journal",
+        ];
+        let yToAdd = y - content.length - 2;
 
-        for (let i = 0; i < Math.floor(yToAdd/2); i++) {
-            sentences.push("│" + generateCharLine(x-2, " ") + "│  ");
+        txt.push("┌" + "─".repeat(x - 2) + "┐  ");
+
+        let top = Math.floor(yToAdd / 2)
+        for (let i = 0; i < top; i++) {
+            txt.push("│" + " ".repeat(x - 2) + "│  ");
         }
 
-        for (let i = 0; i < content.length; i++) {
-            var xToAdd = x - content[i].length;
+        content.forEach((line, index) => {
+            let xToAdd = x - line.length;
+            var before = "│" + " ".repeat(Math.floor(xToAdd/2 - 1));
+            var after = " ".repeat(Math.ceil(xToAdd/2 - 1)) + "│  ";
 
-            var before = "│" + generateCharLine(Math.floor(xToAdd/2 - 1), " ");
-            var after = generateCharLine(Math.ceil(xToAdd/2 - 1), " ") + "│  ";
-
-            if (i == content.length-1) {
-                let link = "<a href='https://sisifo.site/sisifo/journal/'>" + content[i] + "</a>";
-                sentences.push(before + link + after);
+            if (line == "accéder au journal") {
+                let link = "<a href='https://sisifo.site/sisifo/journal/'>" + line + "</a>";
+                txt.push(before + link + after);
             }
-            else {
-                sentences.push(before + content[i] + after);
-            }
+            else txt.push(before + line + after);
+        });
+
+        let bot = Math.ceil(yToAdd/2)
+        for (let i = 0; i < bot; i++) {
+            txt.push("│" + " ".repeat(x - 2) + "│  ");
         }
 
-        for (let i = 0; i < Math.ceil(yToAdd/2); i++) {
-            sentences.push("│" + generateCharLine(x-2, " ") + "│  ");
+        for (let i = 0; i <= maxEp + 1; i++) {
+            txt.push("└" + "─".repeat(x - 2) + "┘  ");
         }
-
-        for (let i = 0; i <= ep+1; i++) {
-            sentences.push("└" + generateCharLine(x-2, "─") + "┘  ");
-        }
-
-
     }
 
-    var div = document.getElementById("journal");
+    var journal = document.getElementById("journal");
 
-    sentences.forEach(function(sentence) {
+    txt.forEach(sentence => {
         let elem = document.createElement("p");
         elem.innerHTML = sentence;
-        div.appendChild(elem);
+        journal.appendChild(elem);
     });
 
 
     // center header and footer
-    var div2 = document.getElementById("text");
-    var width;
-    if (mini) {
-        width = div2.offsetWidth;
-    }
-    else {
-        width = div.offsetWidth + div2.offsetWidth;
-    }
+    var div = document.getElementById("text");
+    var width = mini ? div.offsetWidth : journal.offsetWidth + div.offsetWidth;
 
     var header = document.getElementById("header");
     var footer = document.getElementById("footer");
 
     header.style.width = width + "px";
     footer.style.width = width + "px";
+    header.style.display = "block";
+    footer.style.display = "block";
 
     document.getElementById("m").style.display = "none";
 
-    header.style.display = "block";
-    footer.style.display = "block";
-    for (var i = o = 0;
+    for (let i = o = 0;
         (i < header.children.length) || (o < footer.children.length);
         i++, o++) {
-
         if (header.children[i]) header.children[i].style.display = "block";
         if (footer.children[o]) footer.children[o].style.display = "block";
     }
