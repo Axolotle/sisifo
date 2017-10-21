@@ -1,38 +1,52 @@
 var box = new Box();
 box.addMenu = function() {
-    var pos = 1;
-    for (var i = 0; i <= this.episodes; i++) {
-        this.lines.forEach((line, index) => {
-            if (index < pos) line.innerHTML += "  ";
-            else if (index-pos == 0) line.innerHTML += "─┐";
+    const _this = this;
 
-            else if (i == 0) {
-                    if (index-pos == 1) {
-                        line.innerHTML += "<a class='ep' id='"+i+"'>"+i+"</a>│";
-                    }
-                    else line.innerHTML += " │";
+    var lines = [];
+    _this.lines.forEach(line => lines.push(line.innerHTML));
+
+    var pos = 1;
+    var length = lines.length;
+    for (let n = 0; n <= _this.episodes; n++) {
+        for (let i = 0; i < length; i++) {
+            if (i < pos) lines[i] += "  ";
+            else if (i - pos == 0) lines[i] += "─┐";
+            else if (n === 0) {
+                if (i - pos === 1) {
+                    lines[i] += "<a class='ep' id='" + n + "'>" + n + "</a>│";
+                } else lines[i] += " │";
             }
             else {
-                    if (index-pos == 1) line.innerHTML += i+"│";
-                    else if (index-pos == 4) {
-                        line.innerHTML += "<a class='ep' id='"+i+"a'>a</a>│";
-                    }
-                    else if (index-pos == 6) {
-                        line.innerHTML += "<a class='ep' id='"+i+"b'>b</a>│";
-                    }
-                    else line.innerHTML += " │";
+                if (i - pos === 1) lines[i] += n + "│";
+                else if (i - pos == 4) {
+                    lines[i] += "<a class='ep' id='" + n + "a'>a</a>│";
+                } else if (i - pos == 6) {
+                    lines[i] += "<a class='ep' id='" + n + "b'>b</a>│";
+                } else lines[i] += " │";
             }
+        }
 
-        });
-        var elem = document.createElement("p");
-        elem.innerHTML = " ".repeat(pos*2) + "└" + "─".repeat(this.x-2) + "┘";
-
-        var div = document.getElementById(this.div);
-        div.appendChild(elem);
-
-        this.lines.push(elem);
+        lines.push(" ".repeat(pos*2) + "└" + "─".repeat(_this.x-2) + "┘");
         pos++;
+        length++;
     }
+
+    var docFragment = document.createDocumentFragment();
+    lines.forEach((txt, i) => {
+        if (i < _this.y) {
+            _this.lines[i].innerHTML = txt;
+        }
+        else {
+            console.log(length, i);
+            let elem = document.createElement("p");
+            elem.innerHTML = txt;
+            this.lines.push(elem);
+            docFragment.appendChild(elem);
+        }
+    });
+
+    var div = document.getElementById(this.div);
+    div.appendChild(docFragment);
 
 };
 box.addTinyMenu = function() {
@@ -129,7 +143,6 @@ async function start(again) {
 
     if (again && !box.error) await box.draw();
     else await box.display();
-    
     infos.displayText(box);
 
     box.episodes = 3;
