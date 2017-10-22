@@ -1,8 +1,8 @@
 var box = new Box();
 var maxEp = 3;
 var episode;
-start(false);
-initMenu();
+buildMenu(false);
+initBurger();
 
 //loadEp("3a");
 
@@ -84,8 +84,35 @@ box.addTinyMenu = function(maxEp) {
     div.appendChild(docFragment);
 
 };
+box.removeMenu = function() {
+    return new Promise ((resolve, reject) => {
+        const _this = this;
+        const div = document.getElementById(_this.div);
 
-async function start(again) {
+        async function removeRow() {
+            if (_this.lines.length > _this.y) {
+                div.removeChild(div.lastChild);
+                _this.lines.pop();
+
+                _this.lines.forEach(line => {
+                    if (line.innerHTML.length > _this.x) {
+                        let content = line.innerHTML;
+                        line.innerHTML = content.substr(0, content.length - 2);
+                    }
+                });
+                await sleep(100);
+                removeRow();
+            } else {
+                resolve();
+            }
+        }
+
+        _this.removeTags();
+        removeRow();
+    });
+};
+
+async function buildMenu(again) {
     var mini = window.innerWidth < 900 ? true : false;
 
     var boxOptions = {
@@ -126,10 +153,10 @@ async function start(again) {
     events();
 }
 
-function initMenu() {
+function initBurger() {
     // init the little menu click listener
     function showOptions() {
-        var options = document.getElementById("m-options");
+        var options = document.getElementById("burger-options");
 
         if (options.style.display == "" || options.style.display == "none") {
             options.style.display = "block";
@@ -137,20 +164,20 @@ function initMenu() {
         else options.style.display = "none";
     }
 
-    var menu = document.getElementById("m");
+    var menu = document.getElementById("burger");
     menu.addEventListener("click", showOptions);
 
     function action(e) {
         e.preventDefault();
         const id = e.target.id;
-        document.getElementById("m-options").style.display = "none";
+        document.getElementById("burger-options").style.display = "none";
 
         if (id != "fullscreen") {
             window.dispatchEvent(new Event("stop"));
             box.cleanLines();
         } else return fullscreen();
 
-        if (id == "return") start(true);
+        if (id == "return") buildMenu(true);
         else if (id == "reload") loadEp(episode);
         else if (id == "next"){
             let next;
@@ -180,10 +207,10 @@ function initMenu() {
         }
     }
 
-    var item = document.getElementsByClassName("menu-item");
-    var itemLength = item.length;
-    for (let i = 0; i < itemLength; i++) {
-        item[i].addEventListener("click", action);
+    var items = document.getElementsByClassName("burger-item");
+    var itemsLength = items.length;
+    for (let i = 0; i < itemsLength; i++) {
+        items[i].addEventListener("click", action);
     }
 }
 
@@ -253,7 +280,6 @@ function showLandpage(x, y, maxEp, mini) {
         journal.appendChild(elem);
     });
 
-
     // center header and footer
     var div = document.getElementById("text");
     var width = mini ? div.offsetWidth : journal.offsetWidth + div.offsetWidth;
@@ -266,85 +292,83 @@ function showLandpage(x, y, maxEp, mini) {
     header.style.display = "block";
     footer.style.display = "block";
 
-    document.getElementById("m").style.display = "none";
+    document.getElementById("burger").style.display = "none";
 
-    for (let i = o = 0;
-        (i < header.children.length) || (o < footer.children.length);
-        i++, o++) {
-        if (header.children[i]) header.children[i].style.display = "block";
-        if (footer.children[o]) footer.children[o].style.display = "block";
+    var hChild = header.children;
+    var fChild = footer.children;
+    var hLength = hChild.length;
+    var fLength = fChild.length;
+    for (let i = o = 0; (i < hLength) || (o < fLength); i++, o++) {
+        if (hChild[i]) hChild[i].style.display = "block";
+        if (fChild[o]) fChild[o].style.display = "block";
     }
 }
 
-function hideLandpage(callback) {
-    var header = document.getElementById("header").children;
-    var footer = document.getElementById("footer").children;
-    var journal = document.getElementById("journal").children;
+function hideHeaderAndFooter() {
+    return new Promise (async (resolve, reject) => {
+        const header = document.getElementById("header");
+        const footer = document.getElementById("footer");
+        const hChild = header.children;
+        const fChild = footer.children;
+        const hLen = hChild.length;
+        const fLen = fChild.length;
 
-    document.getElementById("m").style.display = "block";
-
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    async function hide() {
-        for (var i = header.length-1, o = 0;
-            (i >= 0) || (o < footer.length);
-            i--, o++) {
-
-            if (header[i]) header[i].style.display = "none";
-            if (footer[o]) footer[o].style.display = "none";
-
-            await sleep(25);
+        for (let i = hLen - 1, o = 0; (i >= 0) || (o < fLen); i--, o++) {
+            if (hChild[i]) hChild[i].style.display = "none";
+            if (fChild[o]) fChild[o].style.display = "none";
+            await sleep(100);
         }
-        document.getElementById("header").style.display = "none";
-        document.getElementById("footer").style.display = "none";
-    }
 
-    async function deleteJournal() {
+        header.style.display = "none";
+        footer.style.display = "none";
+        resolve();
+    });
+}
 
-        // first, get rid of possible inline tags
-        for (let i = 0; i < journal.length; i++) {
-            if (journal[i].children.length > 0) {
-                for (var a = 0; a < journal[i].children.length; i++) {
-                    var index = journal[i].innerHTML.indexOf("<");
-                    var txt = journal[i].children[a].innerHTML;
+function deleteJournal() {
+    return new Promise (async (resolve, reject) => {
+        const journal = document.getElementById("journal");
+        const jChild = journal.children;
+        var jLen = jChild.length;
 
-                    journal[i].removeChild(journal[i].children[a]);
-                    journal[i].innerHTML = journal[i].innerHTML.substr(0, index) + txt + journal[i].innerHTML.substr(index);
+        // Get rid of possible inline tags
+
+        for (let i = 0; i < jLen; i++) {
+            let length = jChild[i].children.length;
+            if (length > 0) {
+                let content = jChild[i].innerHTML;
+                for (let c = 0; c < length; c++) {
+                    let open = content.indexOf("<");
+                    let close = content.indexOf(">", content.indexOf(">")+1);
+                    let txt = jChild[i].children[c].innerHTML;
+                    content = content.substring(0, open) + txt + content.substr(close+1);
                 }
+                jChild[i].innerHTML = content;
             }
         }
-        // then delete the box
-        var j = document.getElementById("journal");
-        for (let i = journal.length; i > box.y ; i--) {
-            j.removeChild(j.lastChild);
-            await sleep(10);
-        }
-        var lineLength = journal[0].innerHTML.length;
-        for (let char = 0; char < lineLength; char++) {
-            var newLength = journal[0].innerHTML.length-1;
-            for (var line = 0; line < journal.length; line++) {
-                journal[line].innerHTML = journal[line].innerHTML.substr(0, newLength);
-            }
-            await sleep(10);
-        }
-        while (j.hasChildNodes()) {
-            j.removeChild(j.lastChild);
-        }
-        //box.cleanLines();
-        if (callback) {
-            callback();
-        }
-    }
 
-    if (header || footer) {
-        hide();
-    }
-    if (journal) {
-        deleteJournal();
-    }
-    box.reset();
+        // Delete the extra rows
+        for (let i = jLen; i > box.y ; i--) {
+            journal.removeChild(journal.lastChild);
+            await sleep(100);
+        }
+        // Delete character by character
+        var lineLength = jChild[0].innerHTML.length;
+        jLen = jChild.length;
+        for (let chara = 0; chara < lineLength; chara++) {
+            let len = jChild[0].innerHTML.length-1;
+            for (let l = 0; l < jLen; l++) {
+                console.log(l);
+                jChild[l].innerHTML = jChild[l].innerHTML.substr(0, len);
+            }
+            await sleep(20);
+        }
+        // Delete every nodes
+        while (journal.hasChildNodes()) {
+            journal.removeChild(journal.lastChild);
+        }
+        resolve();
+    });
 }
 
 function loadEp(a) {
@@ -387,11 +411,16 @@ function loadEp(a) {
         else if (ep == "3b") ep3b();
     }
 
-    function launch() {
+    async function launch() {
         if (landpage) {
-            hideLandpage(function() {
-                startMainFunction();
-            });
+            await Promise.all([
+                hideHeaderAndFooter(),
+                deleteJournal(),
+                box.removeMenu()
+            ]);
+
+            document.getElementById("burger").style.display = "block";
+            startMainFunction();
         }
         else startMainFunction();
     }
