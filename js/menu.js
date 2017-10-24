@@ -1,3 +1,4 @@
+testNavigator();
 var box = new Box();
 var maxEp = 3;
 var episode;
@@ -323,7 +324,7 @@ function hideLandpage() {
 async function loadEpisode(a) {
     async function startEpisode(ep) {
         var json = await initEpisode(ep);
-        
+
         if (ep == "0") ep0(animObjs);
         else if (ep == "1a") ep1a(json);
         else if (ep == "1b") ep1b(json);
@@ -422,6 +423,12 @@ function fullscreen() {
     if (document.body.webkitRequestFullScreen) {
         html.webkitRequestFullScreen();
     } else html.mozRequestFullScreen();
+}
+
+function testNavigator() {
+    // no let ?
+    let error = document.getElementById("error");
+    error.style.display = "none";
 }
 
 function sleep(ms) {

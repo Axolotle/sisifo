@@ -80,6 +80,10 @@ s {
     color: yellow;
 }
 
+#error {
+    text-align: center;
+}
+
 ::-moz-selection {
   color: yellow;
   background: black;
