@@ -5,7 +5,7 @@ async function ep2a() {
     await box.draw();
     infos.displayText(box);
 
-    await startEp();
+    await startListener();
 
     // create customs events to trigger add() and remove() function from Animation.addWord() method
     var adder = new Event('add');

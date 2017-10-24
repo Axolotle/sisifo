@@ -1,7 +1,7 @@
 var box = new Box();
 var maxEp = 3;
 var episode;
-buildMenu(false);
+buildEpisodeBox(false);
 initBurger();
 
 //loadEp("3a");
@@ -100,7 +100,7 @@ box.removeMenu = function() {
                         line.innerHTML = content.substr(0, content.length - 2);
                     }
                 });
-                await sleep(100);
+                await sleep(30);
                 removeRow();
             } else {
                 resolve();
@@ -112,7 +112,7 @@ box.removeMenu = function() {
     });
 };
 
-async function buildMenu(again) {
+async function buildEpisodeBox(again) {
     var mini = window.innerWidth < 900 ? true : false;
 
     var boxOptions = {
@@ -150,68 +150,7 @@ async function buildMenu(again) {
     else box.addMenu(maxEp);
 
     showLandpage(box.x, box.y, maxEp, mini);
-    events();
-}
-
-function initBurger() {
-    // init the little menu click listener
-    function showOptions() {
-        var options = document.getElementById("burger-options");
-
-        if (options.style.display == "" || options.style.display == "none") {
-            options.style.display = "block";
-        }
-        else options.style.display = "none";
-    }
-
-    var menu = document.getElementById("burger");
-    menu.addEventListener("click", showOptions);
-
-    function action(e) {
-        e.preventDefault();
-        const id = e.target.id;
-        document.getElementById("burger-options").style.display = "none";
-
-        if (id != "fullscreen") {
-            window.dispatchEvent(new Event("stop"));
-            box.cleanLines();
-        } else return fullscreen();
-
-        if (id == "return") buildMenu(true);
-        else if (id == "reload") loadEp(episode);
-        else if (id == "next"){
-            let next;
-
-            if (episode == "0") next = "1a";
-            else if (episode == maxEp + "b") next = "0";
-            else {
-                let n = parseInt(episode[0]);
-                let vs = episode[1];
-                if (vs == "a") next = n + "b";
-                else next = (n + 1) + "a";
-            }
-            loadEp(next);
-        }
-        else if (id == "previous"){
-            let previous;
-
-            if (episode == "0") previous = maxEp + "b";
-            else if (episode == "1a") previous = "0";
-            else {
-                let n = parseInt(episode[0]);
-                let vs = episode[1];
-                if (vs == "a") previous = (n - 1) + "b";
-                else previous = n + "a";
-            }
-            loadEp(previous);
-        }
-    }
-
-    var items = document.getElementsByClassName("burger-item");
-    var itemsLength = items.length;
-    for (let i = 0; i < itemsLength; i++) {
-        items[i].addEventListener("click", action);
-    }
+    episodeSelectionListener();
 }
 
 function showLandpage(x, y, maxEp, mini) {
@@ -227,8 +166,8 @@ function showLandpage(x, y, maxEp, mini) {
         let after = " ".repeat(Math.ceil(xToAdd / 2 - 1)) + "│";
         let link = "<a href='https://sisifo.site/sisifo/journal/'>" + content + "</a>";
         txt.push(before + link + after);
-        txt.push("│" + generateCharLine(x - 2, " ") + "│");
-        txt.push("└" + generateCharLine(x - 2, "─") + "┘");
+        txt.push("│" + " ".repeat(x - 2) + "│");
+        txt.push("└" + "─".repeat(x - 2) + "┘");
     }
     else {
         let content = [
@@ -304,104 +243,113 @@ function showLandpage(x, y, maxEp, mini) {
     }
 }
 
-function hideHeaderAndFooter() {
+function hideLandpage() {
     return new Promise (async (resolve, reject) => {
-        const header = document.getElementById("header");
-        const footer = document.getElementById("footer");
-        const hChild = header.children;
-        const fChild = footer.children;
-        const hLen = hChild.length;
-        const fLen = fChild.length;
+        function hideHeaderAndFooter() {
+            return new Promise (async (resolve, reject) => {
+                const header = document.getElementById("header");
+                const footer = document.getElementById("footer");
+                const hChild = header.children;
+                const fChild = footer.children;
+                const hLen = hChild.length;
+                const fLen = fChild.length;
 
-        for (let i = hLen - 1, o = 0; (i >= 0) || (o < fLen); i--, o++) {
-            if (hChild[i]) hChild[i].style.display = "none";
-            if (fChild[o]) fChild[o].style.display = "none";
-            await sleep(100);
-        }
-
-        header.style.display = "none";
-        footer.style.display = "none";
-        resolve();
-    });
-}
-
-function deleteJournal() {
-    return new Promise (async (resolve, reject) => {
-        const journal = document.getElementById("journal");
-        const jChild = journal.children;
-        var jLen = jChild.length;
-
-        // Get rid of possible inline tags
-
-        for (let i = 0; i < jLen; i++) {
-            let length = jChild[i].children.length;
-            if (length > 0) {
-                let content = jChild[i].innerHTML;
-                for (let c = 0; c < length; c++) {
-                    let open = content.indexOf("<");
-                    let close = content.indexOf(">", content.indexOf(">")+1);
-                    let txt = jChild[i].children[c].innerHTML;
-                    content = content.substring(0, open) + txt + content.substr(close+1);
+                for (let i = hLen-1, o = 0; (i >= 0) || (o < fLen); i--, o++) {
+                    if (hChild[i]) hChild[i].style.display = "none";
+                    if (fChild[o]) fChild[o].style.display = "none";
+                    await sleep(40);
                 }
-                jChild[i].innerHTML = content;
-            }
+
+                header.style.display = "none";
+                footer.style.display = "none";
+                resolve();
+            });
         }
 
-        // Delete the extra rows
-        for (let i = jLen; i > box.y ; i--) {
-            journal.removeChild(journal.lastChild);
-            await sleep(100);
+        function deleteJournal() {
+            return new Promise (async (resolve, reject) => {
+                const journal = document.getElementById("journal");
+                const jChild = journal.children;
+                var jLen = jChild.length;
+
+                // Get rid of possible inline tags
+
+                for (let i = 0; i < jLen; i++) {
+                    let length = jChild[i].children.length;
+                    if (length > 0) {
+                        let content = jChild[i].innerHTML;
+                        for (let c = 0; c < length; c++) {
+                            let open = content.indexOf("<");
+                            let close = content.indexOf(">", content.indexOf(">")+1);
+                            let txt = jChild[i].children[c].innerHTML;
+                            content = content.substring(0, open) + txt + content.substr(close+1);
+                        }
+                        jChild[i].innerHTML = content;
+                    }
+                }
+
+                // Delete the extra rows
+                for (let i = jLen; i > box.y ; i--) {
+                    journal.removeChild(journal.lastChild);
+                    await sleep(30);
+                }
+                // Delete character by character
+                var lineLength = jChild[0].innerHTML.length;
+                jLen = jChild.length;
+                for (let chara = 0; chara < lineLength; chara++) {
+                    let len = jChild[0].innerHTML.length-1;
+                    for (let l = 0; l < jLen; l++) {
+                        let content = jChild[l].innerHTML;
+                        jChild[l].innerHTML = content.substr(0, len);
+                    }
+                    await sleep(15);
+                }
+                // Delete every nodes
+                while (journal.hasChildNodes()) {
+                    journal.removeChild(journal.lastChild);
+                }
+                resolve();
+            });
         }
-        // Delete character by character
-        var lineLength = jChild[0].innerHTML.length;
-        jLen = jChild.length;
-        for (let chara = 0; chara < lineLength; chara++) {
-            let len = jChild[0].innerHTML.length-1;
-            for (let l = 0; l < jLen; l++) {
-                console.log(l);
-                jChild[l].innerHTML = jChild[l].innerHTML.substr(0, len);
-            }
-            await sleep(20);
-        }
-        // Delete every nodes
-        while (journal.hasChildNodes()) {
-            journal.removeChild(journal.lastChild);
-        }
+
+        await Promise.all([
+            hideHeaderAndFooter(),
+            deleteJournal(),
+            box.removeMenu()
+        ]);
+        document.getElementById("burger").style.display = "block";
         resolve();
     });
 }
 
-function loadEp(a) {
-
-    function isScriptAlreadyLoaded() {
+async function loadEpisode(a) {
+    function isScriptLoaded(ep) {
         var head = document.getElementsByTagName('head')[0];
-        var previous = head.getElementsByTagName("script");
+        var scripts = head.getElementsByTagName("script");
 
-        for (var i = 0; i < previous.length; i++) {
-            let ref = previous[i].src;
+        var length = scripts.length;
+        for (let i = 0; i < length; i++) {
+            let ref = scripts[i].src;
             let start = ref.lastIndexOf("ep");
             let end = ref.lastIndexOf(".");
-
-            if (ep == ref.substring(start+2, end)) {
-                return true;
-            }
+            if (ep == ref.substring(start + 2, end)) return true;
         }
         return false;
     }
 
-    var landpage = false;
-
-    var ep;
-    if (a.target != undefined) {
-        ep = a.target.id;
-        landpage = true;
+    function loadScript(ep) {
+        return new Promise(function (resolve, reject) {
+            var script = document.createElement('script');
+            script.src = "episodes/ep" + ep + ".js";
+            script.onload = () => {
+                resolve();
+            }
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
     }
-    else {
-        ep = a;
-    }
-    episode = ep;
 
-    function startMainFunction() {
+    function startEpisode(ep) {
         if (ep == "0") ep0();
         else if (ep == "1a") ep1a();
         else if (ep == "1b") ep1b();
@@ -411,55 +359,87 @@ function loadEp(a) {
         else if (ep == "3b") ep3b();
     }
 
-    async function launch() {
-        if (landpage) {
-            await Promise.all([
-                hideHeaderAndFooter(),
-                deleteJournal(),
-                box.removeMenu()
-            ]);
+    var landpage;
+    if (a.target != undefined) {
+        episode = a.target.id;
+        landpage = true;
+    }
+    else episode = a;
 
-            document.getElementById("burger").style.display = "block";
-            startMainFunction();
-        }
-        else startMainFunction();
+    if (!isScriptLoaded(episode)) await loadScript(episode);
+    if (landpage) await hideLandpage();
+
+    startEpisode(episode);
+}
+
+function initBurger() {
+    // init the little menu click listener
+    function showOptions() {
+        var options = document.getElementById("burger-options");
+        if (options.style.display == "" || options.style.display == "none") {
+            options.style.display = "block";
+        } else options.style.display = "none";
     }
 
-    if (!isScriptAlreadyLoaded())
-        loadScript("episodes/ep" + ep + ".js", launch);
-    else
-        launch();
+    var menu = document.getElementById("burger");
+    menu.addEventListener("click", showOptions);
+
+    function action(e) {
+        e.preventDefault();
+        const id = e.target.id;
+        document.getElementById("burger-options").style.display = "none";
+
+        if (id != "fullscreen") {
+            window.dispatchEvent(new Event("stop"));
+            box.cleanLines();
+        } else return fullscreen();
+
+        if (id == "return") buildEpisodeBox(true);
+        else if (id == "reload") loadEpisode(episode);
+        else if (id == "next"){
+            let next;
+            if (episode == "0") next = "1a";
+            else if (episode == maxEp + "b") next = "0";
+            else {
+                let n = parseInt(episode[0]);
+                let vs = episode[1];
+                if (vs == "a") next = n + "b";
+                else next = (n + 1) + "a";
+            }
+            loadEpisode(next);
+        }
+        else if (id == "previous"){
+            let previous;
+            if (episode == "0") previous = maxEp + "b";
+            else if (episode == "1a") previous = "0";
+            else {
+                let n = parseInt(episode[0]);
+                let vs = episode[1];
+                if (vs == "a") previous = (n - 1) + "b";
+                else previous = n + "a";
+            }
+            loadEpisode(previous);
+        }
+    }
+
+    var items = document.getElementsByClassName("burger-item");
+    var itemsLength = items.length;
+    for (let i = 0; i < itemsLength; i++) {
+        items[i].addEventListener("click", action);
+    }
 }
 
-function loadScript(src, callback) {
-    return new Promise(function (resolve, reject) {
-        var s;
-        s = document.createElement('script');
-        s.src = src;
-        s.onload = function() {
-            resolve;
-            if (callback) callback();
-        };
-        s.onerror = reject;
-        document.head.appendChild(s);
-    });
-}
-
-function events() {
+function episodeSelectionListener() {
     var links = document.getElementsByClassName("ep");
     for (var i = 0; i < links.length; i++) {
-        links[i].addEventListener("click", loadEp);
+        links[i].addEventListener("click", loadEpisode);
     }
 }
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function startEp() {
+function startListener() {
     return new Promise ((resolve, reject) => {
         var link = document.getElementById("start");
-        link.addEventListener("click", function() {
+        link.addEventListener("click", () => {
             box.cleanLines();
             resolve();
         });
@@ -468,8 +448,11 @@ function startEp() {
 
 function fullscreen() {
     var html = document.getElementsByTagName("html")[0];
-    if(document.body.webkitRequestFullScreen)
+    if (document.body.webkitRequestFullScreen) {
         html.webkitRequestFullScreen();
-    else
-        html.mozRequestFullScreen();
+    } else html.mozRequestFullScreen();
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

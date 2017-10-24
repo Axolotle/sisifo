@@ -5,7 +5,7 @@ async function ep3a() {
     await box.draw();
     infos.displayText(box);
 
-    await startEp();
+    await startListener();
     await sub[0].startSubtitles(box);
 
     setTimeout(showMenu, 3500);

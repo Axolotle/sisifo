@@ -16,24 +16,24 @@ html {
     justify-content: center;
 }
 
-#m {
+#burger {
     position: absolute;
     top: 2.5em;
     right: 2.5em;
     cursor: pointer;
     display: none;
 }
-#m p {
+#burger p {
     line-height: 0.5em;
 }
-#m-options {
+#burger-options {
     position: absolute;
     top: 4.5em;
     right: 2.4em;
     display: none;
     background-color: yellow;
 }
-#m-options p a {
+#burger-options p a {
     text-decoration: none;
 }
 
@@ -160,12 +160,9 @@ s {
 /* FONTS */
 /*///////*/
 
-/*!
- *  Hack v2.020 - https://sourcefoundry.org/hack/
- *  Licenses - Fonts: Hack Open Font License + Bitstream Vera license, CSS: MIT License
- */
-/* FONT PATHS
- * -------------------------- */
+/* Hack v2.020 - https://sourcefoundry.org/hack/
+ *  Licenses - Fonts: Hack Open Font License + Bitstream Vera license,
+ *  CSS: MIT License */
 @font-face {
   font-family: 'Hack';
   src: url('fonts/hack-regular-webfont.woff2?v=2.020') format('woff2'), url('fonts/hack-regular-webfont.woff?v=2.020') format('woff'), url('fonts/hack-regular-webfont.ttf?v=2.020') format('truetype');

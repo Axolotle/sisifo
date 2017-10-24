@@ -5,7 +5,7 @@ async function ep1b() {
     await box.draw();
     infos.displayText(box);
 
-    await startEp();
+    await startListener();
     await waves[0].writeText(box);
     await Promise.all([
         waves[0].clean(box, 0),
