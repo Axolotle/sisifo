@@ -4,8 +4,6 @@ var episode;
 buildEpisodeBox(false);
 initBurger();
 
-//loadEp("3a");
-
 box.addMenu = function(maxEp) {
     const _this = this;
 
@@ -323,40 +321,14 @@ function hideLandpage() {
 }
 
 async function loadEpisode(a) {
-    function isScriptLoaded(ep) {
-        var head = document.getElementsByTagName('head')[0];
-        var scripts = head.getElementsByTagName("script");
-
-        var length = scripts.length;
-        for (let i = 0; i < length; i++) {
-            let ref = scripts[i].src;
-            let start = ref.lastIndexOf("ep");
-            let end = ref.lastIndexOf(".");
-            if (ep == ref.substring(start + 2, end)) return true;
-        }
-        return false;
-    }
-
-    function loadScript(ep) {
-        return new Promise(function (resolve, reject) {
-            var script = document.createElement('script');
-            script.src = "episodes/ep" + ep + ".js";
-            script.onload = () => {
-                resolve();
-            }
-            script.onerror = reject;
-            document.head.appendChild(script);
-        });
-    }
-
-    function startEpisode(ep) {
-        if (ep == "0") ep0();
-        else if (ep == "1a") ep1a();
-        else if (ep == "1b") ep1b();
-        else if (ep == "2a") ep2a();
-        else if (ep == "2b") ep2b();
-        else if (ep == "3a") ep3a();
-        else if (ep == "3b") ep3b();
+    async function startEpisode(ep) {
+        var json = await initEpisode(ep);
+        
+        if (ep == "0") ep0(animObjs);
+        else if (ep == "1a") ep1a(json);
+        else if (ep == "1b") ep1b(json);
+        else if (ep == "2a" || ep == "2b") ep2(json);
+        else if (ep == "3a" || ep == "3b") ep3(json);
     }
 
     var landpage;
@@ -366,7 +338,6 @@ async function loadEpisode(a) {
     }
     else episode = a;
 
-    if (!isScriptLoaded(episode)) await loadScript(episode);
     if (landpage) await hideLandpage();
 
     startEpisode(episode);
