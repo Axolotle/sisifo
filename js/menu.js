@@ -366,6 +366,18 @@ function initBurger() {
             box.cleanLines();
         } else return fullscreen();
 
+        if (box.error) {
+            const div = document.getElementById(box.div);
+
+            const length = div.children.length;
+            for (let n = 0; n < length; n++) {
+                div.removeChild(div.lastChild);
+            }
+
+            box.lines = [];
+            box.error = false;
+        }
+
         if (id == "return") buildEpisodeBox(true);
         else if (id == "reload") loadEpisode(episode);
         else if (id == "next"){

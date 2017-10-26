@@ -1,20 +1,25 @@
 function initEpisode(file) {
     return new Promise(async (resolve, reject) => {
-        var json = await readJSONFile("js/jsons/ep" + file + ".json");
-        box.init(json.shift());
-        var formatter = new FormatJSON(box.x, box.y, box.marginX, box.marginY);
-        json = formatter.getNewJSON(json);
+        try {
+            var json = await readJSONFile("js/jsons/ep" + file + ".json");
+            await box.init(json.shift());
 
-        var objs = [];
-        json.forEach(obj => objs.push(new Animation(obj)));
+            var formatter = new FormatJSON(box.x, box.y, box.marginX, box.marginY);
+            json = formatter.getNewJSON(json);
 
-        var infos = objs.shift();
+            var objs = [];
+            json.forEach(obj => objs.push(new Animation(obj)));
 
-        await box.draw();
-        infos.displayText(box);
+            var infos = objs.shift();
 
-        await startListener();
-        resolve(objs.length > 1 ? objs : objs[0]);
+            await box.draw();
+            infos.displayText(box);
+
+            await startListener();
+            resolve(objs.length > 1 ? objs : objs[0]);
+        } catch (e) {
+            return box.drawError(e);
+        }
     });
 }
 
