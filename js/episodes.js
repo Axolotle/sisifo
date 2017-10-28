@@ -18,6 +18,7 @@ function initEpisode(file) {
             await startListener();
             resolve(objs.length > 1 ? objs : objs[0]);
         } catch (e) {
+            setTimeout(() => showOptions("triche"), 1500);
             return box.drawError(e);
         }
     });
@@ -37,7 +38,7 @@ async function loadEpisode(a) {
     async function startEpisode(ep) {
         var json = await initEpisode(ep);
 
-        if (ep == "0") ep0(animObjs);
+        if (ep == "0") ep0(json);
         else if (ep == "1a") ep1a(json);
         else if (ep == "1b") ep1b(json);
         else if (ep == "2a" || ep == "2b") ep2(json);
@@ -57,7 +58,7 @@ async function ep0(waves) {
     await waves[1].writeText(box);
     await waves[2].writeText(box);
 
-    setTimeout(showMenu, 3500);
+    setTimeout(showOptions, 3500);
 }
 
 async function ep1a(waves) {
@@ -72,7 +73,7 @@ async function ep1a(waves) {
     await waves[4].writeText(box);
     await waves[4].clean(box, "reverse");
 
-    setTimeout(showMenu, 3500);
+    setTimeout(showOptions, 3500);
 }
 
 async function ep1b(waves) {
@@ -94,7 +95,7 @@ async function ep1b(waves) {
         waves[3].clean(box, 4)
     ]);
 
-    setTimeout(showMenu, 3500);
+    setTimeout(showOptions, 3500);
 }
 
 async function ep2(waves) {
@@ -119,7 +120,7 @@ async function ep2(waves) {
         else window.detachEvent("onmousewheel", MouseWheelHandler);
     });
 
-    setTimeout(showMenu, 3500);
+    setTimeout(showOptions, 3500);
 
     function MouseWheelHandler(e) {
         // cross-browser wheel delta
@@ -134,5 +135,5 @@ async function ep2(waves) {
 async function ep3(subtitle) {
     await subtitle.startSubtitles(box);
 
-    setTimeout(showMenu, 3500);
+    setTimeout(showOptions, 3500);
 }

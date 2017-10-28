@@ -17,7 +17,7 @@
             "~ 2 min 30 sec",
             "",
             "molette avant : afficher",
-            "molette arrière : effacer",
+            "molette arrière : {{tag::s}}effacer{{tag::/s}}",
             "",
             "",
             "{{tag::a|id=start|class=ep}}Lancer l'épisode{{tag::/a}}"

@@ -1,6 +1,6 @@
 testNavigator();
 var box = new Box();
-var maxEp = 3;
+var maxEp = 8;
 var episode;
 var mini;
 var landpage = true;
@@ -270,11 +270,17 @@ function displayLandpage(animate) {
                     journal.appendChild(docFragment);
                     let jLen = journal.children.length;
                     let len = content[0].length;
-                    for (let i = 0; i <= len; i++) {
-                        for (let a = 0; a < jLen; a++) {
-                            journal.children[a].innerHTML = content[a].substring(0, i);
+                    if (mini) {
+                        for (let i = 0; i < jLen; i++) {
+                            journal.children[i].innerHTML = content[i];
                         }
-                        await sleep(10);
+                    } else {
+                        for (let i = 0; i <= len; i++) {
+                            for (let a = 0; a < jLen; a++) {
+                                journal.children[a].innerHTML = content[a].substring(0, i);
+                            }
+                            await sleep(10);
+                        }
                     }
                 }
                 else {
@@ -477,20 +483,6 @@ function hideLandpage() {
 
 function initBurger() {
     // init the burger and fullscreen click listener
-    function showOptions(e) {
-        if (e.target.parentNode.id === "fullscreen-icon") fullscreen();
-        else {
-            let display = options.style.display;
-            if (display == "" || display == "none") {
-                options.style.display = "block";
-                icons[0].children[2].style.display = "none";
-            }
-            else {
-                options.style.display = "none";
-                icons[0].children[2].style.display = "block";
-            }
-        }
-    }
 
     async function action(e) {
         e.preventDefault();
@@ -564,6 +556,44 @@ function initBurger() {
     var itemsLength = items.length;
     for (let i = 0; i < itemsLength; i++) {
         items[i].addEventListener("click", action);
+    }
+}
+
+function showOptions(e) {
+    if (e.target && e.target.parentNode.id === "fullscreen-icon") fullscreen();
+    else  {
+        let options = document.getElementById("burger-options");
+        let display = options.style.display;
+
+        if (e != undefined) {
+            if (options.style.top == "") {
+                options.style.top = box.charaH * 2 + "px";
+                options.style.right = box.charaW * 2 + "px";
+                options.style.marginTop = null;
+            }
+            let bar = document.getElementById("burger-icon").children[2];
+            if (display == "" || display == "none") {
+                options.style.display = "block";
+                bar.style.display = "none";
+            }
+            else {
+                options.style.display = "none";
+                bar.style.display = "block";
+            }
+        } else {
+            if (options.style.top != "") {
+                options.style.top = null;
+                options.style.right = null;
+                options.style.marginTop = Math.floor((box.y-11)/2) * box.charaH + "px";
+            }
+            if (display == "" || display == "none") {
+                options.style.display = "block";
+            }
+            else {
+                options.style.display = "none";
+            }
+        }
+
     }
 }
 
