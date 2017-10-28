@@ -71,6 +71,15 @@ a:hover, a:active {
     background-color: yellow;
 }
 
+::-moz-selection {
+  color: yellow;
+  background: black;
+}
+::selection {
+  color: yellow;
+  background: black;
+}
+
 /* episode 2 text decoration */
 s {
     text-decoration: none;

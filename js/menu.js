@@ -475,29 +475,6 @@ function hideLandpage() {
     });
 }
 
-async function loadEpisode(a) {
-    async function startEpisode(ep) {
-        var json = await initEpisode(ep);
-
-        if (ep == "0") ep0(animObjs);
-        else if (ep == "1a") ep1a(json);
-        else if (ep == "1b") ep1b(json);
-        else if (ep == "2a" || ep == "2b") ep2(json);
-        else if (ep == "3a" || ep == "3b") ep3(json);
-    }
-
-    var landpage;
-    if (a.target != undefined) {
-        episode = a.target.id;
-        landpage = true;
-    }
-    else episode = a;
-
-    if (landpage) await hideLandpage();
-
-    startEpisode(episode);
-}
-
 function initBurger() {
     // init the burger and fullscreen click listener
     function showOptions(e) {
@@ -595,16 +572,6 @@ function episodeSelectionListener() {
     for (var i = 0; i < links.length; i++) {
         links[i].addEventListener("click", loadEpisode);
     }
-}
-
-function startListener() {
-    return new Promise ((resolve, reject) => {
-        var link = document.getElementById("start");
-        link.addEventListener("click", () => {
-            box.cleanLines();
-            resolve();
-        });
-    });
 }
 
 function fullscreen() {

@@ -23,6 +23,35 @@ function initEpisode(file) {
     });
 }
 
+function startListener() {
+    return new Promise ((resolve, reject) => {
+        var link = document.getElementById("start");
+        link.addEventListener("click", () => {
+            box.cleanLines();
+            resolve();
+        });
+    });
+}
+
+async function loadEpisode(a) {
+    async function startEpisode(ep) {
+        var json = await initEpisode(ep);
+
+        if (ep == "0") ep0(animObjs);
+        else if (ep == "1a") ep1a(json);
+        else if (ep == "1b") ep1b(json);
+        else if (ep == "2a" || ep == "2b") ep2(json);
+        else if (ep == "3a" || ep == "3b") ep3(json);
+    }
+
+    if (a.target != undefined) episode = a.target.id;
+    else episode = a;
+
+    if (landpage) await hideLandpage();
+
+    startEpisode(episode);
+}
+
 async function ep0(waves) {
     await waves[0].writeText(box);
     await waves[1].writeText(box);
