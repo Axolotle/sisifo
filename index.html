@@ -11,58 +11,67 @@
     <link type="image/png" rel="icon" href="" />
 </head>
 <body>
-    <div id="burger-options">
-        <p>┌─────────────────────────┐</p>
-        <p>│  > <a href="" id="next" class="burger-item">épisode suivant</a>      │</p>
-        <p>│  > <a href="" id="previous" class="burger-item">épisode précédent</a>    │</p>
-        <p>│  > <a href="" id="reload" class="burger-item">relancer l'épisode</a>   │</p>
-        <p>│  > <a href="" id="return" class="burger-item">page principale</a>      │</p>
-        <p>│  > <a href="" id="fullscreen" class="burger-item">plein écran</a>          │</p>
-        <p>│  > <a href="https://sisifo.site/sisifo/journal/" class="" target="_blank">journal d'écriture</a>   │</p>
-        <p>└─────────────────────────┘</p>
-    </div>
 
-    <div id="burger">
-        <p>──</p>
-        <p>──</p>
-        <p>──</p>
-    </div>
+    <main>
+        <div id="burger-options">
+            <p>┌─────────────────────────┐</p>
+            <p>│  > <a href="" id="next" class="burger-item">épisode suivant</a>      │</p>
+            <p>│  > <a href="" id="previous" class="burger-item">épisode précédent</a>    │</p>
+            <p>│  > <a href="" id="reload" class="burger-item">relancer l'épisode</a>   │</p>
+            <p>│  > <a href="" id="return" class="burger-item">page principale</a>      │</p>
+            <p>│  > <a href="" id="fullscreen" class="burger-item">plein écran</a>          │</p>
+            <p>│  > <a href="https://sisifo.site/sisifo/journal/" class="" target="_blank">journal d'écriture</a>   │</p>
+            <p>└─────────────────────────┘</p>
+        </div>
 
-    <header id="header" class="toHide">
-        <p>    /             </p>
-        <p>╭─╮╶┬╴╭─╮╶┬╴┌─╴╭─╮</p>
-        <p>╰─╮ │ ╰─╮ │ ├─╴│ │</p>
-        <p>╰─╯╶┴╴╰─╯╶┴╴╵  ╰─╯</p>
-        <p>La bataille de la Cité Universitaire de Madrid</p>
-        <p> </p>
-    </header>
+        <div id="burger-icon" class="icon">
+            <p>╶─╴</p>
+            <p>╶─╴</p>
+            <p>╶─╴</p>
+        </div>
 
-    <section id="center">
-        <div id="journal"></div><div id="text"></div>
-    </section>
+        <div id="fullscreen-icon" class="icon">
+            <p>  ┐</p>
+            <p> ─ </p>
+            <p>└  </p>
+        </div>
 
-    <footer id="footer" class="toHide">
-        <p> </p>
-        <p>─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─</p>
-        <p>Une expérience narrative de <a href="http://www.leo-henry.com/" target="_blank">Léo Henry</a>, <a href="http://www.luvan.org/" target="_blank">luvan</a>, <a href="http://www.lo-circonflexe.fr/" target="_blank">Laure Afchain</a> et <a href="https://autre.space/" target="_blank">Nicolas Chesnais</a></p>
-    </footer>
+        <header id="header" class="toHide">
+            <p>    /             </p>
+            <p>╭─╮╶┬╴╭─╮╶┬╴┌─╴╭─╮</p>
+            <p>╰─╮ │ ╰─╮ │ ├─╴│ │</p>
+            <p>╰─╯╶┴╴╰─╯╶┴╴╵  ╰─╯</p>
+            <p class="nopre">La bataille de la Cité Universitaire de Madrid</p>
+            <p> </p>
+        </header>
 
-    <div id="error">
-        </br>
-        <p>Sísifo - La bataille de la Cité Universitaire de Madrid</p>
-        <p>Une expérience narrative de <a href="http://www.leo-henry.com/" target="_blank">Léo Henry</a>, <a href="http://www.luvan.org/" target="_blank">luvan</a>, <a href="http://www.lo-circonflexe.fr/" target="_blank">Laure Afchain</a> et <a href="https://autre.space/" target="_blank">Nicolas Chesnais</a></p>
-        </br></br>
-        <p>┌─────────────────────┐</p>
-        <p>│  ╭─╮╷ ╷┌─╮╭─╴    ╷  │</p>
-        <p>│  │ ││ │├─╯╰─╮    ╵  │</p>
-        <p>│  ╰─╯╰─╯╵  ╶─╯    ╵  │</p>
-        <p>└─────────────────────┘</p>
-        </br>
-        <p>Un problème est survenu.</p>
-        <p>Votre navigateur n'est probablement pas à jour.</p>
-        <p>Réessayez éventuellement avec la dernière version de <a href="https://www.mozilla.org/fr/firefox/new/" target="_blank">Firefox</a>.</p>
-        </br>
-    </div>
+        <section id="center">
+            <div id="journal"></div><div id="text"></div>
+        </section>
+
+        <footer id="footer" class="toHide">
+            <p> </p>
+            <p id="line"></p>
+            <p class="nopre">Une expérience narrative de <a href="http://www.leo-henry.com/" target="_blank">Léo Henry</a>, <a href="http://www.luvan.org/" target="_blank">luvan</a>, <a href="http://www.lo-circonflexe.fr/" target="_blank">Laure Afchain</a> et <a href="https://autre.space/" target="_blank">Nicolas Chesnais</a></p>
+        </footer>
+
+        <div id="error">
+            </br>
+            <p>Sísifo - La bataille de la Cité Universitaire de Madrid</p>
+            <p>Une expérience narrative de <a href="http://www.leo-henry.com/" target="_blank">Léo Henry</a>, <a href="http://www.luvan.org/" target="_blank">luvan</a>, <a href="http://www.lo-circonflexe.fr/" target="_blank">Laure Afchain</a> et <a href="https://autre.space/" target="_blank">Nicolas Chesnais</a></p>
+            </br></br>
+            <p>┌─────────────────────┐</p>
+            <p>│  ╭─╮╷ ╷┌─╮╭─╴    ╷  │</p>
+            <p>│  │ ││ │├─╯╰─╮    ╵  │</p>
+            <p>│  ╰─╯╰─╯╵  ╶─╯    ╵  │</p>
+            <p>└─────────────────────┘</p>
+            </br>
+            <p>Un problème est survenu.</p>
+            <p>Votre navigateur n'est probablement pas à jour.</p>
+            <p>Réessayez éventuellement avec la dernière version de <a href="https://www.mozilla.org/fr/firefox/new/" target="_blank">Firefox</a>.</p>
+            </br>
+        </div>
+    </main>
 
     <script type="text/javascript" src="js/lib/box.js"></script>
     <script type="text/javascript" src="js/lib/utils.js"></script>

@@ -2,8 +2,13 @@ testNavigator();
 var box = new Box();
 var maxEp = 3;
 var episode;
-buildEpisodeBox(false);
+var landpage = true;
+var padding = 0;
+
 initBurger();
+resize();
+
+window.onresize = resize;
 
 box.addMenu = function(maxEp) {
     const _this = this;
@@ -111,135 +116,210 @@ box.removeMenu = function() {
     });
 };
 
-async function buildEpisodeBox(again) {
-    var mini = window.innerWidth < 900 ? true : false;
+async function resize() {
+    var main = document.getElementsByTagName('main')[0];
+    var body = document.getElementsByTagName('body')[0];
+    var value = landpage ? box.charaH * 2 : box.charaH;
+    var bodyStyle = body.style.alignItems;
 
-    var boxOptions = {
-        maxX: mini ? 42 : 37,
-        maxY: mini ? 12 : 22,
-        minY: 12,
-        minX: 30,
-        divName: "text",
-        marginX: 1,
-        marginY: 1
-    };
-    var content = {
-        txt: [
-            " /                      ",
-            "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴╭─╴",
-            "├─╴├─╯ │ ╰─╮│ ││ │├─╴╰─╮",
-            "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴╶─╯",
-            "",
-            "",
-            "{{tag::a|id=" + maxEp + "a|class=ep}}lire le dernier épisode{{tag::/a}}"
-        ],
-        format: "align",
-        charToAdd: " "
-    };
+    if (landpage) {
+        await displayLandpage(false);
+    }
 
-    box.init(boxOptions);
-    const formatter = new FormatJSON(box.x, box.y, box.marginX, box.marginY);
-    const infos = new Animation(formatter.getNewJSON(content));
-
-    if (again && !box.error) await box.draw();
-    else await box.display();
-    infos.displayText(box);
-
-    if (mini) box.addTinyMenu(maxEp);
-    else box.addMenu(maxEp);
-
-    showLandpage(box.x, box.y, maxEp, mini);
-    episodeSelectionListener();
+    if (main.clientHeight - padding > window.innerHeight - box.charaH * 4) {
+        if (bodyStyle != "flex-start") {
+            body.style.alignItems = "flex-start";
+            main.style.padding = value + "px 0px " + value + "px 0px";
+            padding = value * 2;
+        }
+    } else {
+        if (bodyStyle != "center") {
+            body.style.alignItems = "center";
+            main.style.padding = null;
+            padding = 0;
+        }
+    }
 }
 
-function showLandpage(x, y, maxEp, mini) {
-    var txt = [];
+function displayLandpage(animate) {
+    return new Promise (async (resolve, reject) => {
 
-    if (mini) {
-        let content = "journal d'écriture";
-        let xToAdd = x - content.length;
+        function buildEpisodeBox() {
+            return new Promise (async (resolve, reject) => {
+                var content = {
+                    txt: [
+                        " /                      ",
+                        "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴╭─╴",
+                        "├─╴├─╯ │ ╰─╮│ ││ │├─╴╰─╮",
+                        "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴╶─╯",
+                        "",
+                        "",
+                        "{{tag::a|id=" + maxEp + "a|class=ep}}lire le dernier épisode{{tag::/a}}"
+                    ],
+                    format: "align",
+                    charToAdd: " "
+                };
 
-        txt.push("┌" + "─".repeat(x - 2) + "┐");
-        txt.push("│" + " ".repeat(x - 2) + "│");
-        let before = "│" + " ".repeat(Math.floor(xToAdd / 2 - 1));
-        let after = " ".repeat(Math.ceil(xToAdd / 2 - 1)) + "│";
-        let link = "<a href='https://sisifo.site/sisifo/journal/'>" + content + "</a>";
-        txt.push(before + link + after);
-        txt.push("│" + " ".repeat(x - 2) + "│");
-        txt.push("└" + "─".repeat(x - 2) + "┘");
-    }
-    else {
-        let content = [
-            "      ╷╭─╮╷ ╷┌─╮╭╮╷╭─┐╷      ",
-            "      ││ ││ │├┬╯│││├─┤│      ",
-            "    ╰─/╰─╯╰─╯╵ ╰╵╰╯╵ ╵╰─╴    ",
-            "┌─╮╷ ┌─╴╭─╴┌─╮╶┬╴╶┬╴╷ ╷┌─╮┌─╴",
-            "│ │  ├─╴│  ├┬╯ │  │ │ │├┬╯├─╴",
-            "└─╯  ╰─╴╰─╴╵ ╰╶┴╴ ╵ ╰─╯╵ ╰╰─╴",
-            "",
-            "accéder au journal",
-        ];
-        let yToAdd = y - content.length - 2;
+                const formatter = new FormatJSON(box.x, box.y, box.marginX, box.marginY);
+                const infos = new Animation(formatter.getNewJSON(content));
+                box.remove();
 
-        txt.push("┌" + "─".repeat(x - 2) + "┐  ");
+                if (!animate || box.error) await box.display();
+                else await box.draw();
+                infos.displayText(box);
 
-        let top = Math.floor(yToAdd / 2)
-        for (let i = 0; i < top; i++) {
-            txt.push("│" + " ".repeat(x - 2) + "│  ");
+                if (mini) box.addTinyMenu(maxEp);
+                else box.addMenu(maxEp);
+
+                episodeSelectionListener();
+
+                resolve();
+            });
         }
 
-        content.forEach((line, index) => {
-            let xToAdd = x - line.length;
-            var before = "│" + " ".repeat(Math.floor(xToAdd/2 - 1));
-            var after = " ".repeat(Math.ceil(xToAdd/2 - 1)) + "│  ";
+        function buildJournalBox() {
+            return new Promise (async (resolve, reject) => {
+                function journal() {
+                    var txt = [];
+                    var content = [
+                        "      ╷╭─╮╷ ╷┌─╮╭╮╷╭─┐╷      ",
+                        "      ││ ││ │├┬╯│││├─┤│      ",
+                        "    ╰─/╰─╯╰─╯╵ ╰╵╰╯╵ ╵╰─╴    ",
+                        "┌─╮╷ ┌─╴╭─╴┌─╮╶┬╴╶┬╴╷ ╷┌─╮┌─╴",
+                        "│ │  ├─╴│  ├┬╯ │  │ │ │├┬╯├─╴",
+                        "└─╯  ╰─╴╰─╴╵ ╰╶┴╴ ╵ ╰─╯╵ ╰╰─╴",
+                        "",
+                        "accéder au journal",
+                    ];
+                    var link = "https://sisifo.site/sisifo/journal/"
+                    var n = box.x - 2;
+                    var yToAdd = box.y - content.length - 2;
 
-            if (line == "accéder au journal") {
-                let link = "<a href='https://sisifo.site/sisifo/journal/'>" + line + "</a>";
-                txt.push(before + link + after);
-            }
-            else txt.push(before + line + after);
-        });
+                    txt.push("┌" + "─".repeat(n) + "┐  ");
 
-        let bot = Math.ceil(yToAdd/2)
-        for (let i = 0; i < bot; i++) {
-            txt.push("│" + " ".repeat(x - 2) + "│  ");
+                    var top = Math.floor(yToAdd / 2)
+                    for (let i = 0; i < top; i++) {
+                        txt.push("│" + " ".repeat(n) + "│  ");
+                    }
+
+                    content.forEach((line, index) => {
+                        var xToAdd = n - line.length;
+                        var before = "│" + " ".repeat(Math.floor(xToAdd/2));
+                        var after = " ".repeat(Math.ceil(xToAdd/2)) + "│  ";
+
+                        if (line == "accéder au journal") {
+                            line = "<a href='" + link + "'>" + line + "</a>";
+                        }
+                        txt.push(before + line + after);
+                    });
+
+                    var bot = Math.ceil(yToAdd/2)
+                    for (let i = 0; i < bot; i++) {
+                        txt.push("│" + " ".repeat(n) + "│  ");
+                    }
+
+                    for (let i = 0; i <= maxEp + 1; i++) {
+                        txt.push("└" + "─".repeat(n) + "┘  ");
+                    }
+
+                    return txt;
+                }
+
+                function miniJournal() {
+                    var txt = [];
+                    var content = "journal d'écriture";
+                    var n = box.x - 2;
+                    var xToAdd = n - content.length;
+
+                    txt.push("┌" + "─".repeat(n) + "┐");
+                    txt.push("│" + " ".repeat(n) + "│");
+                    var before = "│" + " ".repeat(Math.floor(xToAdd / 2));
+                    var after = " ".repeat(Math.ceil(xToAdd / 2)) + "│";
+                    var link = "<a href='https://sisifo.site/sisifo/journal/'>" + content + "</a>";
+                    txt.push(before + link + after);
+                    txt.push("│" + " ".repeat(n) + "│");
+                    txt.push("└" + "─".repeat(n) + "┘");
+
+                    return txt;
+                }
+
+                var content = mini ? miniJournal() : journal();
+
+                var journal = document.getElementById("journal");
+                var jLen = journal.children.length;
+
+                for (var i = 0; i < jLen; i++) {
+                    journal.removeChild(journal.lastChild);
+                }
+
+                content.forEach(sentence => {
+                    let elem = document.createElement("p");
+                    elem.innerHTML = sentence;
+                    journal.appendChild(elem);
+                });
+
+                resolve();
+            });
         }
 
-        for (let i = 0; i <= maxEp + 1; i++) {
-            txt.push("└" + "─".repeat(x - 2) + "┘  ");
+        var boxOptions = {
+            divName: "text",
+            marginX: 1,
+            marginY: 1,
+            minY: 12,
+            minX: 33,
+            maxX: 41,
+            maxY: 24
+        };
+        var mini;
+        var maxX = Math.floor(window.innerWidth / box.charaW);
+        // maxEp length + prologue + 2 whitespace + 2 margin whitespace
+
+        var adding = maxEp * 2 + 2 + 2;
+        if (maxX <= boxOptions.minX * 2 + adding + 2) {
+            mini = true;
+            if (maxX <= 42) boxOptions.maxX = maxX - 2;
+            else boxOptions.maxX = 42;
+            boxOptions.minX = 28;
+            boxOptions.maxY = 12;
         }
-    }
+        else if (maxX <= boxOptions.maxX * 2 + adding) {
+            mini = false;
+            let value = maxX - adding;
+            boxOptions.maxX = Math.floor(value/2) - 1;
+        }
 
-    var journal = document.getElementById("journal");
+        let previousSize = [box.x, box.y];
+        try {
+            await box.init(boxOptions);
+        } catch (e) {
+            return box.drawError(e);
+        }
 
-    txt.forEach(sentence => {
-        let elem = document.createElement("p");
-        elem.innerHTML = sentence;
-        journal.appendChild(elem);
+        if (previousSize[0] != box.x || previousSize[1] != box.y) {
+            await Promise.all([
+                 buildEpisodeBox(),
+                 buildJournalBox()
+            ]);
+
+            let centerDiv = document.getElementById("center");
+            if (mini) centerDiv.style.flexDirection = "column";
+            else centerDiv.style.flexDirection = "row";
+
+            let width = centerDiv.clientWidth;
+            let header = document.getElementById("header");
+            let footer = document.getElementById("footer");
+            header.style.width = width + "px";
+            footer.style.width = width + "px";
+
+            let line = document.getElementById("line");
+            if (mini) line.innerHTML = "─ ".repeat(Math.ceil(box.x/2));
+            else line.innerHTML = "─ ".repeat(box.x + maxEp + 2);
+        }
+
+        resolve();
     });
 
-    // center header and footer
-    var div = document.getElementById("text");
-    var width = mini ? div.offsetWidth : journal.offsetWidth + div.offsetWidth;
-
-    var header = document.getElementById("header");
-    var footer = document.getElementById("footer");
-
-    header.style.width = width + "px";
-    footer.style.width = width + "px";
-    header.style.display = "block";
-    footer.style.display = "block";
-
-    document.getElementById("burger").style.display = "none";
-
-    var hChild = header.children;
-    var fChild = footer.children;
-    var hLength = hChild.length;
-    var fLength = fChild.length;
-    for (let i = o = 0; (i < hLength) || (o < fLength); i++, o++) {
-        if (hChild[i]) hChild[i].style.display = "block";
-        if (fChild[o]) fChild[o].style.display = "block";
-    }
 }
 
 function hideLandpage() {
@@ -272,7 +352,6 @@ function hideLandpage() {
                 var jLen = jChild.length;
 
                 // Get rid of possible inline tags
-
                 for (let i = 0; i < jLen; i++) {
                     let length = jChild[i].children.length;
                     if (length > 0) {
@@ -316,7 +395,7 @@ function hideLandpage() {
             deleteJournal(),
             box.removeMenu()
         ]);
-        document.getElementById("burger").style.display = "block";
+        document.getElementById("burger-icon").style.display = "block";
         resolve();
     });
 }
@@ -345,16 +424,21 @@ async function loadEpisode(a) {
 }
 
 function initBurger() {
-    // init the little menu click listener
-    function showOptions() {
-        var options = document.getElementById("burger-options");
-        if (options.style.display == "" || options.style.display == "none") {
-            options.style.display = "block";
-        } else options.style.display = "none";
+    // init the burger and fullscreen click listener
+    function showOptions(e) {
+        if (e.target.parentNode.id === "fullscreen-icon") fullscreen();
+        else {
+            let display = options.style.display;
+            if (display == "" || display == "none") {
+                options.style.display = "block";
+                burger.children[2].style.display = "none";
+            }
+            else {
+                options.style.display = "none";
+                burger.children[2].style.display = "block";
+            }
+        }
     }
-
-    var menu = document.getElementById("burger");
-    menu.addEventListener("click", showOptions);
 
     function action(e) {
         e.preventDefault();
@@ -405,6 +489,18 @@ function initBurger() {
             loadEpisode(previous);
         }
     }
+
+    var icons = document.getElementsByClassName("icon");
+    for (let i = 0; i < icons.length; i++) {
+        icons[i].style.top = box.charaH + "px";
+        icons[i].style.right = box.charaW * 2 + "px";
+        icons[i].children[1].style.lineHeight = "0px";
+        icons[i].addEventListener("click", showOptions);
+    }
+
+    var options = document.getElementById("burger-options");
+    options.style.top = box.charaH * 2 + "px";
+    options.style.right = box.charaW * 2 + "px";
 
     var items = document.getElementsByClassName("burger-item");
     var itemsLength = items.length;
