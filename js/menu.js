@@ -2,6 +2,7 @@ testNavigator();
 var box = new Box();
 var maxEp = 3;
 var episode;
+var mini;
 var landpage = true;
 var padding = 0;
 
@@ -119,24 +120,36 @@ box.removeMenu = function() {
 async function resize() {
     var main = document.getElementsByTagName('main')[0];
     var body = document.getElementsByTagName('body')[0];
-    var value = landpage ? box.charaH * 2 : box.charaH;
     var bodyStyle = body.style.alignItems;
 
     if (landpage) {
         await displayLandpage(false);
+        let style = main.style.padding;
+        let padding = style != "" ? parseInt(style.substr(0,2)) : 0;
+        if (main.clientHeight - padding > window.innerHeight - box.charaH * 4) {
+            if (bodyStyle != "flex-start") {
+                body.style.alignItems = "flex-start";
+                main.style.padding = box.charaH * 2 + "px 0px";
+            }
+        }
+        else {
+           if (bodyStyle != "center") {
+               body.style.alignItems = "center";
+               main.style.padding = null;
+           }
+       }
     }
 
-    if (main.clientHeight - padding > window.innerHeight - box.charaH * 4) {
-        if (bodyStyle != "flex-start") {
-            body.style.alignItems = "flex-start";
-            main.style.padding = value + "px 0px " + value + "px 0px";
-            padding = value * 2;
-        }
-    } else {
-        if (bodyStyle != "center") {
-            body.style.alignItems = "center";
-            main.style.padding = null;
-            padding = 0;
+    else {
+        if (main.style.padding != "") main.style.padding = null;
+        if (main.clientHeight > window.innerHeight) {
+            if (bodyStyle != "flex-start") {
+                body.style.alignItems = "flex-start";
+            }
+        } else {
+            if (bodyStyle != "center") {
+                body.style.alignItems = "center";
+            }
         }
     }
 }
@@ -257,7 +270,7 @@ function displayLandpage(animate) {
                     journal.appendChild(docFragment);
                     let jLen = journal.children.length;
                     let len = content[0].length;
-                    for (let i = 0; i < len; i++) {
+                    for (let i = 0; i <= len; i++) {
                         for (let a = 0; a < jLen; a++) {
                             journal.children[a].innerHTML = content[a].substring(0, i);
                         }
@@ -296,10 +309,9 @@ function displayLandpage(animate) {
             maxX: 41,
             maxY: 24
         };
-        var mini;
         var maxX = Math.floor(window.innerWidth / box.charaW);
+        landpage = true;
         // maxEp length + prologue + 2 whitespace + 2 margin whitespace
-
         var adding = maxEp * 2 + 2 + 2;
         if (maxX <= boxOptions.minX * 2 + adding + 2) {
             mini = true;
@@ -363,7 +375,6 @@ function displayLandpage(animate) {
             else line.innerHTML = "─ ".repeat(box.x + maxEp + 2);
         }
 
-        landpage = true;
         resolve();
     });
 
@@ -383,6 +394,7 @@ function hideLandpage() {
                 for (let i = hLen-1, o = 0; (i >= 0) || (o < fLen); i--, o++) {
                     if (hChild[i]) hChild[i].style.display = "none";
                     if (fChild[o]) fChild[o].style.display = "none";
+                    resize();
                     await sleep(40);
                 }
 
@@ -419,20 +431,29 @@ function hideLandpage() {
                     await sleep(10);
                 }
                 // Delete character by character
-                var lineLength = jChild[0].innerHTML.length;
+
                 jLen = jChild.length;
-                for (let chara = 0; chara < lineLength; chara++) {
-                    let len = jChild[0].innerHTML.length-1;
-                    for (let l = 0; l < jLen; l++) {
-                        let content = jChild[l].innerHTML;
-                        jChild[l].innerHTML = content.substr(0, len);
+                if (mini) {
+                    for (let line = 0; line < jLen; line++) {
+                        journal.removeChild(journal.lastChild);
+                        await sleep(10);
                     }
-                    await sleep(10);
+                } else {
+                    let lineLength = jChild[0].innerHTML.length;
+                    for (let chara = 0; chara < lineLength; chara++) {
+                        let len = jChild[0].innerHTML.length-1;
+                        for (let l = 0; l < jLen; l++) {
+                            let content = jChild[l].innerHTML;
+                            jChild[l].innerHTML = content.substr(0, len);
+                        }
+                        await sleep(10);
+                    }
+                    // Delete every nodes
+                    while (journal.hasChildNodes()) {
+                        journal.removeChild(journal.lastChild);
+                    }
                 }
-                // Delete every nodes
-                while (journal.hasChildNodes()) {
-                    journal.removeChild(journal.lastChild);
-                }
+
                 resolve();
             });
         }
@@ -444,12 +465,12 @@ function hideLandpage() {
         fullscreenIcon.style.display = "none";
 
         await hideHeaderAndFooter(),
-
         await Promise.all([
             deleteJournal(),
             box.removeMenu()
         ]);
 
+        resize();
         resolve();
     });
 }
@@ -494,7 +515,7 @@ function initBurger() {
         }
     }
 
-    function action(e) {
+    async function action(e) {
         e.preventDefault();
         const id = e.target.id;
         document.getElementById("burger-options").style.display = "none";
@@ -520,7 +541,8 @@ function initBurger() {
         if (id == "return") {
             icons[0].style.display = "none";
             icons[1].style.display = "block";
-            displayLandpage(true);
+            await displayLandpage(true);
+            resize();
         }
         else if (id == "reload") loadEpisode(episode);
         else if (id == "next"){
