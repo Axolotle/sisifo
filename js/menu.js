@@ -104,7 +104,7 @@ box.removeMenu = function() {
                         line.innerHTML = content.substr(0, content.length - 2);
                     }
                 });
-                await sleep(30);
+                await sleep(10);
                 removeRow();
             } else {
                 resolve();
@@ -162,9 +162,11 @@ function displayLandpage(animate) {
 
                 const formatter = new FormatJSON(box.x, box.y, box.marginX, box.marginY);
                 const infos = new Animation(formatter.getNewJSON(content));
-                box.remove();
 
-                if (!animate || box.error) await box.display();
+                if (!animate || box.error) {
+                    box.remove();
+                    await box.display();
+                }
                 else await box.draw();
                 infos.displayText(box);
 
@@ -191,7 +193,6 @@ function displayLandpage(animate) {
                         "",
                         "accéder au journal",
                     ];
-                    var link = "https://sisifo.site/sisifo/journal/"
                     var n = box.x - 2;
                     var yToAdd = box.y - content.length - 2;
 
@@ -208,7 +209,7 @@ function displayLandpage(animate) {
                         var after = " ".repeat(Math.ceil(xToAdd/2)) + "│  ";
 
                         if (line == "accéder au journal") {
-                            line = "<a href='" + link + "'>" + line + "</a>";
+                            link = [before.length, index+top+1, line];
                         }
                         txt.push(before + line + after);
                     });
@@ -235,28 +236,52 @@ function displayLandpage(animate) {
                     txt.push("│" + " ".repeat(n) + "│");
                     var before = "│" + " ".repeat(Math.floor(xToAdd / 2));
                     var after = " ".repeat(Math.ceil(xToAdd / 2)) + "│";
-                    var link = "<a href='https://sisifo.site/sisifo/journal/'>" + content + "</a>";
-                    txt.push(before + link + after);
+                    link = [before.length, 2, content];
+                    txt.push(before + content + after);
                     txt.push("│" + " ".repeat(n) + "│");
                     txt.push("└" + "─".repeat(n) + "┘");
 
                     return txt;
                 }
-
+                var link;
                 var content = mini ? miniJournal() : journal();
 
                 var journal = document.getElementById("journal");
-                var jLen = journal.children.length;
+                var docFragment = document.createDocumentFragment();
 
-                for (var i = 0; i < jLen; i++) {
-                    journal.removeChild(journal.lastChild);
+                if (animate) {
+                    content.forEach(sentence => {
+                        let elem = document.createElement("p");
+                        docFragment.appendChild(elem);
+                    });
+                    journal.appendChild(docFragment);
+                    let jLen = journal.children.length;
+                    let len = content[0].length;
+                    for (let i = 0; i < len; i++) {
+                        for (let a = 0; a < jLen; a++) {
+                            journal.children[a].innerHTML = content[a].substring(0, i);
+                        }
+                        await sleep(10);
+                    }
+                }
+                else {
+                    let jLen = journal.children.length;
+
+                    for (var i = 0; i < jLen; i++) {
+                        journal.removeChild(journal.lastChild);
+                    }
+
+                    content.forEach(sentence => {
+                        let elem = document.createElement("p");
+                        elem.innerHTML = sentence;
+                        docFragment.appendChild(elem);
+                    });
+                    journal.appendChild(docFragment);
                 }
 
-                content.forEach(sentence => {
-                    let elem = document.createElement("p");
-                    elem.innerHTML = sentence;
-                    journal.appendChild(elem);
-                });
+                var addr = "https://sisifo.site/sisifo/journal/";
+                var line = journal.children[link[1]].innerHTML;
+                journal.children[link[1]].innerHTML = line.substring(0, link[0]) + "<a href='" + addr + "'>" + link[2] + "</a>" + line.substr(link[0] + link[2].length);
 
                 resolve();
             });
@@ -295,12 +320,18 @@ function displayLandpage(animate) {
         } catch (e) {
             return box.drawError(e);
         }
-
         if (previousSize[0] != box.x || previousSize[1] != box.y) {
-            await Promise.all([
-                 buildEpisodeBox(),
-                 buildJournalBox()
-            ]);
+            if (animate) {
+                await buildEpisodeBox();
+                await buildJournalBox();
+
+            } else {
+                await Promise.all([
+                     buildEpisodeBox(),
+                     buildJournalBox()
+                ]);
+            }
+
 
             let centerDiv = document.getElementById("center");
             if (mini) centerDiv.style.flexDirection = "column";
@@ -312,11 +343,27 @@ function displayLandpage(animate) {
             header.style.width = width + "px";
             footer.style.width = width + "px";
 
+            if (animate) {
+                let hChild = header.children;
+                let fChild = footer.children;
+                let hLen = hChild.length;
+                let fLen = fChild.length;
+                header.style.display = "block";
+                footer.style.display = "block";
+
+                for (let i = hLen-1, o = 0; (i >= 0) || (o < fLen); i--, o++) {
+                    if (hChild[i]) hChild[i].style.display = "block";
+                    if (fChild[o]) fChild[o].style.display = "block";
+                    await sleep(40);
+                }
+            }
+
             let line = document.getElementById("line");
             if (mini) line.innerHTML = "─ ".repeat(Math.ceil(box.x/2));
             else line.innerHTML = "─ ".repeat(box.x + maxEp + 2);
         }
 
+        landpage = true;
         resolve();
     });
 
@@ -369,7 +416,7 @@ function hideLandpage() {
                 // Delete the extra rows
                 for (let i = jLen; i > box.y ; i--) {
                     journal.removeChild(journal.lastChild);
-                    await sleep(30);
+                    await sleep(10);
                 }
                 // Delete character by character
                 var lineLength = jChild[0].innerHTML.length;
@@ -380,7 +427,7 @@ function hideLandpage() {
                         let content = jChild[l].innerHTML;
                         jChild[l].innerHTML = content.substr(0, len);
                     }
-                    await sleep(15);
+                    await sleep(10);
                 }
                 // Delete every nodes
                 while (journal.hasChildNodes()) {
@@ -390,12 +437,19 @@ function hideLandpage() {
             });
         }
 
+        landpage = false;
+        var burgerIcon = document.getElementById("burger-icon")
+        burgerIcon.style.display = "block";
+        var fullscreenIcon = document.getElementById("fullscreen-icon")
+        fullscreenIcon.style.display = "none";
+
+        await hideHeaderAndFooter(),
+
         await Promise.all([
-            hideHeaderAndFooter(),
             deleteJournal(),
             box.removeMenu()
         ]);
-        document.getElementById("burger-icon").style.display = "block";
+
         resolve();
     });
 }
@@ -431,11 +485,11 @@ function initBurger() {
             let display = options.style.display;
             if (display == "" || display == "none") {
                 options.style.display = "block";
-                burger.children[2].style.display = "none";
+                icons[0].children[2].style.display = "none";
             }
             else {
                 options.style.display = "none";
-                burger.children[2].style.display = "block";
+                icons[0].children[2].style.display = "block";
             }
         }
     }
@@ -444,6 +498,7 @@ function initBurger() {
         e.preventDefault();
         const id = e.target.id;
         document.getElementById("burger-options").style.display = "none";
+        icons[0].children[2].style.display = "block";
 
         if (id != "fullscreen") {
             window.dispatchEvent(new Event("stop"));
@@ -462,7 +517,11 @@ function initBurger() {
             box.error = false;
         }
 
-        if (id == "return") buildEpisodeBox(true);
+        if (id == "return") {
+            icons[0].style.display = "none";
+            icons[1].style.display = "block";
+            displayLandpage(true);
+        }
         else if (id == "reload") loadEpisode(episode);
         else if (id == "next"){
             let next;
