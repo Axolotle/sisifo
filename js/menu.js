@@ -1,6 +1,6 @@
 testNavigator();
 var box = new Box();
-var maxEp = 8;
+var maxEp = 3;
 var episode;
 var mini;
 var landpage = true;
@@ -350,7 +350,6 @@ function displayLandpage(animate) {
                 ]);
             }
 
-
             let centerDiv = document.getElementById("center");
             if (mini) centerDiv.style.flexDirection = "column";
             else centerDiv.style.flexDirection = "row";
@@ -560,7 +559,7 @@ function initBurger() {
 }
 
 function showOptions(e) {
-    if (e.target && e.target.parentNode.id === "fullscreen-icon") fullscreen();
+    if (e && e.target.parentNode.id === "fullscreen-icon") fullscreen();
     else  {
         let options = document.getElementById("burger-options");
         let display = options.style.display;
