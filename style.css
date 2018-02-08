@@ -122,6 +122,19 @@ s {
     /* visibility: hidden; */
     opacity: 0;
 }
+#noteZone {
+    width: 20em;
+    position: absolute;
+    top: 2em;
+    left: 2em;
+}
+a.notes {
+    cursor: none;
+}
+#nextPage {
+    background-color: black;
+    color: white;
+}
 
 /* FONTS */
 /*///////*/

@@ -141,8 +141,11 @@ async function ep3(subtitle) {
 }
 
 async function ep4a(waves) {
-    waves[0].displayText(box);
-    waves[0].overlay(box);
+    waves[1].displayText(box);
+    await waves[1].overlay(box);
+    box.cleanLines();
+    waves[2].displayText(box);
+    // await waves[2].overlay(box);
 
     // setTimeout(showOptions, 3500);
 }
