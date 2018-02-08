@@ -1,6 +1,6 @@
 testNavigator();
 var box = new Box();
-var maxEp = 3;
+var maxEp = 4;
 var episode;
 var mini;
 var landpage = true;
@@ -8,8 +8,10 @@ var padding = 0;
 
 initBurger();
 resize();
+loadEpisode('4a')
 
 window.onresize = resize;
+
 
 box.addMenu = function(maxEp) {
     const _this = this;
@@ -300,7 +302,9 @@ function displayLandpage(animate) {
 
                 var addr = "https://sisifo.site/sisifo/journal/";
                 var line = journal.children[link[1]].innerHTML;
-                journal.children[link[1]].innerHTML = line.substring(0, link[0]) + "<a href='" + addr + "'>" + link[2] + "</a>" + line.substr(link[0] + link[2].length);
+                journal.children[link[1]].innerHTML = line.substring(0, link[0])
+                + "<a href='" + addr + "'>" + link[2] + "</a>"
+                + line.substr(link[0] + link[2].length);
 
                 resolve();
             });

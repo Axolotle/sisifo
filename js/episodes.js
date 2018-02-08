@@ -43,6 +43,8 @@ async function loadEpisode(a) {
         else if (ep == "1b") ep1b(json);
         else if (ep == "2a" || ep == "2b") ep2(json);
         else if (ep == "3a" || ep == "3b") ep3(json);
+        else if (ep == "4a") ep4a(json);
+        else if (ep == "4b") ep4b(json)
     }
 
     if (a.target != undefined) episode = a.target.id;
@@ -136,4 +138,23 @@ async function ep3(subtitle) {
     await subtitle.startSubtitles(box);
 
     setTimeout(showOptions, 3500);
+}
+
+async function ep4a(waves) {
+    waves[0].displayText(box);
+    waves[0].overlay(box);
+
+    // setTimeout(showOptions, 3500);
+}
+
+async function ep4b(waves) {
+    waves[0].insertText(box);
+    await sleep(3000);
+    await waves[0].mouseOver(true);
+    await sleep(3000);
+    box.cleanLines();
+    waves[1].insertText(box);
+    await waves[1].mouseOver(false);
+
+    setTimeout(showOptions, 4000);
 }
