@@ -1,0 +1,37 @@
+[
+    {
+        "longestText" : "Dévorés par l'angoisse, par le pressentiment de leur fin, sans secours de la prière, les Rouges ne dorment jamais. Dans leur immeuble ODONTOLOGIA, de l'autre côté de notre rue, l'un d'eux ne cesse de m'espionner. Il ne rêve que d'être à ma place. Il a compris que Madrid derrière lui, que l'Espagne toute entière sont impatients de le voir échouer. Il sait que notre insurrection triomphera, parce qu'elle est désirée du peuple véritable. Il sait qu'au moment où il se montrera, je le coucherai d'un tir unique. On tentera en vain de contenir les flots de son sang rouge sur les murs, sur les dalles, sur les insignes et sur les drapeaux, sur les pages de leurs livres impies. Je suis l'avant- garde des assauts nationaliste, le sommet de la vague, aussi près de la capitale qu'il est ce jour possible. Je suis la pointe aiguë du glaive de Franco, qui n'attend plus qu'un ordre pour opérer la jonction. J'entrerai dans la cité martyre, j'y mettrai fin au joug de la racaille. Chaque matin, je me rase à sec avec cette lame, affûtée contre une lanière de cuir. Le miroir est minuscule et carré, mais je vois clair. L'homme du reflet ne connaît ni le doute ni l'incertitude, il ne sait rien de ce qu'est la peur. Si je meurs, vous direz ceci à vos enfants : que je n'ai jamais douté de mon triomphe. Que même mort, j’ai passé la ligne ; parfois, dans mes rêves, je suis de l'autre côté.",
+        "longestWord": 14,
+        "divName": "text",
+        "idealX": 56,
+        "marginX": 3,
+        "marginY": 2
+    },
+
+    {
+        "txt": [
+            " /                            ",
+            "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴   ╷  ┌─╮",
+            "├─╴├─╯ │ ╰─╮│ ││ │├─╴   └┼╴│╶┤",
+            "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴    ╵ ╰─╯",
+            "~ 0 min 0 sec",
+            "",
+            "souris/pad: survoler le texte",
+            "",
+            "",
+            "{{tag::a|id=start|class=ep}}Lancer l'épisode{{tag::/a}}"
+        ],
+        "charToAdd": " ",
+        "format": "align"
+    },
+
+    {
+        "txt": "Parfois, dans mes rêves, je suis de l'autre côté. La ligne de front a ici la largeur d'une rue, et l'ennemi à la fenêtre du bâtiment marqué AGRÓNOMOS la même sale gueule que moi, il a faim, froid et peur, comme moi. Sa façade a le même air lépreux que la mienne, il voit les arbres crevés et la carcasse de taxi échouée depuis novembre. Par ses fenêtres barricadées, le même vent froid venu de la Sierra s'infiltre. Je connais ses horaires et ses rituels. Je pense à lui qui pense à moi. Une silhouette et je tire. Un éclat de lumière et je tire. Le soupçon d'une présence. Je pense à la balle qui finira par l'atteindre et qui ressemble comme une sœur à celle qui trouera mon cœur. Ses os éclatent, il saigne, le choc le laisse étourdi. On l'aide à descendre les marches jusqu'à la cave, jusqu'à l'entrée de la tranchée. On le couche sur un brancard qui ne peut pas prendre les virages les plus serrés. La boue a durci en verglas, les compagnons patinent, le font tomber, se jettent à ses côté, la mitrailleuse crache, froide. Il a mal partout maintenant. Le ciel est gris aveuglement. Il pense à l'infirmerie qui est loin, à l'ennemi qui l'attend sur la passerelle. Il pense qu'il va falloir patienter jusqu'à la nuit et qu'alors il sera trop tard. Trop tard pour son bras, sans doute pour sa vie. Trop tard pour voir la fin. Il pense, abattu, qu'il ne devrait pas penser à ça.",
+        "wordIsTag": "showed"
+    },
+
+    {
+        "txt": "Dévorés par l'angoisse, par le pressentiment de leur fin, sans secours de la prière, les Rouges ne dorment jamais. Dans leur immeuble ODONTOLOGIA, de l'autre côté de notre rue, l'un d'eux ne cesse de m'espionner. Il ne rêve que d'être à ma place. Il a compris que Madrid derrière lui, que l'Espagne toute entière sont impatients de le voir échouer. Il sait que notre insurrection triomphera, parce qu'elle est désirée du peuple véritable. Il sait qu'au moment où il se montrera, je le coucherai d'un tir unique. On tentera en vain de contenir les flots de son sang rouge sur les murs, sur les dalles, sur les insignes et sur les drapeaux, sur les pages de leurs livres impies. Je suis l'avant- garde des assauts nationaliste, le sommet de la vague, aussi près de la capitale qu'il est ce jour possible. Je suis la pointe aiguë du glaive de Franco, qui n'attend plus qu'un ordre pour opérer la jonction. J'entrerai dans la cité martyre, j'y mettrai fin au joug de la racaille. Chaque matin, je me rase à sec avec cette lame, affûtée contre une lanière de cuir. Le miroir est minuscule et carré, mais je vois clair. L'homme du reflet ne connaît ni le doute ni l'incertitude, il ne sait rien de ce qu'est la peur. Si je meurs, vous direz ceci à vos enfants : que je n'ai jamais douté de mon triomphe. Que même mort, j’ai passé la ligne ; parfois, dans mes rêves, je suis de l'autre côté.",
+        "wordIsTag": "hidden"
+    }
+]
