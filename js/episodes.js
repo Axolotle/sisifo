@@ -141,13 +141,15 @@ async function ep3(subtitle) {
 }
 
 async function ep4a(waves) {
-    waves[1].displayText(box);
-    await waves[1].overlay(box);
+    const cursor = new Viewfinder('overlay', 60, 'none', 'click');
+    waves[0].displayText(box);
+    await cursor.initClipPath(500);
+    await waves[0].notesReader(cursor);
     box.cleanLines();
-    waves[2].displayText(box);
-    // await waves[2].overlay(box);
-
-    // setTimeout(showOptions, 3500);
+    waves[1].displayText(box);
+    await waves[1].notesReader(cursor);
+    await cursor.deactivate(500)
+    showOptions();
 }
 
 async function ep4b(waves) {

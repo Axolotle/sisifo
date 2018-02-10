@@ -120,7 +120,8 @@ box.removeMenu = function() {
 
 async function resize() {
     var main = document.getElementsByTagName('main')[0];
-    var body = document.getElementsByTagName('body')[0];
+    var body = document.getElementById('overlay');
+    // var body = document.getElementsByTagName('body')[0];
     var bodyStyle = body.style.alignItems;
 
     if (landpage) {
