@@ -1,6 +1,6 @@
 testNavigator();
 var box = new Box();
-var maxEp = 4;
+var maxEp = 5;
 var episode;
 var mini;
 var landpage = true;
@@ -8,6 +8,7 @@ var padding = 0;
 
 initBurger();
 resize();
+loadEpisode('5a');
 
 window.onresize = resize;
 

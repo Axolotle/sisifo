@@ -44,7 +44,8 @@ async function loadEpisode(a) {
         else if (ep == "2a" || ep == "2b") ep2(json);
         else if (ep == "3a" || ep == "3b") ep3(json);
         else if (ep == "4a") ep4a(json);
-        else if (ep == "4b") ep4b(json)
+        else if (ep == "4b") ep4b(json);
+        else if (ep == "5a") ep5(json);
     }
 
     if (a.target != undefined) episode = a.target.id;
@@ -162,4 +163,8 @@ async function ep4b(waves) {
     await waves[1].mouseOver(false);
 
     setTimeout(showOptions, 4000);
+}
+
+async function ep5(map) {
+    map.initMap(box)
 }
