@@ -1,9 +1,9 @@
 [
     {
         "longestText" : "Dévorés par l'angoisse, par le pressentiment de leur fin, sans secours de la prière, les Rouges ne dorment jamais. Dans leur immeuble ODONTOLOGIA, de l'autre côté de notre rue, l'un d'eux ne cesse de m'espionner. Il ne rêve que d'être à ma place. Il a compris que Madrid derrière lui, que l'Espagne toute entière sont impatients de le voir échouer. Il sait que notre insurrection triomphera, parce qu'elle est désirée du peuple véritable. Il sait qu'au moment où il se montrera, je le coucherai d'un tir unique. On tentera en vain de contenir les flots de son sang rouge sur les murs, sur les dalles, sur les insignes et sur les drapeaux, sur les pages de leurs livres impies. Je suis l'avant- garde des assauts nationaliste, le sommet de la vague, aussi près de la capitale qu'il est ce jour possible. Je suis la pointe aiguë du glaive de Franco, qui n'attend plus qu'un ordre pour opérer la jonction. J'entrerai dans la cité martyre, j'y mettrai fin au joug de la racaille. Chaque matin, je me rase à sec avec cette lame, affûtée contre une lanière de cuir. Le miroir est minuscule et carré, mais je vois clair. L'homme du reflet ne connaît ni le doute ni l'incertitude, il ne sait rien de ce qu'est la peur. Si je meurs, vous direz ceci à vos enfants : que je n'ai jamais douté de mon triomphe. Que même mort, j’ai passé la ligne ; parfois, dans mes rêves, je suis de l'autre côté.",
-        "longestWord": 14,
         "divName": "text",
-        "idealX": 56,
+        "minX": 56,
+        "minY": 14,
         "marginX": 3,
         "marginY": 2
     },

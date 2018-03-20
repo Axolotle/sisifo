@@ -1,9 +1,9 @@
 [
     {
         "longestText" : "Encore un ascenseur piégé. Les bombes ressemblent à de petits faisceaux. Les deux hommes les fagotent ensemble. Ludwig, guindé et long dans son uniforme rigide, observe l’opération de loin. Hier, dans l’amphi, résonnait encore « Batalion Thaelmann, fertig ! ». L’Américain Hemingway les a filmés dans l’action assourdissante du pilonnage. Aujourd’hui. Son oreille siffle et on ne parle qu’Allemand. Répercution de tirs saccadés, au loin. Gustav a sorti son calepin. Un des sapeurs improvisés tranche un fil entre ses dents. Et l’ascenseur descend dans un crissement de câble. Et l’on se couvre les oreilles. Détonation. En bas, un cri se répète, bref, à intervalles réguliers, comme le piaillement obstiné d’un merle. Le dos d’un des sapeurs s’avachit « Ne pleure pas pour eux, dit le second sapeur. Les Regulares sont traîtres à leur propre peuple ». Bientôt, les Rifains espagnols glisseront entre des doigts, feront une percée. On les empêchera de justesse d’atteindre la Plaza de España.\n\n +\n",
-        "longestWord": 14,
         "divName": "text",
-        "idealX": 50,
+        "minX": 50,
+        "minY": 14,
         "marginX": 3,
         "marginY": 2
     },

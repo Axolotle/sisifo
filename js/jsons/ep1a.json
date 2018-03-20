@@ -2,7 +2,8 @@
     {
         "longestText" : "L’armée avance entre les arbres. Les pins sont forts et tordus. Jamais droits. Les fusils longs, les manteaux lourds, sombres, pendent aux épaules. Les hommes ont le dos arrondi, d’un vertical forcé. Une colonne nombreuse s’essaime et tu en es. Tu ne peux pas regarder en arrière. Tu ne peux pas faire demi-tour. On te tire et on te pousse. Les herbes sont vert profond mais l’herbe est jaune. L’automne madrilène est sec. C’est une guerre sèche. Des gestes à l’avant et l’armée oblique et s’étale. S’écrase de colonne en ligne. Tu avances. Entre les arbres. Tu en vois 7 devant, 5 derrière. En tout dernier plan, tu ne sais pas s’il s’agit de corps ou de troncs. Ton ombre est ton premier plan. Tu sais que d’autres, à l’arrière, te voient loin, distinguent de toi deux traits jamais droits pour les jambes, un béret camouflant ton occiput, le clair furtif d’une chemise sous ton manteau, tantôt la crosse tantôt le canon, horizontaux, de ton Remington. Vous avancez, le terrain est plat, le ciel brillant, les arbres ronds. Tu t’entraînes à ne pas penser aux autres comme à des hommes. Tu t’efforces de regarder devant sans te laisser aller à l’hypnose de ce cortège distendu, décidé, lent. Tu anticipes la course. Tu as mal aux jambes à l’idée de t’élancer sur un ordre. Sans te retourner, tu penses être au milieu. Tu n’es pas le dernier. Tous les hommes pensent être au milieu. Jamais le premier. Jamais le dernier. Tu ne sais pas. Où. Est l’ennemi. Entre les arbres.",
         "divName": "text",
-        "idealX": 61,
+        "minX": 61,
+        "minY": 14,
         "marginX": 3,
         "marginY": 2
     },

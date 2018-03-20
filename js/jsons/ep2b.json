@@ -1,9 +1,9 @@
 [
     {
         "longestText" : "La trajectoire est irréversible. Les avions décollent et se posent à l’inverse du vent, dans la même direction. Vue du ciel, Madrid grouille de lumières : des phares, des enseignes, des lampes électriques. Madrid la nuit est belle comme Nuremberg et comme Dresde, belle comme Berlin. Tu ne fais plus la différence, d’ici, entre les miliciens bolcheviques affolés par l’assaut, et les clandestins fidèles à Franco attendant la libération de leur ville par l’armée du Maroc. Tu ne vois pas les civils pris au piège, ceux qui se terrent, ceux qui attendent et ceux qui fuient. Sur ta droite vole Herrmann. Devant vous vole Sperrle. Vos radios sont presque silencieuses. La nuit madrilène est emplie de lumières abstraites et du bruit très grave du moteur de ton Junkers. On dirait le grondement de la cascade sur les roches, à Allerheiligen l’été dernier, avec Rudi. Ton mécano remue à l’arrière. Lui ne voit, n’entend rien. Il n’attend que ton ordre pour passer dans la soute à bombes, à la mitrailleuse. Tu sais que les Polikarpovs ne viendront pas, que les Russes n’osent pas sortir de nuit. Staline a peur de perdre des hommes, et plus peur encore de confier ses coucous à des pilotes étrangers. Tu n’as rien dit au petit et il tremble, un peu comme s’il avait froid. Dans ton casque, Sperrle vient de se confirmer l’objectif. La formation vire sur l’aile droite. Revoilà le Parc et la Cité Universitaire. Revoilà les taudis du quartier d’Argüelles. Attendre l’instant précis, pour que les bombes, avec l’inertie, tombent à l’endroit voulu. Tu ne pouvais être ailleurs que maintenant. Tu ne pouvais être ailleurs qu’ici.",
-        "longestWord": 14,
         "divName": "text",
-        "idealX": 61,
+        "minX": 61,
+        "minY": 15,
         "marginX": 3,
         "marginY": 2
     },
