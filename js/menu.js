@@ -341,6 +341,7 @@ function displayLandpage(animate) {
         try {
             await box.init(boxOptions);
         } catch (e) {
+            console.log(e);
             return box.drawError(e);
         }
         if (previousSize[0] != box.x || previousSize[1] != box.y) {

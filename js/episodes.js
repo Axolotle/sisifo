@@ -14,12 +14,12 @@ function initEpisode(file) {
 
             await box.draw();
             infos.displayText(box);
-
             await startListener();
             resolve(objs.length > 1 ? objs : objs[0]);
-        } catch (e) {
+        } catch (error) {
+            console.log(error);
             setTimeout(() => showOptions("triche"), 1500);
-            return box.drawError(e);
+            return box.drawError(error);
         }
     });
 }
@@ -166,5 +166,6 @@ async function ep4b(waves) {
 }
 
 async function ep5(map) {
+    console.log('starting');
     map.initMap(box)
 }
