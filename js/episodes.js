@@ -7,15 +7,12 @@ function initEpisode(file) {
             var formatter = new FormatJSON(box.x, box.y, box.marginX, box.marginY);
             json = formatter.getNewJSON(json);
 
-            var objs = [];
-            json.forEach(obj => objs.push(new Animation(obj)));
-
-            var infos = objs.shift();
+            var infos = new Animation(json[0]);
 
             await box.draw();
             infos.displayText(box);
             await startListener();
-            resolve(objs.length > 1 ? objs : objs[0]);
+            resolve(json.length > 2 ? json.slice(1) : json[1]);
         } catch (error) {
             console.log(error);
             setTimeout(() => showOptions("triche"), 1500);
@@ -56,7 +53,8 @@ async function loadEpisode(a) {
     startEpisode(episode);
 }
 
-async function ep0(waves) {
+async function ep0(jsons) {
+    const waves = jsons.map(json => new Animation(json));
     await waves[0].writeText(box);
     await waves[1].writeText(box);
     await waves[2].writeText(box);
@@ -64,7 +62,8 @@ async function ep0(waves) {
     setTimeout(showOptions, 3500);
 }
 
-async function ep1a(waves) {
+async function ep1a(jsons) {
+    const waves = jsons.map(json => new Animation(json));
     await waves[0].writeText(box);
     waves[0].clean(box);
     await waves[1].writeText(box);
@@ -79,7 +78,8 @@ async function ep1a(waves) {
     setTimeout(showOptions, 3500);
 }
 
-async function ep1b(waves) {
+async function ep1b(jsons) {
+    const waves = jsons.map(json => new Animation(json));
     await waves[0].writeText(box);
     await Promise.all([
         waves[0].clean(box, 0),
@@ -101,7 +101,8 @@ async function ep1b(waves) {
     setTimeout(showOptions, 3500);
 }
 
-async function ep2(waves) {
+async function ep2(json) {
+    const waves = new Animation(json);
     // create customs events to trigger add() and remove() function from Animation.addWord() method
     var adder = new Event('add');
     var remover = new Event('remove');
@@ -135,13 +136,14 @@ async function ep2(waves) {
     }
 }
 
-async function ep3(subtitle) {
-    await subtitle.startSubtitles(box);
-
+async function ep3(json) {
+    const subtitles = new Animation(json);
+    await subtitles.startSubtitles(box);
     setTimeout(showOptions, 3500);
 }
 
-async function ep4a(waves) {
+async function ep4a(jsons) {
+    const waves = jsons.map(json => new Animation(json));
     const cursor = new Viewfinder('overlay', 60, 'none', 'click');
     waves[0].displayText(box);
     await cursor.initClipPath(500);
@@ -153,7 +155,8 @@ async function ep4a(waves) {
     showOptions();
 }
 
-async function ep4b(waves) {
+async function ep4b(jsons) {
+    const waves = jsons.map(json => new Animation(json));
     waves[0].insertText(box);
     await sleep(3000);
     await waves[0].mouseOver(true);
@@ -165,7 +168,8 @@ async function ep4b(waves) {
     setTimeout(showOptions, 4000);
 }
 
-async function ep5(map) {
+async function ep5(json) {
+    const map = new Animation(json);
     console.log('starting');
     map.initMap(box)
 }
