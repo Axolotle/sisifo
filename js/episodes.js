@@ -169,7 +169,8 @@ async function ep4b(jsons) {
 }
 
 async function ep5(json) {
-    const map = new Animation(json);
-    console.log('starting');
-    map.initMap(box)
+    var map = new Animation(json);
+    await map.initMap(box);
+    map = null;
+    loadEpisode(episode);
 }
