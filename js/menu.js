@@ -8,7 +8,7 @@ var padding = 0;
 
 initBurger();
 resize();
-loadEpisode('5a');
+// loadEpisode('5a');
 
 window.onresize = resize;
 
@@ -25,7 +25,7 @@ box.addMenu = function(maxEp) {
         for (let i = 0; i < length; i++) {
             if (i < pos) lines[i] += "  ";
             else if (i - pos == 0) lines[i] += "─┐";
-            else if (n === 0) {
+            else if (n === 0 || n === 5) {
                 if (i - pos === 1) {
                     lines[i] += "<a class='ep' id='" + n + "'>" + n + "</a>│";
                 } else lines[i] += " │";
@@ -522,7 +522,7 @@ function initBurger() {
         else if (id == "next"){
             let next;
             if (episode == "0") next = "1a";
-            else if (episode == maxEp + "b") next = "0";
+            else if (episode == maxEp) next = "0";
             else {
                 let n = parseInt(episode[0]);
                 let vs = episode[1];
@@ -533,7 +533,8 @@ function initBurger() {
         }
         else if (id == "previous"){
             let previous;
-            if (episode == "0") previous = maxEp + "b";
+            if (episode == "0") previous = maxEp;
+            else if (episode == "5") previous = "4b";
             else if (episode == "1a") previous = "0";
             else {
                 let n = parseInt(episode[0]);

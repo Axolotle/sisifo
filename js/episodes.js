@@ -42,7 +42,7 @@ async function loadEpisode(a) {
         else if (ep == "3a" || ep == "3b") ep3(json);
         else if (ep == "4a") ep4a(json);
         else if (ep == "4b") ep4b(json);
-        else if (ep == "5a") ep5(json);
+        else if (ep == "5") ep5(json);
     }
 
     if (a.target != undefined) episode = a.target.id;
@@ -171,6 +171,6 @@ async function ep4b(jsons) {
 async function ep5(json) {
     var map = new Animation(json);
     await map.initMap(box);
-    map = null;
-    loadEpisode(episode);
+
+    setTimeout(showOptions, 3000);
 }
