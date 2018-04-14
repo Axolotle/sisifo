@@ -68,6 +68,33 @@
                     "effect": "plan"
                 }
             },
+            "intro": [
+                [
+                    "Aube presque noire, pas tout à fait claire. Il fait un froid cru lorsque je me faufile hors de la caserne-couvent.",
+                    "",
+                    "« Sor María ! » me crie la milicienne. « Sor María, alors ça y est ? Tu désertes ? »",
+                    "",
+                    "Hier, elle m’a bassiné sur mon allégeance. Elle ne comprend pas que je garde le voile tout en servant la cause du peuple. Elle ne croit pas que les bombardements de Madrid m’ont fait haïr les fascistes. Je lui ai dit « Je pleure les églises brûlées, pas tellement les prêtres ». Et « Je prie la Sainte Vierge d’aider les rouges ». Mais elle ne me croit pas. L’entendre me héler me glace. Je laisse couler un frisson. Lui répond :",
+                    "",
+                    "« Je vais chercher de l’alcool dans le quartier. Les hommes en ont besoin. »",
+                    "",
+                    "Que fait-elle debout si tôt ? À veiller. Que fait-elle à veiller comme il y a si peu à voir ? Elle me fait un geste énigmatique de la main. Disparaît de sa fenêtre."
+                ],
+                [
+                    "Le sol sec craque sous mes pieds. Tout près, devant l’hôpital Clínico, je vois l’ennemi avancer des mitrailleuses. Placer des mortiers. Nous sommes le 12 novembre. Voilà ce qu’on surveille. On ne me dit pas tout. On ne fait pas totalement confiance aux bonnes sœurs.",
+                    "",
+                    "Le soupçon est réciproque.",
+                    "",
+                    "La Cité Universitaire semble un désert factice, l’arrière-plan jaune et brun d’une Tentation de saint Antoine malhabile et naïve. Des roches posées ici et là, pour le goût trop humain de la composition. Des sillons rectilignes, des mottes équarries. Gigantesque terrain de construction dont on a ôté à la hâte les terrassiers et arpenteurs. Au milieu, sentant le neuf à cent mètres, l’îlot glabre de la fac de lettres.",
+                    "",
+                    "Et dedans.",
+                    "Le manuscrit.",
+                    "Un second frisson, plus violent, me force à me courber. Odeur de terre remuée. Un lombric s’affaire. Quelques corneilles, plus loin, les grappillent.",
+                    "",
+                    "Et dedans.",
+                    "Le manuscrit."
+                ]
+            ],
             "extro": [
                 "Dehors. Enfin.",
                 "",
@@ -297,6 +324,7 @@
                         "effect": "porte_passe"
                     },
                     "b": {
+                        "name": "Perron",
                         "actions": {
                             "default": null,
                             "porte_passe": [
@@ -324,6 +352,7 @@
                         "clock": true
                     },
                     "c": {
+                        "name": "Couloir est",
                         "fixedText": "Des éclats de voix viennent de la chapelle. Des hommes saouls, furieux ou les deux.\nLa porte du lieu consacré est grande ouverte. Je ne peux pas passer par là.",
                         "clock": true,
                         "effect": [
@@ -332,6 +361,7 @@
                         ]
                     },
                     "d": {
+                        "name": "Couloir est",
                         "fixedText": "Des éclats de voix viennent de la chapelle. Des hommes saouls, furieux ou les deux.\nLa porte du lieu consacré est grande ouverte. Je ne peux pas passer par là.",
                         "clock": true,
                         "effect": [

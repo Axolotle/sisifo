@@ -170,7 +170,7 @@ function displayLandpage(animate) {
                         "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴╶─╯",
                         "",
                         "",
-                        "{{tag::a|id=" + maxEp + "a|class=ep}}lire le dernier épisode{{tag::/a}}"
+                        "{{tag::a|id=" + maxEp + "|class=ep}}lire le dernier épisode{{tag::/a}}"
                     ],
                     format: "align",
                     charToAdd: " "
