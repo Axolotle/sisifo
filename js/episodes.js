@@ -43,7 +43,7 @@ async function loadEpisode(a) {
         else if (ep == "4a") ep4a(json);
         else if (ep == "4b") ep4b(json);
         else if (ep == "5") ep5(json);
-        else if (ep == "5") ep6(json)
+        else if (ep == "6") ep6(json)
     }
 
     if (a.target != undefined) episode = a.target.id;
@@ -187,12 +187,16 @@ async function ep6(json) {
         });
     });
 
-    var intro = pick(json[0]);
-    var content = shuffle(json[1]);
-    var outro = pick(json[2])
+    var intro = new Animation({txt: [pick(json[0])]});
+    var content = new Animation({txt: shuffle(json[1])});
+    var outro = new Animation({txt: pick(json[2])});
 
-    var div = box.x / 3;
-    var posLeft = div;
-    var posRight = div * 2;
-    var posMid = box.x / 2;
+    await sleep(1500);
+    await intro.speedReading(box);
+    await sleep(1500);
+    await content.speedReading(box);
+    await sleep(1500);
+    await outro.speedReading(box);
+
+    setTimeout(showOptions, 3000);
 }
