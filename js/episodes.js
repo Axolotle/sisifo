@@ -43,6 +43,7 @@ async function loadEpisode(a) {
         else if (ep == "4a") ep4a(json);
         else if (ep == "4b") ep4b(json);
         else if (ep == "5") ep5(json);
+        else if (ep == "5") ep6(json)
     }
 
     if (a.target != undefined) episode = a.target.id;
@@ -173,4 +174,25 @@ async function ep5(json) {
     await map.initMap(box);
 
     setTimeout(showOptions, 3000);
+}
+
+async function ep6(json) {
+    json = json.map(txts => {
+        return txts.txt.map(txt => {
+            if (Array.isArray(txt)) {
+              return txt.map(t => t.split(" "));
+            } else {
+              return txt.split(" ");
+            }
+        });
+    });
+
+    var intro = pick(json[0]);
+    var content = shuffle(json[1]);
+    var outro = pick(json[2])
+
+    var div = box.x / 3;
+    var posLeft = div;
+    var posRight = div * 2;
+    var posMid = box.x / 2;
 }
