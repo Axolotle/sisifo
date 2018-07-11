@@ -1,0 +1,65 @@
+[
+    {
+        "divName": "text",
+        "maxX": 90,
+        "maxY": 15,
+        "marginX": 2,
+        "marginY": 1
+    },
+
+    {
+        "txt": [
+            " /                         ",
+            "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴   ╭─╴",
+            "├─╴├─╯ │ ╰─╮│ ││ │├─╴   ├─╮",
+            "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴   ╰─╯",
+            "0 min 0 sec",
+            "",
+            "pas d'interaction",
+            "",
+            "",
+            "{{tag::a|id=start|class=ep}}Lancer l'épisode{{tag::/a}}"
+        ],
+        "format": "align",
+        "charToAdd": " "
+    },
+
+    {
+        "txt": [
+            "Il me montre du doigt. Le doigt de l’homme, devant mon œil décillé. Derrière lui, l’ogre de la mort, épuré, gros, ventre ouvert pour l’ingérer sans bouche. Et lui. Et d’autres. Embouche-les tous.Tous. Ils puent la sueur, l’ail et le vin. Tous.",
+            "Le Lebel 86 pointé contre mon ventre. La chute par la trappe à fourrage. Le projectile de fronde qui m'atteint à la tempe droite. La pierre descellée en aplomb de la cascade. Alexander qui joue à m'étrangler encore, encore et encore. J'ai cinq ans, neuf ans, dix, quinze, vingt et un."
+        ],
+        "format": "none"
+    },
+
+    {
+        "txt": [
+            "Projeté sur le drap qui sert d'écran, je revois Caïcedo le roi de la voltige, bondir au ralenti sur sa corde, culbutes arrières en plein ciel, répétées, lentes, comme si l'air autour avait épaissi, comme s'il nageait dans l'espace.",
+            "L'odeur de guerre intoxique, celle de la peur, de l'attente, de la poudre brûlée : elle me sature, m'épuise, me noie. Elle me manque déjà.",
+            "De quelle couleur sont ses yeux ? Où a fui son regard ? Est-ce un masque, ce sourire ? La face de ma mort est incompréhensible.",
+            "Ça a compté pour rien, m'a-t-elle dit ce matin. Je t'oublie déjà. Tu es morte à mon souvenir.",
+            "Dix fragments bleus entre les débris. Les débris s’écartent, flottent, suspension grise, écartelée. Chair grise. Opium bleu. Chair. J’ai lu tous les canons, hélas. Comment c’était ?",
+            "Dehors tangue et vibrato. Il tympanon. À mon oreille, à mon œil, plus rien qui ne gîte, ne vibre. La tête à droite, la guerre à gauche.",
+            "Les camarades s’éloignent. Le bleu du ciel. Le froid. Le froid du ciel. La tombe. Libre enfin. Libre de penser : je les hais.",
+            "Une odeur de spaghetti, de plage, de biscotte dure. Mes doigts sont poisseux à mon crâne, puis plus.",
+            "Les derniers mots d’un condamnée. Les derniers mots d’une. Les derniers mots."
+        ],
+        "format": "none"
+    },
+
+    {
+        "txt": [
+            [
+                "La vitesse est une griserie réservée aux seuls vivants.",
+                "À la fin, que ce monde est donc clair !",
+                "Seigneur quelqu'un aide-moi."
+            ],
+            [
+                "Hé, toi ! Hé ! Toi là-bas ! Bas. Bas. Bas. J’aimerais dire ça.",
+                "Tout est vertical. Le sol à gauche, larme à droite.",
+                "Filet-contre-filet-flesh."
+            ]
+        ],
+        "format": "none"
+    }
+]
