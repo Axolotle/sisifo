@@ -193,9 +193,7 @@ async function ep6(json) {
 
     await sleep(1500);
     await intro.speedReading(box);
-    await sleep(1500);
-    await content.speedReading(box);
-    await sleep(1500);
+    await content.speedReading(box, true);
     await outro.speedReading(box);
 
     setTimeout(showOptions, 3000);
