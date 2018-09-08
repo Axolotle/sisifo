@@ -43,7 +43,8 @@ async function loadEpisode(a) {
         else if (ep == "4a") ep4a(json);
         else if (ep == "4b") ep4b(json);
         else if (ep == "5") ep5(json);
-        else if (ep == "6") ep6(json)
+        else if (ep == "6") ep6(json);
+        else if (ep == "7") ep7(json)
     }
 
     if (a.target != undefined) episode = a.target.id;
@@ -197,4 +198,11 @@ async function ep6(json) {
     await outro.speedReading(box);
 
     setTimeout(showOptions, 3000);
+}
+
+async function ep7(json) {
+
+    var talker = new Talker(json.text);
+
+    talker.init(box);
 }
