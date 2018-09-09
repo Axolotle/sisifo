@@ -146,6 +146,22 @@ a.notes {
     color: yellow;
 }
 
+
+input {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    left: calc(25% - 1em);
+    border: 2px solid black;
+    padding: 0 1em;
+    margin: 0;
+    border-bottom: none;
+    background-color: black;
+    min-height: 2rem;
+    font-size: 1em;
+    font-family: Hack, monospace;
+    color: white;
+}
 /* FONTS */
 /*///////*/
 
