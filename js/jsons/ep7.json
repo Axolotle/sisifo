@@ -1,9 +1,10 @@
 [
     {
         "divName": "text",
-        "maxX": 60,
-        "maxY": 30,
-        "marginX": 2,
+        "longestText": "Mais j'ai longtemps hésité à ouvrir. Comme si… Je ne sais pas. Ces histoires ne me concernaient pas.\n Tu as remarqué que les premières pages d'un bouquin sont souvent… Elles sont… \n \n Tu sais, ces moments où tu penches par la fenêtre. Où tu presses ton ventre contre la balustrade. Tu roupilles sur ta chaise et tu te réveilles parce que ta tête tombe… \n \n Tu te dis : pourquoi pas ? Pourquoi ne pas accepter l'invitation ? Tomber. L'idée de tomber dans l'invitation te fait peur. Ton ventre est noué. Tu es la seule personne entre toi et l'invitation. \n \n \n C'était comme ça. \n \n J'ai ouvert le livre m'étant destiné sans m'être destiné et j'étais… il n'y avait que moi entre écrire et ne pas écrire.\n \n Et on n'écrit pas sur ce genre de livres. On… \n \n \n \n \n \n \n \n ",
+        "minX": 60,
+        "minY": 5,
+        "marginX": 3,
         "marginY": 1
     },
 
@@ -198,6 +199,10 @@
                     }
                 ],
                 "failure": {
+                    "text": "Tu n'as vraiment rien compris de ce qui se passait, non ? Concentre-toi, s'il te plaît. Il n'y a que toi entre écrire et ne pas écrire. Que toi entre… Écoute ! Écoute !",
+                    "effect": "restart"
+                },
+                "nothing": {
                     "text": "Tu n'as vraiment rien compris de ce qui se passait, non ? Concentre-toi, s'il te plaît. Il n'y a que toi entre écrire et ne pas écrire. Que toi entre… Écoute ! Écoute !",
                     "effect": "restart"
                 }
