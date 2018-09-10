@@ -1,7 +1,7 @@
 [
     {
         "divName": "text",
-        "longestText": "Mais j'ai longtemps hésité à ouvrir. Comme si… Je ne sais pas. Ces histoires ne me concernaient pas.\n Tu as remarqué que les premières pages d'un bouquin sont souvent… Elles sont… \n \n Tu sais, ces moments où tu penches par la fenêtre. Où tu presses ton ventre contre la balustrade. Tu roupilles sur ta chaise et tu te réveilles parce que ta tête tombe… \n \n Tu te dis : pourquoi pas ? Pourquoi ne pas accepter l'invitation ? Tomber. L'idée de tomber dans l'invitation te fait peur. Ton ventre est noué. Tu es la seule personne entre toi et l'invitation. \n \n \n C'était comme ça. \n \n J'ai ouvert le livre m'étant destiné sans m'être destiné et j'étais… il n'y avait que moi entre écrire et ne pas écrire.\n \n Et on n'écrit pas sur ce genre de livres. On… \n \n \n \n \n \n \n \n ",
+        "longestText": "Mais j'ai longtemps hésité à ouvrir. Comme si… Je ne sais pas. Ces histoires ne me concernaient pas.\n Tu as remarqué que les premières pages d'un bouquin sont souvent… Elles sont… \n \n Tu sais, ces moments où tu penches par la fenêtre. Où tu presses ton ventre contre la balustrade. Tu roupilles sur ta chaise et tu te réveilles parce que ta tête tombe… \n \n Tu te dis : pourquoi pas ? Pourquoi ne pas accepter l'invitation ? Tomber. L'idée de tomber dans l'invitation te fait peur. Ton ventre est noué. Tu es la seule personne entre toi et l'invitation. \n \n \n C'était comme ça. \n \n J'ai ouvert le livre m'étant destiné sans m'être destiné et j'étais… il n'y avait que moi entre écrire et ne pas écrire.\n \n Et on n'écrit pas sur ce genre de livres. On… \n \n \n \n \n \n \n \n ",
         "minX": 60,
         "minY": 5,
         "marginX": 3,
@@ -14,10 +14,11 @@
             "┌─╴┌─╮╶┬╴╭─╴╭─╮┌─╮┌─╴   ╶─┐",
             "├─╴├─╯ │ ╰─╮│ ││ │├─╴    ╶┤",
             "╰─╴╵  ╶┴╴╶─╯╰─╯└─╯╰─╴     ╵",
+            "~5 min",
             "",
-            "",
-            "",
-            "",
+            "Écrire quand la boîte noire apparaît",
+            "Touche {{tag::s}} Entrée {{tag::/s}} pour valider",
+            "Temps limité pour répondre",
             "",
             "{{tag::a|id=start|class=ep}}Lancer l'épisode{{tag::/a}}"
         ],
@@ -29,7 +30,7 @@
         "format": "none",
         "text": [
             {
-                "text": "Ça y est ? Je peux parler ?",
+                "text": "Ça y est ? Je peux parler ?",
                 "responses": [
                     {
                         "values": ["oui", "ok", "vas-y", "je t'écoute"]
@@ -41,7 +42,7 @@
             },
 
             {
-                "text": "On te dit : la vie est une page vierge.\nGenre. Si elle reste blanche, c'est que t'y es pris comme un couillon.\nOn te dit page… Page… ?",
+                "text": "On te dit : la vie est une page vierge.\nGenre. Si elle reste blanche, c'est que t'y es pris comme un couillon.\nOn te dit page… Page… ?",
                 "responses": [
                     {
                         "values": ["vierge"],
@@ -53,11 +54,11 @@
             },
 
             {
-                "text": "On te dit qu'il fait noir la nuit. Quand tu es gosse. Et puis une nuit tu ne dors pas, tu sors et tu vois qu'il fait…\nComment s'appelle cette couleur ?",
+                "text": "On te dit qu'il fait noir la nuit. Quand tu es gosse. Et puis une nuit tu ne dors pas, tu sors et tu vois qu'il fait…\nComment s'appelle cette couleur ?",
                 "responses": [
                     {
                         "values": ["noir"],
-                        "text": "Mais non. Bien plus clair que noir. Comment on dit déjà ?"
+                        "text": "Mais non. Bien plus clair que noir. Comment on dit déjà ?"
                     }
                 ],
                 "failure": {
@@ -66,15 +67,15 @@
             },
 
             {
-                "text": "Gruit ! Il ne fait pas nuit, il fait gruit.\nDans les deux cas, on retourne au blanc initial c'est-à-dire qu'on peut choisir d'écrire dessus ou pas.\n\nJ'ai jamais voulu écrire.\nAlors quand ce… cette chose est arrivée. Ce… Cette…",
+                "text": "Gruit ! Il ne fait pas nuit, il fait gruit.\nDans les deux cas, on retourne au blanc initial c'est-à-dire qu'on peut choisir d'écrire dessus ou pas.\n\nJ'ai jamais voulu écrire.\nAlors quand ce… cette chose est arrivée. Ce… Cette…",
                 "responses": [
                     {
                         "values": ["vierge"],
-                        "text": "Comment tu sais ?"
+                        "text": "Comment tu sais ?"
                     },
                     {
                         "values": ["guerre"],
-                        "text": "T'appelles ça une guerre, toi ?"
+                        "text": "T'appelles ça une guerre, toi ?"
                     },
                     {
                         "values": ["drame", "tragédie", "accident", "événement", "crise"],
@@ -86,7 +87,7 @@
             },
 
             {
-                "text": "Ça n'a pas… Les mots ne se sont pas mélangés tout de suite. J'ai… J'avais beaucoup lu sur le sujet. Les trous. Je savais qu'on tombait. Qu'on sappait. Qu'on avait des… des oublis de mémoire. Des troublants. Des… Mais le début d'une histoire ne peut pas être ça, seulement ça. Je veux dire, hypothétiquement, si tu devais commencer une histoire, tu dirais quoi ?",
+                "text": "Ça n'a pas… Les mots ne se sont pas mélangés tout de suite. J'ai… J'avais beaucoup lu sur le sujet. Les trous. Je savais qu'on tombait. Qu'on sappait. Qu'on avait des… des oublis de mémoire. Des troublants. Des… Mais le début d'une histoire ne peut pas être ça, seulement ça. Je veux dire, hypothétiquement, si tu devais commencer une histoire, tu dirais quoi ?",
                 "responses": [
                     {
                         "values": ["il était une fois"],
@@ -100,12 +101,12 @@
                 "failure": {
                 },
                 "nothing": {
-                    "text": "Exactement ! Tu commencerais par ne rien dire. Un trou. Je sais. Je me contredis. Posais toujours problème au séminaire. Rapport aux prêches."
+                    "text": "Exactement ! Tu commencerais par ne rien dire. Un trou. Je sais. Je me contredis. Posais toujours problème au séminaire. Rapport aux prêches."
                 }
             },
 
             {
-                "text": "C'est gentil de te donner la peine de comprendre. C'est inutile et beau et tout ça. Il y a un mot pour dire inutile et beau, non ? Un adjectif ?",
+                "text": "C'est gentil de te donner la peine de comprendre. C'est inutile et beau et tout ça. Il y a un mot pour dire inutile et beau, non ? Un adjectif ?",
                 "responses": [
                     {
                         "values": ["pas", "non", "aucun"],
@@ -113,7 +114,7 @@
                     }
                 ],
                 "failure": {
-                    "text": "Voilà !"
+                    "text": "Voilà !"
                 }
             },
 
@@ -122,7 +123,7 @@
                 "responses": [
                     {
                         "values": ["vierge"],
-                        "text": "Tu sais, ces moments où tu penches par la fenêtre. Où tu presses ton ventre contre la balustrade. Tu roupilles sur ta chaise et tu te réveilles parce que ta tête tombe…\n\nTu te dis : pourquoi pas ? Pourquoi ne pas accepter l'invitation ? Tomber. L'idée de tomber dans l'invitation te fait peur. Ton ventre est noué. Tu es la seule personne entre toi et l'invitation.\n\n\nC'était comme ça.\n\nJ'ai ouvert le livre m'étant destiné sans m'être destiné et j'étais… il n'y avait que moi entre écrire et ne pas écrire.\n\nEt on n'écrit pas sur ce genre de livres. On…"
+                        "text": "Tu sais, ces moments où tu penches par la fenêtre. Où tu presses ton ventre contre la balustrade. Tu roupilles sur ta chaise et tu te réveilles parce que ta tête tombe…\n\nTu te dis : pourquoi pas ? Pourquoi ne pas accepter l'invitation ? Tomber. L'idée de tomber dans l'invitation te fait peur. Ton ventre est noué. Tu es la seule personne entre toi et l'invitation.\n\n\nC'était comme ça.\n\nJ'ai ouvert le livre m'étant destiné sans m'être destiné et j'étais… il n'y avait que moi entre écrire et ne pas écrire.\n\nEt on n'écrit pas sur ce genre de livres. On…"
                     },
                     {
                         "values": ["blanc"],
@@ -138,7 +139,7 @@
                 "responses": [
                     {
                         "values": ["malédiction", "maudit", "maléfique"],
-                        "text": "POURQUOI TU DIS ÇA ? TU TE RENDS COMPTE DE CE QUE TU DIS ?"
+                        "text": "POURQUOI TU DIS ÇA ? TU TE RENDS COMPTE DE CE QUE TU DIS ?"
                     }
                 ],
                 "failure": {
@@ -147,7 +148,7 @@
             },
 
             {
-                "text": "J'ai mis tellement de temps à le trouver. J'ai eu tellement de mal, les efforts…\nTu sais, parfois je rêve encore que je suis dans la fac de Lettres et que le temps est trop court…\nJ'ai vraiment cru que tout était achevé quand j'ai réussi à le sortir… Eh ? Tu m'écoutes ?",
+                "text": "J'ai mis tellement de temps à le trouver. J'ai eu tellement de mal, les efforts…\nTu sais, parfois je rêve encore que je suis dans la fac de Lettres et que le temps est trop court…\nJ'ai vraiment cru que tout était achevé quand j'ai réussi à le sortir… Eh ? Tu m'écoutes ?",
                 "responses": [
                     {
                         "values": ["oui", "bien sûr", "certainement"],
@@ -167,7 +168,7 @@
             },
 
             {
-                "text": "Il y a des trucs qu'on comprend mieux les yeux fermés. T'as remarqué que même dans le noir on ne perd jamais le contact avec… on ne perd jamais la conscience…\nLes premières fois je n'ai pas ouvert en même temps le livre et la lumière.\nEt puis tu sais comment c'est… Tu sais comment on est ?",
+                "text": "Il y a des trucs qu'on comprend mieux les yeux fermés. T'as remarqué que même dans le noir on ne perd jamais le contact avec… on ne perd jamais la conscience…\nLes premières fois je n'ai pas ouvert en même temps le livre et la lumière.\nEt puis tu sais comment c'est… Tu sais comment on est ?",
                 "responses": [
                     {
                         "values": ["veules", "lâche", "petit", "triste", "méchant", "idiot", "moche", "malade", "bête"],
@@ -191,19 +192,19 @@
             },
 
             {
-                "text": "Dans ce livre, il aurait mieux valu ne jamais écrire.\nJ'ai l'impression que chaque jour est exactement comme le jour d'avant.\n J'ai l'impression de toujours recommencer la même page.*\nEst-ce que ça finira jamais, comme le travail de ce Grec, tu sais ? … Celui du boulet. Du caillou sur la pente.",
+                "text": "Dans ce livre, il aurait mieux valu ne jamais écrire.\nJ'ai l'impression que chaque jour est exactement comme le jour d'avant.\n J'ai l'impression de toujours recommencer la même page.*\nEst-ce que ça finira jamais, comme le travail de ce Grec, tu sais ? … Celui du boulet. Du caillou sur la pente.",
                 "responses": [
                     {
                         "values": ["Sisifo", "Sisyphe", "Sisife", "Sysyphe"],
-                        "text": "Moi, à sa place, j'aurais fait la seule chose sensée : j'aurais accepté ma malédiction et renoncé à la rédemption. J'aurais abandonné tout effort. J'aurais planté le caillou là. On ne peut pas faire plus que le maximum. Et le prix a payé, au bout du compte, est toujours le même : Il n'y aura pas de résolution. Il n'y aura pas de paix ni de printemps sur les prés. Nous sommes déjà bien au-delà de toute solution."
+                        "text": "Moi, à sa place, j'aurais fait la seule chose sensée : j'aurais accepté ma malédiction et renoncé à la rédemption. J'aurais abandonné tout effort. J'aurais planté le caillou là. On ne peut pas faire plus que le maximum. Et le prix a payé, au bout du compte, est toujours le même : Il n'y aura pas de résolution. Il n'y aura pas de paix ni de printemps sur les prés. Nous sommes déjà bien au-delà de toute solution."
                     }
                 ],
                 "failure": {
-                    "text": "Tu n'as vraiment rien compris de ce qui se passait, non ? Concentre-toi, s'il te plaît. Il n'y a que toi entre écrire et ne pas écrire. Que toi entre… Écoute ! Écoute !",
+                    "text": "Tu n'as vraiment rien compris de ce qui se passait, non ? Concentre-toi, s'il te plaît. Il n'y a que toi entre écrire et ne pas écrire. Que toi entre… Écoute ! Écoute !",
                     "effect": "restart"
                 },
                 "nothing": {
-                    "text": "Tu n'as vraiment rien compris de ce qui se passait, non ? Concentre-toi, s'il te plaît. Il n'y a que toi entre écrire et ne pas écrire. Que toi entre… Écoute ! Écoute !",
+                    "text": "Tu n'as vraiment rien compris de ce qui se passait, non ? Concentre-toi, s'il te plaît. Il n'y a que toi entre écrire et ne pas écrire. Que toi entre… Écoute ! Écoute !",
                     "effect": "restart"
                 }
             }

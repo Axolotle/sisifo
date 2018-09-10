@@ -201,8 +201,7 @@ async function ep6(json) {
 }
 
 async function ep7(json) {
-
     var talker = new Talker(json.text);
-
-    talker.init(box);
+    await talker.init(box);
+    setTimeout(showOptions, 3000);
 }
