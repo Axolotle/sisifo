@@ -33,39 +33,43 @@
                 "text": "Ça y est ? Je peux parler ?",
                 "responses": [
                     {
-                        "values": ["oui", "ok", "vas-y", "je t'écoute"]
+                        "values": ["oui", "ok", "vas-y", "'écoute", "yes", "go", "allez", "da"]
                     }
                 ],
                 "failure": {
-                    "text": "Laisse-moi parler. On n'a plus que cette occasion-là."
+                    "text": [
+                        "Laisse-moi parler. On n'a plus que cette occasion-là.",
+                        "C'est trop facile. Tu peux pas t'en aller maintenant."
+                    ]
                 }
             },
-
             {
                 "text": "On te dit : la vie est une page vierge.\nGenre. Si elle reste blanche, c'est que t'y es pris comme un couillon.\nOn te dit page… Page… ?",
                 "responses": [
                     {
-                        "values": ["vierge"],
+                        "values": ["vierge", "vide"],
                         "text": "C'est marrant que tu me dises ça, parce que justement aucune ne l'était…  Il y a un même mot pour ça, un mot comme une maladie, ça n'est pas important."
                     }
                 ],
                 "failure": {
                 }
             },
-
             {
                 "text": "On te dit qu'il fait noir la nuit. Quand tu es gosse. Et puis une nuit tu ne dors pas, tu sors et tu vois qu'il fait…\nComment s'appelle cette couleur ?",
                 "responses": [
                     {
                         "values": ["noir"],
                         "text": "Mais non. Bien plus clair que noir. Comment on dit déjà ?"
+                    },
+                    {
+                        "values": ["gruit"],
+                        "text": "C'est joli, hein ? Ca croque sous la langue…"
                     }
                 ],
                 "failure": {
                     "text": "N'importe quoi. Cette couleur n'existe même pas."
                 }
             },
-
             {
                 "text": "Gruit ! Il ne fait pas nuit, il fait gruit.\nDans les deux cas, on retourne au blanc initial c'est-à-dire qu'on peut choisir d'écrire dessus ou pas.\n\nJ'ai jamais voulu écrire.\nAlors quand ce… cette chose est arrivée. Ce… Cette…",
                 "responses": [
@@ -85,13 +89,16 @@
                 "failure": {
                 }
             },
-
             {
                 "text": "Ça n'a pas… Les mots ne se sont pas mélangés tout de suite. J'ai… J'avais beaucoup lu sur le sujet. Les trous. Je savais qu'on tombait. Qu'on sappait. Qu'on avait des… des oublis de mémoire. Des troublants. Des… Mais le début d'une histoire ne peut pas être ça, seulement ça. Je veux dire, hypothétiquement, si tu devais commencer une histoire, tu dirais quoi ?",
                 "responses": [
                     {
                         "values": ["il était une fois"],
                         "text": "Ce serait si beau qu'une fois. Au moins une fois…"
+                    },
+                    {
+                        "values": ["jour"],
+                        "text": "Non, je crois pas. Je n'ai pas souvenir d'avoir vu le soleil, en tous cas."
                     },
                     {
                         "values": ["pas", "non", "rien"],
@@ -104,7 +111,6 @@
                     "text": "Exactement ! Tu commencerais par ne rien dire. Un trou. Je sais. Je me contredis. Posais toujours problème au séminaire. Rapport aux prêches."
                 }
             },
-
             {
                 "text": "C'est gentil de te donner la peine de comprendre. C'est inutile et beau et tout ça. Il y a un mot pour dire inutile et beau, non ? Un adjectif ?",
                 "responses": [
@@ -117,7 +123,6 @@
                     "text": "Voilà !"
                 }
             },
-
             {
                 "text": "Mais j'ai longtemps hésité à ouvrir. Comme si… Je ne sais pas. Ces histoires ne me concernaient pas.\nTu as remarqué que les premières pages d'un bouquin sont souvent… Elles sont…",
                 "responses": [
@@ -133,7 +138,6 @@
                 "failure": {
                 }
             },
-
             {
                 "text": "Là, c'étaient de ces vélins déjà grattés, grattés plein de fois, avec les taches de vieillissement, les craquelures de manipulation…  Il y a un même mot pour ça, un mot comme une maladie, ça n'est pas important.\n\nOn n'écrit pas sur ce genre de livres. Ça ne se fait pas. Ils sont… Ils portent une… C'est comme \"punition\". Un mot comme \"punition\".",
                 "responses": [
@@ -146,7 +150,6 @@
                     "text": "Si seulement. Si seulement ce n'était que ça…"
                 }
             },
-
             {
                 "text": "J'ai mis tellement de temps à le trouver. J'ai eu tellement de mal, les efforts…\nTu sais, parfois je rêve encore que je suis dans la fac de Lettres et que le temps est trop court…\nJ'ai vraiment cru que tout était achevé quand j'ai réussi à le sortir… Eh ? Tu m'écoutes ?",
                 "responses": [
@@ -166,37 +169,35 @@
                 "failure": {
                 }
             },
-
             {
                 "text": "Il y a des trucs qu'on comprend mieux les yeux fermés. T'as remarqué que même dans le noir on ne perd jamais le contact avec… on ne perd jamais la conscience…\nLes premières fois je n'ai pas ouvert en même temps le livre et la lumière.\nEt puis tu sais comment c'est… Tu sais comment on est ?",
                 "responses": [
                     {
-                        "values": ["veules", "lâche", "petit", "triste", "méchant", "idiot", "moche", "malade", "bête"],
+                        "values": [ "veules", "lâche", "lache", "petit", "triste", "méchant", "idiot", "moche", "malade", "bête", "bète", "étourdi" ],
                         "text": "Je crois que c'est juste que, parfois, la lumière brûle très loin, très au fond. Au bout des galeries, il y avait des lampes infime, qu'on ne pouvait voir qu'au bout de six, sept minutes de descente, quand les yeux étaient tout à fait habitués. Il y a des gens, aussi, qui sont comme ces braises."
                     },
                     {
-                        "values": ["curieux", "courageux", "gentil", "débonnaire", "intelligent"],
+                        "values": [ "curieux", "courageux", "gentil", "débonnaire", "intelligent", "cool" ],
                         "text": "Je crois que je vais me mettre à pleurer."
                     },
                     {
-                        "values": ["mort", "muet"],
+                        "values": [ "mort", "muet" ],
                         "effect": "restart"
                     },
                     {
-                        "values": ["vierge"],
+                        "values": [ "vierge" ],
                         "text": "J'ai cru un moment que c'était Elle. Qu'elle se penchait par-dessus mon épaule. Pour écrire. J'ai fabriqué cette histoire pour ne pas glisser le long de la pente, ne pas dévaller, ne pas être ce… roc qu'on hisse, qui tombe, qu'on hisse."
                     }
                 ],
                 "failure": {
                 }
             },
-
             {
-                "text": "Dans ce livre, il aurait mieux valu ne jamais écrire.\nJ'ai l'impression que chaque jour est exactement comme le jour d'avant.\n J'ai l'impression de toujours recommencer la même page.*\nEst-ce que ça finira jamais, comme le travail de ce Grec, tu sais ? … Celui du boulet. Du caillou sur la pente.",
+                "text": "Dans ce livre, il aurait mieux valu ne jamais écrire.\nJ'ai l'impression que chaque jour est exactement comme le jour d'avant.\nJ'ai l'impression de toujours recommencer la même page.\nEst-ce que ça finira jamais, comme le travail de ce Grec, tu sais ? … Celui du boulet. Du caillou sur la pente.",
                 "responses": [
                     {
-                        "values": ["Sisifo", "Sisyphe", "Sisife", "Sysyphe"],
-                        "text": "Moi, à sa place, j'aurais fait la seule chose sensée : j'aurais accepté ma malédiction et renoncé à la rédemption. J'aurais abandonné tout effort. J'aurais planté le caillou là. On ne peut pas faire plus que le maximum. Et le prix a payé, au bout du compte, est toujours le même : Il n'y aura pas de résolution. Il n'y aura pas de paix ni de printemps sur les prés. Nous sommes déjà bien au-delà de toute solution."
+                        "values": [ "sisifo", "sisyphe", "sisife", "sysyphe" ],
+                        "text": "Moi, à sa place, j'aurais fait la seule chose sensée : j'aurais accepté ma malédiction et renoncé à la rédemption. J'aurais abandonné tout effort. J'aurais planté le caillou là. On ne peut pas faire plus que le maximum. Et le prix a payé, au bout du compte, est toujours le même : Il n'y aura pas de résolution. Il n'y aura pas de paix ni de printemps sur les prés. Nous sommes déjà bien au-delà de toute solution. »"
                     }
                 ],
                 "failure": {
