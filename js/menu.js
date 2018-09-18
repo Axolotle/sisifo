@@ -8,7 +8,7 @@ var padding = 0;
 
 initBurger();
 resize();
-loadEpisode('7');
+// loadEpisode('7');
 
 window.onresize = resize;
 

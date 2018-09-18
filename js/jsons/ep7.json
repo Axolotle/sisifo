@@ -33,13 +33,13 @@
                 "text": "Ça y est ? Je peux parler ?",
                 "responses": [
                     {
-                        "values": ["oui", "ok", "vas-y", "'écoute", "yes", "go", "allez", "da"]
+                        "values": [ "oui", "ok", "vas-y", "'écoute", "yes", "go", "allez", "da" ]
                     }
                 ],
                 "failure": {
                     "text": [
                         "Laisse-moi parler. On n'a plus que cette occasion-là.",
-                        "C'est trop facile. Tu peux pas t'en aller maintenant."
+                        "C'est important que tu m'écoutes, que tu m'aides."
                     ]
                 }
             },
@@ -47,7 +47,7 @@
                 "text": "On te dit : la vie est une page vierge.\nGenre. Si elle reste blanche, c'est que t'y es pris comme un couillon.\nOn te dit page… Page… ?",
                 "responses": [
                     {
-                        "values": ["vierge", "vide"],
+                        "values": [ "vierge", "vide" ],
                         "text": "C'est marrant que tu me dises ça, parce que justement aucune ne l'était…  Il y a un même mot pour ça, un mot comme une maladie, ça n'est pas important."
                     }
                 ],
@@ -58,11 +58,11 @@
                 "text": "On te dit qu'il fait noir la nuit. Quand tu es gosse. Et puis une nuit tu ne dors pas, tu sors et tu vois qu'il fait…\nComment s'appelle cette couleur ?",
                 "responses": [
                     {
-                        "values": ["noir"],
+                        "values": [ "noir" ],
                         "text": "Mais non. Bien plus clair que noir. Comment on dit déjà ?"
                     },
                     {
-                        "values": ["gruit"],
+                        "values": [ "gruit" ],
                         "text": "C'est joli, hein ? Ca croque sous la langue…"
                     }
                 ],
@@ -74,15 +74,15 @@
                 "text": "Gruit ! Il ne fait pas nuit, il fait gruit.\nDans les deux cas, on retourne au blanc initial c'est-à-dire qu'on peut choisir d'écrire dessus ou pas.\n\nJ'ai jamais voulu écrire.\nAlors quand ce… cette chose est arrivée. Ce… Cette…",
                 "responses": [
                     {
-                        "values": ["vierge"],
+                        "values": [ "vierge" ],
                         "text": "Comment tu sais ?"
                     },
                     {
-                        "values": ["guerre"],
+                        "values": [ "guerre" ],
                         "text": "T'appelles ça une guerre, toi ?"
                     },
                     {
-                        "values": ["drame", "tragédie", "accident", "événement", "crise"],
+                        "values": [ "drame", "tragédie", "accident", "événement", "crise" ],
                         "text": "Les journaux ont souvent utilisé ce mot. Ça me peine un peu que tu l'utilises."
                     }
                 ],
@@ -93,15 +93,15 @@
                 "text": "Ça n'a pas… Les mots ne se sont pas mélangés tout de suite. J'ai… J'avais beaucoup lu sur le sujet. Les trous. Je savais qu'on tombait. Qu'on sappait. Qu'on avait des… des oublis de mémoire. Des troublants. Des… Mais le début d'une histoire ne peut pas être ça, seulement ça. Je veux dire, hypothétiquement, si tu devais commencer une histoire, tu dirais quoi ?",
                 "responses": [
                     {
-                        "values": ["il était une fois"],
+                        "values": [ "il était une fois" ],
                         "text": "Ce serait si beau qu'une fois. Au moins une fois…"
                     },
                     {
-                        "values": ["jour"],
+                        "values": [ "jour" ],
                         "text": "Non, je crois pas. Je n'ai pas souvenir d'avoir vu le soleil, en tous cas."
                     },
                     {
-                        "values": ["pas", "non", "rien"],
+                        "values": [ "pas", "non", "rien" ],
                         "text": "Dis pas ça. Je suis sûr que t'en connais une ou deux. Mais je comprends que tu n'en veuilles plus. Ce monde a fatigué les histoires."
                     }
                 ],
@@ -115,8 +115,8 @@
                 "text": "C'est gentil de te donner la peine de comprendre. C'est inutile et beau et tout ça. Il y a un mot pour dire inutile et beau, non ? Un adjectif ?",
                 "responses": [
                     {
-                        "values": ["pas", "non", "aucun"],
-                        "text": "Bien sûr que si. Tu sais bien qu'ils ont fait des mots pour tout. Des tonnes de mots. Des fois il y en a tellement que ça fait un mur. Et puis il y en a… Il y en a qui change de forme ou qui change de sens, même si tu ne les quitte pas des yeux. On peut rien faire contre ça."
+                        "values": [ "pas", "non", "aucun" ],
+                        "text": "Bien sûr que si. Tu sais bien qu'ils ont fait des mots pour tout. Des tonnes de mots. Des fois il y en a tellement que ça fait un mur. Et puis il y en a… Il y en a qui changent de forme ou qui changent de sens, même si tu ne les quittes pas des yeux. On peut rien faire contre ça."
                     }
                 ],
                 "failure": {
@@ -127,11 +127,11 @@
                 "text": "Mais j'ai longtemps hésité à ouvrir. Comme si… Je ne sais pas. Ces histoires ne me concernaient pas.\nTu as remarqué que les premières pages d'un bouquin sont souvent… Elles sont…",
                 "responses": [
                     {
-                        "values": ["vierge"],
+                        "values": [ "vierge" ],
                         "text": "Tu sais, ces moments où tu penches par la fenêtre. Où tu presses ton ventre contre la balustrade. Tu roupilles sur ta chaise et tu te réveilles parce que ta tête tombe…\n\nTu te dis : pourquoi pas ? Pourquoi ne pas accepter l'invitation ? Tomber. L'idée de tomber dans l'invitation te fait peur. Ton ventre est noué. Tu es la seule personne entre toi et l'invitation.\n\n\nC'était comme ça.\n\nJ'ai ouvert le livre m'étant destiné sans m'être destiné et j'étais… il n'y avait que moi entre écrire et ne pas écrire.\n\nEt on n'écrit pas sur ce genre de livres. On…"
                     },
                     {
-                        "values": ["blanc"],
+                        "values": [ "blanc" ],
                         "text": "N'importe quoi. Cette couleur n'existe même pas."
                     }
                 ],
@@ -142,7 +142,7 @@
                 "text": "Là, c'étaient de ces vélins déjà grattés, grattés plein de fois, avec les taches de vieillissement, les craquelures de manipulation…  Il y a un même mot pour ça, un mot comme une maladie, ça n'est pas important.\n\nOn n'écrit pas sur ce genre de livres. Ça ne se fait pas. Ils sont… Ils portent une… C'est comme \"punition\". Un mot comme \"punition\".",
                 "responses": [
                     {
-                        "values": ["malédiction", "maudit", "maléfique"],
+                        "values": [ "malédiction", "maudit", "maléfique" ],
                         "text": "POURQUOI TU DIS ÇA ? TU TE RENDS COMPTE DE CE QUE TU DIS ?"
                     }
                 ],
@@ -154,15 +154,15 @@
                 "text": "J'ai mis tellement de temps à le trouver. J'ai eu tellement de mal, les efforts…\nTu sais, parfois je rêve encore que je suis dans la fac de Lettres et que le temps est trop court…\nJ'ai vraiment cru que tout était achevé quand j'ai réussi à le sortir… Eh ? Tu m'écoutes ?",
                 "responses": [
                     {
-                        "values": ["oui", "bien sûr", "certainement"],
+                        "values": [ "oui", "bien sûr", "certainement" ],
                         "text": "Chaque fois je me faisais rattraper, ou bien je me perdais. Ca puait. Je rêve encore souvent de l'odeur de la fac de Lettres. Je sais que tu m'écoutes, je me demande juste si tu…"
                     },
                     {
-                        "values": ["non", "pas"],
+                        "values": [ "non", "pas" ],
                         "text": "Je crois que c'est mieux, en effet. Je n'aimerais pas être à ma place."
                     },
                     {
-                        "values": ["pourquoi", "?"],
+                        "values": [ "pourquoi", "?" ],
                         "text": "Les dames m'ont posé cette question. Souvent. En fait, c'était presque tout ce qu'elles savaient faire. Elles ne cherchaient pas à comprendre ce qu'étaient ces mots qui me manquent, elles voulaient juste savoir."
                     }
                 ],
@@ -173,8 +173,8 @@
                 "text": "Il y a des trucs qu'on comprend mieux les yeux fermés. T'as remarqué que même dans le noir on ne perd jamais le contact avec… on ne perd jamais la conscience…\nLes premières fois je n'ai pas ouvert en même temps le livre et la lumière.\nEt puis tu sais comment c'est… Tu sais comment on est ?",
                 "responses": [
                     {
-                        "values": [ "veules", "lâche", "lache", "petit", "triste", "méchant", "idiot", "moche", "malade", "bête", "bète", "étourdi" ],
-                        "text": "Je crois que c'est juste que, parfois, la lumière brûle très loin, très au fond. Au bout des galeries, il y avait des lampes infime, qu'on ne pouvait voir qu'au bout de six, sept minutes de descente, quand les yeux étaient tout à fait habitués. Il y a des gens, aussi, qui sont comme ces braises."
+                        "values": [ "veule", "lâche", "lache", "petit", "triste", "méchant", "idiot", "moche", "malade", "bête", "bète", "étourdi" ],
+                        "text": "Je crois que c'est juste que, parfois, la lumière brûle très loin, très au fond. Au bout des galeries, il y avait des lampes infimes, qu'on ne pouvait voir qu'au bout de six, sept minutes de descente, quand les yeux étaient tout à fait habitués. Il y a des gens, aussi, qui sont comme ces braises."
                     },
                     {
                         "values": [ "curieux", "courageux", "gentil", "débonnaire", "intelligent", "cool" ],
@@ -193,11 +193,11 @@
                 }
             },
             {
-                "text": "Dans ce livre, il aurait mieux valu ne jamais écrire.\nJ'ai l'impression que chaque jour est exactement comme le jour d'avant.\nJ'ai l'impression de toujours recommencer la même page.\nEst-ce que ça finira jamais, comme le travail de ce Grec, tu sais ? … Celui du boulet. Du caillou sur la pente.",
+                "text": "Dans ce livre, il aurait mieux valu ne jamais écrire.\nJ'ai l'impression que chaque jour est exactement comme le jour d'avant.\nJ'ai l'impression de toujours recommencer la même page.\nEst-ce que ça finira jamais, comme le travail de ce Grec, tu sais ? … Celui du boulet. Du caillou sur la pente.",
                 "responses": [
                     {
-                        "values": [ "sisifo", "sisyphe", "sisife", "sysyphe" ],
-                        "text": "Moi, à sa place, j'aurais fait la seule chose sensée : j'aurais accepté ma malédiction et renoncé à la rédemption. J'aurais abandonné tout effort. J'aurais planté le caillou là. On ne peut pas faire plus que le maximum. Et le prix a payé, au bout du compte, est toujours le même : Il n'y aura pas de résolution. Il n'y aura pas de paix ni de printemps sur les prés. Nous sommes déjà bien au-delà de toute solution. »"
+                        "values": [ "sisifo", "sisyphe", "sisiphe", "sysyphe", "sysiphe", "sisife", "sysife", "sisyfe" ],
+                        "text": "Moi, à sa place, j'aurais fait la seule chose sensée : j'aurais accepté ma malédiction et renoncé à la rédemption. J'aurais abandonné tout effort. J'aurais planté le caillou là. On ne peut pas faire plus que le maximum. Et le prix à payer, au bout du compte, est toujours le même : il n'y aura pas de résolution. Il n'y aura pas de paix ni de printemps sur les prés. Nous sommes déjà bien au-delà de toute fin. »"
                     }
                 ],
                 "failure": {
