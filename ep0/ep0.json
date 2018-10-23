@@ -1,11 +1,12 @@
 [
     {
         "longestText" : "La Cité Universitaire de Madrid est un campus pharaonique, séparé de la cité, rêvé par le roi Alfonso XIII dans les années 1920. Sur un gigantesque terrain de Moncloa, d’une superficie de plus de 300 hectares, commencent à s’édifier, dès 1930, les facultés de médecine, de pharmacie et d’odontologie. Suivies, en 1932, de l’hôpital clinique.\nLa Cité Universitaire de Madrid fut un des fronts les plus tenaces de la guerre civile espagnole. Dès 1936, les nationalistes, menés par Varela, ambitionnent de prendre Madrid, place forte républicaine, par un assaut frontal. Ils occupent rapidement la rive ouest du Manzanares, mais butent sur les positions défensives des brigadistes, situées au sommet de la berge opposée, montant à pic vers Moncloa.\nAprès avoir subi de lourdes pertes, les phalangistes changent de tactique. Madrid ne tombera que s’ils délogent les républicains postés sur le promontoire de la Cité Universitaire, friche en construction, où s’alternent monumentaux instituts, terrains vagues et zones de travaux. Un véritable bocage urbain. Dès le 15 novembre 1936, de violents combats opposent attaquants et défenseurs, s’affrontant parfois à bout portant, au sein du même édifice, d’étage en étage. C'est...",
-        "divName": "text",
-        "minX": 59,
-        "minY": 13,
-        "marginX": 3,
-        "marginY": 2
+        "minWidth": 59,
+        "minHeight": 13,
+        "padding": {
+            "x": 3,
+            "y": 2
+        }
     },
 
     {
