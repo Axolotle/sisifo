@@ -1,6 +1,6 @@
 testNavigator();
 var box = new Box();
-var maxEp = 7;
+var maxEp = 8;
 var episode;
 var mini;
 var landpage = true;
@@ -8,7 +8,7 @@ var padding = 0;
 
 initBurger();
 resize();
-// loadEpisode('7');
+loadEpisode('8');
 
 window.onresize = resize;
 
@@ -25,7 +25,7 @@ box.addMenu = function(maxEp) {
         for (let i = 0; i < length; i++) {
             if (i < pos) lines[i] += "  ";
             else if (i - pos == 0) lines[i] += "─┐";
-            else if (n === 0 || n === 5 || n === 6 || n === 7) {
+            else if (n === 0 || n === 5 || n === 6 || n === 7 || n === 8) {
                 if (i - pos === 1) {
                     lines[i] += "<a class='ep' id='" + n + "'>" + n + "</a>│";
                 } else lines[i] += " │";
@@ -525,6 +525,7 @@ function initBurger() {
             else if (episode == "4b") next = "5";
             else if (episode == "5") next = "6";
             else if (episode == "6") next = "7";
+            else if (episode == "7") next = "8";
             else if (episode == maxEp) next = "0";
             else {
                 let n = parseInt(episode[0]);
@@ -540,6 +541,7 @@ function initBurger() {
             else if (episode == "5") previous = "4b";
             else if (episode == "6") previous = "5";
             else if (episode == "7") previous = "6";
+            else if (episode == "8") previous = "7";
             else if (episode == "1a") previous = "0";
             else {
                 let n = parseInt(episode[0]);

@@ -44,7 +44,8 @@ async function loadEpisode(a) {
         else if (ep == "4b") ep4b(json);
         else if (ep == "5") ep5(json);
         else if (ep == "6") ep6(json);
-        else if (ep == "7") ep7(json)
+        else if (ep == "7") ep7(json);
+        else if (ep == "8") ep8(json);
     }
 
     if (a.target != undefined) episode = a.target.id;
@@ -204,4 +205,37 @@ async function ep7(json) {
     var talker = new Talker(box, json.text);
     await talker.init();
     setTimeout(showOptions, 3000);
+}
+
+async function ep8(json) {
+    console.log(box.x, box.y);
+    console.log(json);
+    var letter = new Animation(json[0]);
+    letter.displayText(box);
+    await sleep(1000);
+    await box.init(json[1]);
+    console.log(box.x, box.y);
+    box.setupAnim();
+    // console.log(json.text[0].length, json.text[0][0].length);
+    let x = (161 - box.x) / 2;
+    let y = (45 - box.y) / 2;
+    var anim = json[2].txt;
+
+    for (var i = 0; i < anim.length; i++) {
+        anim[i] = anim[i].slice(y, box.y + y);
+        for (var j = 0; j < anim[i].length; j++) {
+            console.log(anim[i][j]);
+            anim[i][j] = anim[i][j].slice(x, box.x + x)
+
+        }
+    }
+    var test = 20;
+    while (test--) {
+        for (let drawing of anim) {
+            box.fill(drawing)
+            await sleep(150);
+        }
+        anim = anim.reverse();
+    }
+    // setTimeout(showOptions, 3000);
 }
