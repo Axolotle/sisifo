@@ -208,34 +208,48 @@ async function ep7(json) {
 }
 
 async function ep8(json) {
-    console.log(box.x, box.y);
-    console.log(json);
     var letter = new Animation(json[0]);
     letter.displayText(box);
-    await sleep(1000);
     await box.init(json[1]);
-    console.log(box.x, box.y);
     box.setupAnim();
-    // console.log(json.text[0].length, json.text[0][0].length);
-    let x = (161 - box.x) / 2;
-    let y = (45 - box.y) / 2;
+
     var anim = json[2].txt;
+    var x = (161 - box.x) / 2;
+    var y = (45 - box.y) / 2;
+    var index = 0;
 
-    for (var i = 0; i < anim.length; i++) {
+    for (let i = 0; i < anim.length; i++) {
         anim[i] = anim[i].slice(y, box.y + y);
-        for (var j = 0; j < anim[i].length; j++) {
-            console.log(anim[i][j]);
+        for (let j = 0; j < anim[i].length; j++) {
             anim[i][j] = anim[i][j].slice(x, box.x + x)
+        }
+    }
+    anim.unshift(box.lines.map(line => line.textContent));
 
+    var stamp = performance.now();
+    if (window.addEventListener) {
+        // IE9, Chrome, Safari, Opera
+        window.addEventListener("mousewheel", MouseWheelHandler);
+        // Firefox
+        window.addEventListener("DOMMouseScroll", MouseWheelHandler);
+    }
+    // IE 6/7/8
+    else window.attachEvent("onmousewheel", MouseWheelHandler);
+
+    function MouseWheelHandler(e) {
+        // cross-browser wheel delta
+        var e = window.event || e; // old IE support
+        e.preventDefault();
+        var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+        var now = performance.now();
+        if (now - stamp < 30) {
+            return;
+        }
+        stamp = now;
+        if (delta === -1 && index < anim.length - 1) {
+            box.fill(anim[++index])
+        } else if (delta === 1 && index > 0){
+            box.fill(anim[--index])
         }
     }
-    var test = 20;
-    while (test--) {
-        for (let drawing of anim) {
-            box.fill(drawing)
-            await sleep(150);
-        }
-        anim = anim.reverse();
-    }
-    // setTimeout(showOptions, 3000);
 }
